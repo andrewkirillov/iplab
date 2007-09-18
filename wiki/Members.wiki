@@ -1,0 +1,19 @@
+#summary The page lists project owners, members and contributors
+#labels Featured
+
+= Owners =
+
+At this point the only project owner is *Andrew Kirillov*, who started the project, provided most of the code and supports it.
+
+= Members =
+
+Project members are people, who have joint the project and work on extending, improving and supporting it. The list of members is:
+  * Andrew Kirillov.
+
+= Junior Members =
+
+Junior members are those people, who have joint the project recently. These people work on extending, improving and supporting the project, but they don’t commit their code to the development trunk. Each junior member has his own code branch, where he works on the project.
+
+= Contributors =
+
+Contributors of the project are those people, who don't join the project, but contribute it providing some code, share ideas and participate in the project's life.
