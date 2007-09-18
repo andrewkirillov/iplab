@@ -1,4 +1,12 @@
 #summary The page lists external libraries, which are used by the application and points to their location.
+#labels Featured
 
+The IPLab application uses numerous of open source components, which are listed below:
+  * [http://www.codeproject.com/cs/miscctrl/DockManager.asp DockManager Control] by Weifen Luo;
+  * [http://www.codeproject.com/cs/miscctrl/csharpgridcontrol.asp SourceGrid - Open Source C# Grid Control] by Davide Icardi;
+  * [http://www.codeproject.com/cs/menu/ToolBarDock.asp A Simple C# Toolbar Docking Framework] by Rogério Paulo.
+
+Thank to all these projects and people, who support them.
+ 
  
  
