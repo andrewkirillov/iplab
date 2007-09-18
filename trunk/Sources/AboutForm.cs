@@ -19,6 +19,7 @@ namespace IPLab
         private System.Windows.Forms.PictureBox pictureBox2;
         private Label label3;
         private LinkLabel aforgeLabel;
+        private LinkLabel iplabLabel;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -34,6 +35,7 @@ namespace IPLab
             //
             mailLabel.Links.Add( 0, mailLabel.Text.Length, "mailto:andrew.kirillov@gmail.com" );
             aforgeLabel.Links.Add( 0, aforgeLabel.Text.Length, "http://code.google.com/p/aforge/" );
+            iplabLabel.Links.Add( 0, aforgeLabel.Text.Length, "http://code.google.com/p/iplab/" );
         }
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace IPLab
             this.pictureBox2 = new System.Windows.Forms.PictureBox( );
             this.label3 = new System.Windows.Forms.Label( );
             this.aforgeLabel = new System.Windows.Forms.LinkLabel( );
+            this.iplabLabel = new System.Windows.Forms.LinkLabel( );
             ( (System.ComponentModel.ISupportInitialize) ( this.pictureBox1 ) ).BeginInit( );
             ( (System.ComponentModel.ISupportInitialize) ( this.pictureBox2 ) ).BeginInit( );
             this.SuspendLayout( );
@@ -74,7 +77,7 @@ namespace IPLab
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point( 15, 190 );
+            this.pictureBox1.Location = new System.Drawing.Point( 15, 210 );
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size( 344, 2 );
             this.pictureBox1.TabIndex = 10;
@@ -84,7 +87,7 @@ namespace IPLab
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.okButton.Location = new System.Drawing.Point( 150, 200 );
+            this.okButton.Location = new System.Drawing.Point( 150, 220 );
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size( 75, 23 );
             this.okButton.TabIndex = 11;
@@ -96,12 +99,12 @@ namespace IPLab
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size( 168, 24 );
             this.label1.TabIndex = 12;
-            this.label1.Text = "Image Processing Lab v.2.5.0";
+            this.label1.Text = "Image Processing Lab v.2.5.1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point( 81, 95 );
+            this.label2.Location = new System.Drawing.Point( 81, 115 );
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size( 212, 16 );
             this.label2.TabIndex = 13;
@@ -112,14 +115,14 @@ namespace IPLab
             // 
             this.mailLabel.ActiveLinkColor = System.Drawing.Color.MediumBlue;
             this.mailLabel.LinkColor = System.Drawing.Color.MediumBlue;
-            this.mailLabel.Location = new System.Drawing.Point( 115, 110 );
+            this.mailLabel.Location = new System.Drawing.Point( 115, 130 );
             this.mailLabel.Name = "mailLabel";
             this.mailLabel.Size = new System.Drawing.Size( 144, 23 );
             this.mailLabel.TabIndex = 14;
             this.mailLabel.TabStop = true;
             this.mailLabel.Text = "andrew.kirillov@gmail.com";
             this.mailLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.mailLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.mailLabel_LinkClicked );
+            this.mailLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.label_LinkClicked );
             // 
             // pictureBox2
             // 
@@ -133,7 +136,7 @@ namespace IPLab
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point( 104, 145 );
+            this.label3.Location = new System.Drawing.Point( 104, 165 );
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size( 166, 13 );
             this.label3.TabIndex = 16;
@@ -142,20 +145,32 @@ namespace IPLab
             // aforgeLabel
             // 
             this.aforgeLabel.AutoSize = true;
-            this.aforgeLabel.Location = new System.Drawing.Point( 102, 160 );
+            this.aforgeLabel.Location = new System.Drawing.Point( 102, 180 );
             this.aforgeLabel.Name = "aforgeLabel";
             this.aforgeLabel.Size = new System.Drawing.Size( 171, 13 );
             this.aforgeLabel.TabIndex = 17;
             this.aforgeLabel.TabStop = true;
             this.aforgeLabel.Text = "http://code.google.com/p/aforge/";
-            this.aforgeLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.aforgeLabel_LinkClicked );
+            this.aforgeLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.label_LinkClicked );
+            // 
+            // iplabLabel
+            // 
+            this.iplabLabel.AutoSize = true;
+            this.iplabLabel.Location = new System.Drawing.Point( 106, 75 );
+            this.iplabLabel.Name = "iplabLabel";
+            this.iplabLabel.Size = new System.Drawing.Size( 163, 13 );
+            this.iplabLabel.TabIndex = 18;
+            this.iplabLabel.TabStop = true;
+            this.iplabLabel.Text = "http://code.google.com/p/iplab/";
+            this.iplabLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.label_LinkClicked );
             // 
             // AboutForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size( 5, 13 );
             this.CancelButton = this.okButton;
-            this.ClientSize = new System.Drawing.Size( 374, 233 );
+            this.ClientSize = new System.Drawing.Size( 374, 253 );
+            this.Controls.Add( this.iplabLabel );
             this.Controls.Add( this.aforgeLabel );
             this.Controls.Add( this.label3 );
             this.Controls.Add( this.pictureBox2 );
@@ -179,14 +194,8 @@ namespace IPLab
         }
         #endregion
 
-        // On mail link clicked
-        private void mailLabel_LinkClicked( object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e )
-        {
-            System.Diagnostics.Process.Start( e.Link.LinkData.ToString( ) );
-        }
-
-        // On site link clicked
-        private void aforgeLabel_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
+        // On URL label click
+        private void label_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
             System.Diagnostics.Process.Start( e.Link.LinkData.ToString( ) );
         }

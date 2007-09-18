@@ -1,0 +1,16 @@
+Image Processing Lab
+
+Copyright © Andrew Kirillov, 2005-2007
+andrew.kirillov@gmail.com
+
+Open source image processing application written on C#, which includes
+different filters and tools to analyze images available in AForge.NET
+framework.
+
+The application is FREE for any non commercial usage. In the case of
+modifying and/or redistributing the code it's obligate to retain
+the original copyright notice. Commercial usage of this application
+is prohibited and is subject for negotiation.
+
+
+Please, contact project owners for any offers, remarks, ideas, etc.
