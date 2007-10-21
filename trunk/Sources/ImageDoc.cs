@@ -237,8 +237,7 @@ namespace IPLab
             this.host = host;
         }
         // Construct from file
-        public ImageDoc( string fileName, IDocumentsHost host )
-            : this( host )
+        public ImageDoc( string fileName, IDocumentsHost host ) : this( host )
         {
             try
             {
@@ -258,8 +257,7 @@ namespace IPLab
             Init( );
         }
         // Construct from image
-        public ImageDoc( Bitmap image, IDocumentsHost host )
-            : this( host )
+        public ImageDoc( Bitmap image, IDocumentsHost host ) : this( host )
         {
             this.image = image;
             AForge.Imaging.Image.FormatImage( ref this.image );
@@ -1656,6 +1654,42 @@ namespace IPLab
             this.AutoScrollMinSize = new Size( (int) ( width * zoom ), (int) ( height * zoom ) );
         }
 
+        // Check if the image is color RGB image
+        private bool CheckIfColor( string filterName )
+        {
+            // check pixel format
+            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            {
+                MessageBox.Show( fileName + " can be applied to RGB images only.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                return false;
+            }
+            return true;
+        }
+
+        // Check if the image is grayscale image
+        private bool CheckIfGrayscale( string filterName )
+        {
+            // check pixel format
+            if ( image.PixelFormat != PixelFormat.Format8bppIndexed )
+            {
+                MessageBox.Show( fileName + " can be applied to grayscale images only.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                return false;
+            }
+            return true;
+        }
+
+        // Check if the image is binary image
+        private bool CheckIfBinary( string filterName )
+        {
+            // check pixel format (binary images are represented as grayscale images to simplify image processing)
+            if ( image.PixelFormat != PixelFormat.Format8bppIndexed )
+            {
+                MessageBox.Show( fileName + " can be applied to binary images only.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                return false;
+            }
+            return true;
+        }
+
         // Paint image
         protected override void OnPaint( PaintEventArgs e )
         {
@@ -1903,12 +1937,10 @@ namespace IPLab
         // Grayscale image
         private void Grayscale( )
         {
-            if ( image.PixelFormat == PixelFormat.Format8bppIndexed )
+            if ( CheckIfColor( "Grayscale filter" ) )
             {
-                MessageBox.Show( "The image is already grayscale", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
+                ApplyFilter( new GrayscaleBT709( ) );
             }
-            ApplyFilter( new GrayscaleBT709( ) );
         }
 
         // On "Filter->Color->Grayscale"
@@ -1920,12 +1952,10 @@ namespace IPLab
         // Converts grayscale image to RGB
         private void toRgbColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( image.PixelFormat == PixelFormat.Format24bppRgb )
+            if ( CheckIfGrayscale( "Conversion to RGB" ) )
             {
-                MessageBox.Show( "The image is already RGB", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
+                ApplyFilter( new GrayscaleToRGB( ) );
             }
-            ApplyFilter( new GrayscaleToRGB( ) );
         }
 
         // Remove green and blue channels
@@ -1967,57 +1997,45 @@ namespace IPLab
         // Color filtering
         private void colorFilteringColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            // check pixel format
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Color filtering" ) )
             {
-                MessageBox.Show( "Color filtering can be applied to RGB images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                ColorFilteringForm form = new ColorFilteringForm( );
+                form.Image = image;
 
-            ColorFilteringForm form = new ColorFilteringForm( );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
         // Euclidean color filtering
         private void euclideanFilteringColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            // check pixel format
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Euclidean color filtering" ) )
             {
-                MessageBox.Show( "Euclidean color filtering can be applied to RGB images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                EuclideanColorFilteringForm form = new EuclideanColorFilteringForm( );
+                form.Image = image;
 
-            EuclideanColorFilteringForm form = new EuclideanColorFilteringForm( );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
         // Channels filtering
         private void channelsFilteringColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            // check pixel format
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Channels filtering" ) )
             {
-                MessageBox.Show( "Channels filtering can be applied to RGB images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                ChannelFilteringForm form = new ChannelFilteringForm( );
+                form.Image = image;
 
-            ChannelFilteringForm form = new ChannelFilteringForm( );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
@@ -2042,66 +2060,51 @@ namespace IPLab
         // Replace red channel
         private void replaceRedColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            // check pixel format
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Channels replacement" ) )
             {
-                MessageBox.Show( "Channels replacement can be applied to RGB images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
+                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the red channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+
+                if ( channelImage != null )
+                    ApplyFilter( new ReplaceChannel( RGB.R, channelImage ) );
             }
-
-            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the red channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
-
-            if ( channelImage != null )
-                ApplyFilter( new ReplaceChannel( RGB.R, channelImage ) );
         }
 
         // Replace green channel
         private void replaceGreenColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            // check pixel format
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Channels replacement" ) )
             {
-                MessageBox.Show( "Channels replacement can be applied to RGB images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
+                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the green channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+
+                if ( channelImage != null )
+                    ApplyFilter( new ReplaceChannel( RGB.G, channelImage ) );
             }
-
-            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the green channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
-
-            if ( channelImage != null )
-                ApplyFilter( new ReplaceChannel( RGB.G, channelImage ) );
         }
 
         // Replace blue channel
         private void replaceBlueColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            // check pixel format
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Channels replacement" ) )
             {
-                MessageBox.Show( "Channels replacement can be applied to RGB images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
+                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the blue channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+
+                if ( channelImage != null )
+                    ApplyFilter( new ReplaceChannel( RGB.B, channelImage ) );
             }
-
-            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the blue channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
-
-            if ( channelImage != null )
-                ApplyFilter( new ReplaceChannel( RGB.B, channelImage ) );
         }
 
         // Adjust brighness using HSL
         private void Brightness( )
         {
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Brightness filter using HSL color space" ) )
             {
-                MessageBox.Show( "Brightness filter using HSL color space is available for color images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                BrightnessForm form = new BrightnessForm( );
+                form.Image = image;
 
-            BrightnessForm form = new BrightnessForm( );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
@@ -2114,18 +2117,15 @@ namespace IPLab
         // Modify contrast
         private void Contrast( )
         {
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Contrast filter using HSL color space" ) )
             {
-                MessageBox.Show( "Contrast filter using HSL color space is available for color images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                ContrastForm form = new ContrastForm( );
+                form.Image = image;
 
-            ContrastForm form = new ContrastForm( );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
@@ -2138,18 +2138,15 @@ namespace IPLab
         // Adjust saturation using HSL
         private void Saturation( )
         {
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Saturation filter using HSL color space" ) )
             {
-                MessageBox.Show( "Saturation filter using HSL color space is available for color images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                SaturationForm form = new SaturationForm( );
+                form.Image = image;
 
-            SaturationForm form = new SaturationForm( );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
@@ -2162,90 +2159,75 @@ namespace IPLab
         // HSL linear correction
         private void linearHslFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "HSL linear correction" ) )
             {
-                MessageBox.Show( "HSL linear correction is available for color images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                HSLLinearForm form = new HSLLinearForm( new ImageStatisticsHSL( image ) );
+                form.Image = image;
 
-            HSLLinearForm form = new HSLLinearForm( new ImageStatisticsHSL( image ) );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
         // HSL filtering
         private void filteringHslFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "HSL filtering" ) )
             {
-                MessageBox.Show( "HSL filtering is available for color images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                HSLFilteringForm form = new HSLFilteringForm( );
+                form.Image = image;
 
-            HSLFilteringForm form = new HSLFilteringForm( );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
         // Hue modifier
         private void hueHslFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Hue modifier" ) )
             {
-                MessageBox.Show( "Hue modifier is available for color images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                HueModifierForm form = new HueModifierForm( );
+                form.Image = image;
 
-            HueModifierForm form = new HueModifierForm( );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
         // Linear correction of YCbCr channels
         private void linearYCbCrFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "YCbCr linear correction" ) )
             {
-                MessageBox.Show( "YCbCr linear correction is available for color images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                YCbCrLinearForm form = new YCbCrLinearForm( new ImageStatisticsYCbCr( image ) );
+                form.Image = image;
 
-            YCbCrLinearForm form = new YCbCrLinearForm( new ImageStatisticsYCbCr( image ) );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
         // Filtering of YCbCr channels
         private void filteringYCbCrFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "YCbCr filtering" ) )
             {
-                MessageBox.Show( "YCbCr filtering is available for color images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                YCbCrFilteringForm form = new YCbCrFilteringForm( );
+                form.Image = image;
 
-            YCbCrFilteringForm form = new YCbCrFilteringForm( );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
@@ -2270,62 +2252,53 @@ namespace IPLab
         // Replace Y channel of YCbCr color space
         private void replaceYFiltersItem_Click( object sender, System.EventArgs e )
         {
-            // check pixel format
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Channels replacement" ) )
             {
-                MessageBox.Show( "Channels replacement can be applied to RGB images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
+                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Y channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+
+                if ( channelImage != null )
+                    ApplyFilter( new YCbCrReplaceChannel( YCbCr.YIndex, channelImage ) );
             }
-
-            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Y channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
-
-            if ( channelImage != null )
-                ApplyFilter( new YCbCrReplaceChannel( YCbCr.YIndex, channelImage ) );
         }
 
         // Replace Cb channel of YCbCr color space
         private void replaceCbFiltersItem_Click( object sender, System.EventArgs e )
         {
-            // check pixel format
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Channels replacement" ) )
             {
-                MessageBox.Show( "Channels replacement can be applied to RGB images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
+                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Cb channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+
+                if ( channelImage != null )
+                    ApplyFilter( new YCbCrReplaceChannel( YCbCr.CbIndex, channelImage ) );
             }
-
-            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Cb channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
-
-            if ( channelImage != null )
-                ApplyFilter( new YCbCrReplaceChannel( YCbCr.CbIndex, channelImage ) );
         }
 
         // Replace Cr channel of YCbCr color space
         private void replaceCrFiltersItem_Click( object sender, System.EventArgs e )
         {
-            // check pixel format
-            if ( image.PixelFormat != PixelFormat.Format24bppRgb )
+            if ( CheckIfColor( "Channels replacement" ) )
             {
-                MessageBox.Show( "Channels replacement can be applied to RGB images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
+                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Cr channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+
+                if ( channelImage != null )
+                    ApplyFilter( new YCbCrReplaceChannel( YCbCr.CrIndex, channelImage ) );
             }
-
-            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Cr channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
-
-            if ( channelImage != null )
-                ApplyFilter( new YCbCrReplaceChannel( YCbCr.CrIndex, channelImage ) );
         }
 
         // Threshold binarization
         private void Threshold( )
         {
-            ThresholdForm form = new ThresholdForm( );
-
-            // set image to preview
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
+            if ( CheckIfGrayscale( "Threshold filter" ) )
             {
-                ApplyFilter( form.Filter );
+                ThresholdForm form = new ThresholdForm( );
+
+                // set image to preview
+                form.Image = image;
+
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
@@ -2452,18 +2425,15 @@ namespace IPLab
         // Hit & Miss mathematical morphology operator
         private void hitAndMissFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( image.PixelFormat != PixelFormat.Format8bppIndexed )
+            if ( CheckIfBinary( "Hit & Miss morpholgy filters" ) )
             {
-                MessageBox.Show( "Hit & Miss morpholgy filters can by applied to binary image only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                MathMorphologyForm form = new MathMorphologyForm( MathMorphologyForm.FilterTypes.HitAndMiss );
+                form.Image = image;
 
-            MathMorphologyForm form = new MathMorphologyForm( MathMorphologyForm.FilterTypes.HitAndMiss );
-            form.Image = image;
-
-            if ( form.ShowDialog( ) == DialogResult.OK )
-            {
-                ApplyFilter( form.Filter );
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
             }
         }
 
@@ -2752,30 +2722,24 @@ namespace IPLab
         // Conected components labeling
         private void labelingFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( image.PixelFormat != PixelFormat.Format8bppIndexed )
+            if ( CheckIfBinary( "Connected components labeling" ) )
             {
-                MessageBox.Show( "Connected components labeling can be applied to binary images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
+                ApplyFilter( new ConnectedComponentsLabeling( ) );
             }
-
-            ApplyFilter( new ConnectedComponentsLabeling( ) );
         }
 
         // Extract separate blobs
         private void blobExtractorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( image.PixelFormat != PixelFormat.Format8bppIndexed )
+            if ( CheckIfBinary( "Blob extractor" ) )
             {
-                MessageBox.Show( "Blob extractor can be applied to binary images only", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-                return;
-            }
+                BlobCounter blobCounter = new BlobCounter( image );
+                Blob[] blobs = blobCounter.GetObjects( image );
 
-            BlobCounter blobCounter = new BlobCounter( image );
-            Blob[] blobs = blobCounter.GetObjects( image );
-
-            foreach ( Blob blob in blobs )
-            {
-                host.NewDocument( blob.Image );
+                foreach ( Blob blob in blobs )
+                {
+                    host.NewDocument( blob.Image );
+                }
             }
         }
 
