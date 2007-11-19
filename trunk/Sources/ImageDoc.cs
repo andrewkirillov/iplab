@@ -1672,7 +1672,7 @@ namespace IPLab
             // check pixel format
             if ( image.PixelFormat != PixelFormat.Format8bppIndexed )
             {
-                MessageBox.Show( fileName + " can be applied to grayscale images only.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                MessageBox.Show( filterName + " can be applied to grayscale images only.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 return false;
             }
             return true;
@@ -1684,7 +1684,7 @@ namespace IPLab
             // check pixel format (binary images are represented as grayscale images to simplify image processing)
             if ( image.PixelFormat != PixelFormat.Format8bppIndexed )
             {
-                MessageBox.Show( fileName + " can be applied to binary images only.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                MessageBox.Show( filterName + " can be applied to binary images only.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 return false;
             }
             return true;
@@ -2820,21 +2820,22 @@ namespace IPLab
         // Fourier transformation
         private void ForwardFourierTransformation( )
         {
-            System.Diagnostics.Debug.WriteLine( (int) FourierTransform.Direction.Forward );
-            System.Diagnostics.Debug.WriteLine( (int) FourierTransform.Direction.Backward );
-
-            if ( ( !AForge.Math.Tools.IsPowerOf2( width ) ) ||
-                ( !AForge.Math.Tools.IsPowerOf2( height ) ) )
+            // check image dimension
+            if ( ( !Tools.IsPowerOf2( width ) ) || ( !Tools.IsPowerOf2( height ) ) )
             {
                 MessageBox.Show( "Fourier trasformation can be applied to an image with width and height of power of 2", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 return;
             }
 
-            ComplexImage cImage = ComplexImage.FromBitmap( image );
+            // check pixel format
+            if ( CheckIfGrayscale( "Fourier transformation" ) )
+            {
+                ComplexImage cImage = ComplexImage.FromBitmap( image );
 
-            cImage.ForwardFourierTransform( );
-            host.NewDocument( cImage );
-        }
+                cImage.ForwardFourierTransform( );
+                host.NewDocument( cImage );
+            }
+       }
 
         // On "Filters->Fourier Transformation" click
         private void fourierFiltersItem_Click( object sender, System.EventArgs e )

@@ -15,6 +15,7 @@ using WeifenLuo.WinFormsUI;
 using AForge;
 using AForge.Math;
 using AForge.Imaging;
+using AForge.Imaging.ComplexFilters;
 
 namespace IPLab
 {
@@ -217,7 +218,7 @@ namespace IPLab
         // Frequency filter
         private void frequencyFilterFourierItem_Click( object sender, System.EventArgs e )
         {
-            FrequencyFilter form = new FrequencyFilter( );
+            FrequencyFilterForm form = new FrequencyFilterForm( );
 
             form.InputRange = new IntRange( 0, width >> 1 );
             form.OutputRange = new IntRange( 0, width >> 1 );
@@ -226,7 +227,10 @@ namespace IPLab
             {
                 backup = (ComplexImage) image.Clone( );
 
-                image.FrequencyFilter( form.OutputRange );
+                // create and apply filter
+                FrequencyFilter filter = new FrequencyFilter( form.OutputRange );
+                filter.Apply( image );
+
                 UpdateNewImage( );
             }
         }
