@@ -13,7 +13,7 @@ namespace IPLab
     /// <summary>
     /// Summary description for FrequencyFilter.
     /// </summary>
-    public class FrequencyFilter : System.Windows.Forms.Form
+    public class FrequencyFilterForm : System.Windows.Forms.Form
     {
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
@@ -56,7 +56,7 @@ namespace IPLab
         }
 
         // Constructor
-        public FrequencyFilter( )
+        public FrequencyFilterForm( )
         {
             //
             // Required for Windows Form Designer support
@@ -250,8 +250,5 @@ namespace IPLab
         {
             maxBox.Text = maxTrackBar.Value.ToString( );
         }
-
-
-
     }
 }
