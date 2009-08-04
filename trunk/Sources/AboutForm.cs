@@ -33,9 +33,9 @@ namespace IPLab
             InitializeComponent( );
 
             //
-            mailLabel.Links.Add( 0, mailLabel.Text.Length, "mailto:andrew.kirillov@gmail.com" );
-            aforgeLabel.Links.Add( 0, aforgeLabel.Text.Length, "http://code.google.com/p/aforge/" );
-            iplabLabel.Links.Add( 0, aforgeLabel.Text.Length, "http://code.google.com/p/iplab/" );
+            mailLabel.Links.Add( 0, mailLabel.Text.Length, "mailto:andrew.kirillov@aforgenet.com" );
+            aforgeLabel.Links.Add( 0, aforgeLabel.Text.Length, "http://www.aforgenet.com/framework/" );
+            iplabLabel.Links.Add( 0, iplabLabel.Text.Length, "http://www.aforgenet.com/projects/iplab/" );
         }
 
         /// <summary>
@@ -108,19 +108,19 @@ namespace IPLab
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size( 212, 16 );
             this.label2.TabIndex = 13;
-            this.label2.Text = "Copyright © 2005-2007, Andrew Kirillov";
+            this.label2.Text = "Copyright © 2005-2009, Andrew Kirillov";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // mailLabel
             // 
             this.mailLabel.ActiveLinkColor = System.Drawing.Color.MediumBlue;
             this.mailLabel.LinkColor = System.Drawing.Color.MediumBlue;
-            this.mailLabel.Location = new System.Drawing.Point( 115, 130 );
+            this.mailLabel.Location = new System.Drawing.Point( 102, 130 );
             this.mailLabel.Name = "mailLabel";
-            this.mailLabel.Size = new System.Drawing.Size( 144, 23 );
+            this.mailLabel.Size = new System.Drawing.Size( 171, 23 );
             this.mailLabel.TabIndex = 14;
             this.mailLabel.TabStop = true;
-            this.mailLabel.Text = "andrew.kirillov@gmail.com";
+            this.mailLabel.Text = "andrew.kirillov@aforgenet.com";
             this.mailLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.mailLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.label_LinkClicked );
             // 
@@ -145,23 +145,23 @@ namespace IPLab
             // aforgeLabel
             // 
             this.aforgeLabel.AutoSize = true;
-            this.aforgeLabel.Location = new System.Drawing.Point( 102, 180 );
+            this.aforgeLabel.Location = new System.Drawing.Point( 91, 180 );
             this.aforgeLabel.Name = "aforgeLabel";
-            this.aforgeLabel.Size = new System.Drawing.Size( 171, 13 );
+            this.aforgeLabel.Size = new System.Drawing.Size( 192, 13 );
             this.aforgeLabel.TabIndex = 17;
             this.aforgeLabel.TabStop = true;
-            this.aforgeLabel.Text = "http://code.google.com/p/aforge/";
+            this.aforgeLabel.Text = "http://www.aforgenet.com/framework/";
             this.aforgeLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.label_LinkClicked );
             // 
             // iplabLabel
             // 
             this.iplabLabel.AutoSize = true;
-            this.iplabLabel.Location = new System.Drawing.Point( 106, 75 );
+            this.iplabLabel.Location = new System.Drawing.Point( 84, 75 );
             this.iplabLabel.Name = "iplabLabel";
-            this.iplabLabel.Size = new System.Drawing.Size( 163, 13 );
+            this.iplabLabel.Size = new System.Drawing.Size( 207, 13 );
             this.iplabLabel.TabIndex = 18;
             this.iplabLabel.TabStop = true;
-            this.iplabLabel.Text = "http://code.google.com/p/iplab/";
+            this.iplabLabel.Text = "http://www.aforgenet.com/projects/iplab/";
             this.iplabLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.label_LinkClicked );
             // 
             // AboutForm
