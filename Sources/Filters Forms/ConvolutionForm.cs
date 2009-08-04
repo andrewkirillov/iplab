@@ -14,8 +14,6 @@ namespace IPLab
     public class ConvolutionForm : System.Windows.Forms.Form
     {
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.ComboBox operatorCombo;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox sizeCombo;
         private System.Windows.Forms.GroupBox groupBox1;
         private IPLab.GridArrayInt grid;
@@ -72,9 +70,6 @@ namespace IPLab
 
             // default size
             this.sizeCombo.SelectedIndex = 0;
-
-            // default kernel
-            this.operatorCombo.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -101,8 +96,6 @@ namespace IPLab
         {
             this.cancelButton = new System.Windows.Forms.Button( );
             this.okButton = new System.Windows.Forms.Button( );
-            this.operatorCombo = new System.Windows.Forms.ComboBox( );
-            this.label2 = new System.Windows.Forms.Label( );
             this.sizeCombo = new System.Windows.Forms.ComboBox( );
             this.groupBox1 = new System.Windows.Forms.GroupBox( );
             this.loadButton = new System.Windows.Forms.Button( );
@@ -119,49 +112,29 @@ namespace IPLab
             // 
             // cancelButton
             // 
-            this.cancelButton.Anchor = ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right );
+            this.cancelButton.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Location = new System.Drawing.Point( 545, 355 );
             this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size( 75, 23 );
             this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             // 
             // okButton
             // 
-            this.okButton.Anchor = ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right );
+            this.okButton.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.okButton.Location = new System.Drawing.Point( 460, 355 );
             this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size( 75, 23 );
             this.okButton.TabIndex = 4;
             this.okButton.Text = "Ok";
             // 
-            // operatorCombo
-            // 
-            this.operatorCombo.Anchor = ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right );
-            this.operatorCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.operatorCombo.Items.AddRange( new object[] {
-															   "Convolution",
-															   "Correlation"} );
-            this.operatorCombo.Location = new System.Drawing.Point( 450, 75 );
-            this.operatorCombo.Name = "operatorCombo";
-            this.operatorCombo.Size = new System.Drawing.Size( 170, 21 );
-            this.operatorCombo.TabIndex = 3;
-            this.operatorCombo.SelectedIndexChanged += new System.EventHandler( this.operatorCombo_SelectedIndexChanged );
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right );
-            this.label2.Location = new System.Drawing.Point( 450, 60 );
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size( 62, 15 );
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Operation:";
-            // 
             // sizeCombo
             // 
-            this.sizeCombo.Anchor = ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right );
+            this.sizeCombo.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.sizeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sizeCombo.Location = new System.Drawing.Point( 450, 30 );
             this.sizeCombo.Name = "sizeCombo";
@@ -171,13 +144,12 @@ namespace IPLab
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ( ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom )
-                | System.Windows.Forms.AnchorStyles.Left )
-                | System.Windows.Forms.AnchorStyles.Right );
-            this.groupBox1.Controls.AddRange( new System.Windows.Forms.Control[] {
-																					this.loadButton,
-																					this.saveButton,
-																					this.grid} );
+            this.groupBox1.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom )
+                        | System.Windows.Forms.AnchorStyles.Left )
+                        | System.Windows.Forms.AnchorStyles.Right ) ) );
+            this.groupBox1.Controls.Add( this.loadButton );
+            this.groupBox1.Controls.Add( this.saveButton );
+            this.groupBox1.Controls.Add( this.grid );
             this.groupBox1.Location = new System.Drawing.Point( 10, 10 );
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size( 425, 375 );
@@ -187,10 +159,11 @@ namespace IPLab
             // 
             // loadButton
             // 
-            this.loadButton.Anchor = ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right );
+            this.loadButton.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.loadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loadButton.Location = new System.Drawing.Point( 340, 344 );
             this.loadButton.Name = "loadButton";
+            this.loadButton.Size = new System.Drawing.Size( 75, 23 );
             this.loadButton.TabIndex = 0;
             this.loadButton.TabStop = false;
             this.loadButton.Text = "&Load";
@@ -198,10 +171,11 @@ namespace IPLab
             // 
             // saveButton
             // 
-            this.saveButton.Anchor = ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right );
+            this.saveButton.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Location = new System.Drawing.Point( 260, 344 );
             this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size( 75, 23 );
             this.saveButton.TabIndex = 1;
             this.saveButton.TabStop = false;
             this.saveButton.Text = "&Save";
@@ -209,9 +183,9 @@ namespace IPLab
             // 
             // grid
             // 
-            this.grid.Anchor = ( ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom )
-                | System.Windows.Forms.AnchorStyles.Left )
-                | System.Windows.Forms.AnchorStyles.Right );
+            this.grid.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom )
+                        | System.Windows.Forms.AnchorStyles.Left )
+                        | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.grid.AutoSizeMinHeight = 10;
             this.grid.AutoSizeMinWidth = 10;
             this.grid.AutoStretchColumnsToFitWidth = false;
@@ -223,14 +197,23 @@ namespace IPLab
             this.grid.Location = new System.Drawing.Point( 10, 20 );
             this.grid.Name = "grid";
             this.grid.Size = new System.Drawing.Size( 405, 315 );
-            this.grid.SpecialKeys = SourceGrid2.GridSpecialKeys.Default;
+            this.grid.SpecialKeys = ( (SourceGrid2.GridSpecialKeys) ( ( ( ( ( ( ( ( ( ( ( SourceGrid2.GridSpecialKeys.Ctrl_C | SourceGrid2.GridSpecialKeys.Ctrl_V )
+                        | SourceGrid2.GridSpecialKeys.Ctrl_X )
+                        | SourceGrid2.GridSpecialKeys.Delete )
+                        | SourceGrid2.GridSpecialKeys.Arrows )
+                        | SourceGrid2.GridSpecialKeys.Tab )
+                        | SourceGrid2.GridSpecialKeys.PageDownUp )
+                        | SourceGrid2.GridSpecialKeys.Enter )
+                        | SourceGrid2.GridSpecialKeys.Escape )
+                        | SourceGrid2.GridSpecialKeys.Control )
+                        | SourceGrid2.GridSpecialKeys.Shift ) ) );
             this.grid.TabIndex = 2;
             this.grid.TabStop = true;
             this.grid.ValueChanged += new IPLab.GridArrayInt.GridEventHandler( this.grid_ValueChanged );
             // 
             // label1
             // 
-            this.label1.Anchor = ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right );
+            this.label1.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.label1.Location = new System.Drawing.Point( 450, 15 );
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size( 66, 15 );
@@ -252,6 +235,7 @@ namespace IPLab
             // 
             // filterPreview
             // 
+            this.filterPreview.Image = null;
             this.filterPreview.Location = new System.Drawing.Point( 10, 15 );
             this.filterPreview.Name = "filterPreview";
             this.filterPreview.Size = new System.Drawing.Size( 150, 150 );
@@ -259,9 +243,8 @@ namespace IPLab
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right );
-            this.groupBox2.Controls.AddRange( new System.Windows.Forms.Control[] {
-																					this.filterPreview} );
+            this.groupBox2.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
+            this.groupBox2.Controls.Add( this.filterPreview );
             this.groupBox2.Location = new System.Drawing.Point( 450, 105 );
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size( 170, 175 );
@@ -274,15 +257,12 @@ namespace IPLab
             this.AutoScaleBaseSize = new System.Drawing.Size( 5, 13 );
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size( 627, 396 );
-            this.Controls.AddRange( new System.Windows.Forms.Control[] {
-																		  this.groupBox2,
-																		  this.cancelButton,
-																		  this.okButton,
-																		  this.operatorCombo,
-																		  this.label2,
-																		  this.sizeCombo,
-																		  this.groupBox1,
-																		  this.label1} );
+            this.Controls.Add( this.groupBox2 );
+            this.Controls.Add( this.cancelButton );
+            this.Controls.Add( this.okButton );
+            this.Controls.Add( this.sizeCombo );
+            this.Controls.Add( this.groupBox1 );
+            this.Controls.Add( this.label1 );
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ConvolutionForm";
             this.ShowInTaskbar = false;
@@ -347,15 +327,7 @@ namespace IPLab
         {
             if ( kernel != null )
             {
-                switch ( this.operatorCombo.SelectedIndex )
-                {
-                    case 0:
-                        filter = new Convolution( kernel );
-                        break;
-                    case 1:
-                        filter = new Correlation( kernel );
-                        break;
-                }
+                filter = new Convolution( kernel );
             }
             filterPreview.Filter = filter;
         }

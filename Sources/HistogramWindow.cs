@@ -92,8 +92,7 @@ namespace IPLab
         /// </summary>
         private void InitializeComponent( )
         {
-            System.Resources.ResourceManager resources = new System.Resources.ResourceManager( typeof( HistogramWindow ) );
-            this.histogram = new IPLab.Histogram( );
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( HistogramWindow ) );
             this.label1 = new System.Windows.Forms.Label( );
             this.channelCombo = new System.Windows.Forms.ComboBox( );
             this.label2 = new System.Windows.Forms.Label( );
@@ -113,17 +112,8 @@ namespace IPLab
             this.minLabel = new System.Windows.Forms.Label( );
             this.maxLabel = new System.Windows.Forms.Label( );
             this.logCheck = new System.Windows.Forms.CheckBox( );
+            this.histogram = new IPLab.Histogram( );
             this.SuspendLayout( );
-            // 
-            // histogram
-            // 
-            this.histogram.AllowSelection = true;
-            this.histogram.Location = new System.Drawing.Point( 5, 30 );
-            this.histogram.Name = "histogram";
-            this.histogram.Size = new System.Drawing.Size( 258, 162 );
-            this.histogram.TabIndex = 0;
-            this.histogram.PositionChanged += new IPLab.Histogram.HistogramEventHandler( this.histogram_PositionChanged );
-            this.histogram.SelectionChanged += new IPLab.Histogram.HistogramEventHandler( this.histogram_SelectionChanged );
             // 
             // label1
             // 
@@ -146,7 +136,7 @@ namespace IPLab
             // 
             this.label2.Location = new System.Drawing.Point( 5, 195 );
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size( 37, 12 );
+            this.label2.Size = new System.Drawing.Size( 37, 15 );
             this.label2.TabIndex = 4;
             this.label2.Text = "Mean:";
             // 
@@ -162,7 +152,7 @@ namespace IPLab
             // 
             this.label3.Location = new System.Drawing.Point( 5, 215 );
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size( 47, 12 );
+            this.label3.Size = new System.Drawing.Size( 50, 15 );
             this.label3.TabIndex = 6;
             this.label3.Text = "Std Dev:";
             // 
@@ -178,7 +168,7 @@ namespace IPLab
             // 
             this.label4.Location = new System.Drawing.Point( 5, 235 );
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size( 47, 12 );
+            this.label4.Size = new System.Drawing.Size( 47, 15 );
             this.label4.TabIndex = 8;
             this.label4.Text = "Median:";
             // 
@@ -194,7 +184,7 @@ namespace IPLab
             // 
             this.label5.Location = new System.Drawing.Point( 125, 195 );
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size( 44, 13 );
+            this.label5.Size = new System.Drawing.Size( 44, 15 );
             this.label5.TabIndex = 10;
             this.label5.Text = "Level:";
             // 
@@ -239,7 +229,7 @@ namespace IPLab
             // 
             this.label8.Location = new System.Drawing.Point( 5, 255 );
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size( 30, 14 );
+            this.label8.Size = new System.Drawing.Size( 30, 15 );
             this.label8.TabIndex = 16;
             this.label8.Text = "Min:";
             // 
@@ -247,7 +237,7 @@ namespace IPLab
             // 
             this.label9.Location = new System.Drawing.Point( 5, 275 );
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size( 30, 14 );
+            this.label9.Size = new System.Drawing.Size( 30, 15 );
             this.label9.TabIndex = 17;
             this.label9.Text = "Max:";
             // 
@@ -271,38 +261,47 @@ namespace IPLab
             // 
             this.logCheck.Location = new System.Drawing.Point( 210, 10 );
             this.logCheck.Name = "logCheck";
-            this.logCheck.Size = new System.Drawing.Size( 50, 16 );
+            this.logCheck.Size = new System.Drawing.Size( 50, 20 );
             this.logCheck.TabIndex = 20;
             this.logCheck.Text = "Log";
             this.logCheck.CheckedChanged += new System.EventHandler( this.logCheck_CheckedChanged );
             // 
+            // histogram
+            // 
+            this.histogram.AllowSelection = true;
+            this.histogram.Location = new System.Drawing.Point( 5, 30 );
+            this.histogram.Name = "histogram";
+            this.histogram.Size = new System.Drawing.Size( 258, 162 );
+            this.histogram.TabIndex = 0;
+            this.histogram.SelectionChanged += new IPLab.Histogram.HistogramEventHandler( this.histogram_SelectionChanged );
+            this.histogram.PositionChanged += new IPLab.Histogram.HistogramEventHandler( this.histogram_PositionChanged );
+            // 
             // HistogramWindow
             // 
-            this.AllowedStates = ( ( WeifenLuo.WinFormsUI.ContentStates.Float | WeifenLuo.WinFormsUI.ContentStates.DockLeft )
-                | WeifenLuo.WinFormsUI.ContentStates.DockRight );
+            this.AllowedStates = ( (WeifenLuo.WinFormsUI.ContentStates) ( ( ( WeifenLuo.WinFormsUI.ContentStates.Float | WeifenLuo.WinFormsUI.ContentStates.DockLeft )
+                        | WeifenLuo.WinFormsUI.ContentStates.DockRight ) ) );
             this.AutoScaleBaseSize = new System.Drawing.Size( 5, 13 );
             this.ClientSize = new System.Drawing.Size( 270, 341 );
-            this.Controls.AddRange( new System.Windows.Forms.Control[] {
-																		  this.logCheck,
-																		  this.maxLabel,
-																		  this.minLabel,
-																		  this.label9,
-																		  this.label8,
-																		  this.percentileLabel,
-																		  this.countLabel,
-																		  this.levelLabel,
-																		  this.label7,
-																		  this.label6,
-																		  this.label5,
-																		  this.medianLabel,
-																		  this.label4,
-																		  this.stdDevLabel,
-																		  this.label3,
-																		  this.meanLabel,
-																		  this.label2,
-																		  this.label1,
-																		  this.channelCombo,
-																		  this.histogram} );
+            this.Controls.Add( this.logCheck );
+            this.Controls.Add( this.maxLabel );
+            this.Controls.Add( this.minLabel );
+            this.Controls.Add( this.label9 );
+            this.Controls.Add( this.label8 );
+            this.Controls.Add( this.percentileLabel );
+            this.Controls.Add( this.countLabel );
+            this.Controls.Add( this.levelLabel );
+            this.Controls.Add( this.label7 );
+            this.Controls.Add( this.label6 );
+            this.Controls.Add( this.label5 );
+            this.Controls.Add( this.medianLabel );
+            this.Controls.Add( this.label4 );
+            this.Controls.Add( this.stdDevLabel );
+            this.Controls.Add( this.label3 );
+            this.Controls.Add( this.meanLabel );
+            this.Controls.Add( this.label2 );
+            this.Controls.Add( this.label1 );
+            this.Controls.Add( this.channelCombo );
+            this.Controls.Add( this.histogram );
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HideOnClose = true;
             this.Icon = ( (System.Drawing.Icon) ( resources.GetObject( "$this.Icon" ) ) );

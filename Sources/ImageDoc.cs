@@ -135,7 +135,6 @@ namespace IPLab
         private System.Windows.Forms.MenuItem stuckiBinaryFiltersItem;
         private System.Windows.Forms.MenuItem jarvisBinaryFiltersItem;
         private System.Windows.Forms.MenuItem sierraBinaryFiltersItem;
-        private System.Windows.Forms.MenuItem stevensonBinaryFiltersItem;
         private System.Windows.Forms.MenuItem menuItem23;
         private System.Windows.Forms.MenuItem resizeFiltersItem;
         private System.Windows.Forms.MenuItem menuItem26;
@@ -381,7 +380,6 @@ namespace IPLab
             this.stuckiBinaryFiltersItem = new System.Windows.Forms.MenuItem( );
             this.jarvisBinaryFiltersItem = new System.Windows.Forms.MenuItem( );
             this.sierraBinaryFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.stevensonBinaryFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem31 = new System.Windows.Forms.MenuItem( );
             this.sisThresholdBinaryFiltersItem = new System.Windows.Forms.MenuItem( );
             this.morphologyFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -420,6 +418,9 @@ namespace IPLab
             this.differenceEdgeFiltersItem = new System.Windows.Forms.MenuItem( );
             this.sobelEdgeFiltersItem = new System.Windows.Forms.MenuItem( );
             this.cannyEdgeFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.noiseFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.additiveNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.saltNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem24 = new System.Windows.Forms.MenuItem( );
             this.adaptiveSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.conservativeSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -442,9 +443,6 @@ namespace IPLab
             this.gammaFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.noiseFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.additiveNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.saltNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -1006,7 +1004,6 @@ namespace IPLab
             this.stuckiBinaryFiltersItem,
             this.jarvisBinaryFiltersItem,
             this.sierraBinaryFiltersItem,
-            this.stevensonBinaryFiltersItem,
             this.menuItem31,
             this.sisThresholdBinaryFiltersItem} );
             this.binaryFiltersItem.Text = "&Binarization";
@@ -1075,20 +1072,14 @@ namespace IPLab
             this.sierraBinaryFiltersItem.Text = "Sie&rra";
             this.sierraBinaryFiltersItem.Click += new System.EventHandler( this.sierraBinaryFiltersItem_Click );
             // 
-            // stevensonBinaryFiltersItem
-            // 
-            this.stevensonBinaryFiltersItem.Index = 11;
-            this.stevensonBinaryFiltersItem.Text = "Stevenson and &Arce";
-            this.stevensonBinaryFiltersItem.Click += new System.EventHandler( this.stevensonBinaryFiltersItem_Click );
-            // 
             // menuItem31
             // 
-            this.menuItem31.Index = 12;
+            this.menuItem31.Index = 11;
             this.menuItem31.Text = "-";
             // 
             // sisThresholdBinaryFiltersItem
             // 
-            this.sisThresholdBinaryFiltersItem.Index = 13;
+            this.sisThresholdBinaryFiltersItem.Index = 12;
             this.sisThresholdBinaryFiltersItem.Text = "SIS Threshold";
             this.sisThresholdBinaryFiltersItem.Click += new System.EventHandler( this.sisThresholdBinaryFiltersItem_Click );
             // 
@@ -1334,6 +1325,26 @@ namespace IPLab
             this.cannyEdgeFiltersItem.Text = "&Canny";
             this.cannyEdgeFiltersItem.Click += new System.EventHandler( this.cannyEdgeFiltersItem_Click );
             // 
+            // noiseFiltersItem
+            // 
+            this.noiseFiltersItem.Index = 8;
+            this.noiseFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
+            this.additiveNoiseFiltersItem,
+            this.saltNoiseFiltersItem} );
+            this.noiseFiltersItem.Text = "&Noise generation";
+            // 
+            // additiveNoiseFiltersItem
+            // 
+            this.additiveNoiseFiltersItem.Index = 0;
+            this.additiveNoiseFiltersItem.Text = "&Additive";
+            this.additiveNoiseFiltersItem.Click += new System.EventHandler( this.additiveNoiseFiltersItem_Click );
+            // 
+            // saltNoiseFiltersItem
+            // 
+            this.saltNoiseFiltersItem.Index = 1;
+            this.saltNoiseFiltersItem.Text = "&Salt and Pepper";
+            this.saltNoiseFiltersItem.Click += new System.EventHandler( this.saltNoiseFiltersItem_Click );
+            // 
             // menuItem24
             // 
             this.menuItem24.Index = 9;
@@ -1474,26 +1485,6 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
-            // noiseFiltersItem
-            // 
-            this.noiseFiltersItem.Index = 8;
-            this.noiseFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-            this.additiveNoiseFiltersItem,
-            this.saltNoiseFiltersItem} );
-            this.noiseFiltersItem.Text = "&Noise generation";
-            // 
-            // additiveNoiseFiltersItem
-            // 
-            this.additiveNoiseFiltersItem.Index = 0;
-            this.additiveNoiseFiltersItem.Text = "&Additive";
-            this.additiveNoiseFiltersItem.Click += new System.EventHandler( this.additiveNoiseFiltersItem_Click );
-            // 
-            // saltNoiseFiltersItem
-            // 
-            this.saltNoiseFiltersItem.Index = 1;
-            this.saltNoiseFiltersItem.Text = "&Salt and Pepper";
-            this.saltNoiseFiltersItem.Click += new System.EventHandler( this.saltNoiseFiltersItem_Click );
-            // 
             // ImageDoc
             // 
             this.AllowedStates = WeifenLuo.WinFormsUI.ContentStates.Document;
@@ -1503,9 +1494,9 @@ namespace IPLab
             this.Name = "ImageDoc";
             this.Text = "Image";
             this.MouseUp += new System.Windows.Forms.MouseEventHandler( this.ImageDoc_MouseUp );
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler( this.ImageDoc_MouseDown );
             this.MouseLeave += new System.EventHandler( this.ImageDoc_MouseLeave );
             this.MouseMove += new System.Windows.Forms.MouseEventHandler( this.ImageDoc_MouseMove );
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler( this.ImageDoc_MouseDown );
             this.ResumeLayout( false );
 
         }
@@ -2356,12 +2347,6 @@ namespace IPLab
             ApplyFilter( new SierraDithering( ) );
         }
 
-        // Binarization using Stevenson and Arce dithering algorithm
-        private void stevensonBinaryFiltersItem_Click( object sender, System.EventArgs e )
-        {
-            ApplyFilter( new StevensonArceDithering( ) );
-        }
-
         // Threshold using Simple Image Statistics
         private void sisThresholdBinaryFiltersItem_Click( object sender, System.EventArgs e )
         {
@@ -2734,7 +2719,7 @@ namespace IPLab
             if ( CheckIfBinary( "Blob extractor" ) )
             {
                 BlobCounter blobCounter = new BlobCounter( image );
-                Blob[] blobs = blobCounter.GetObjects( image );
+                Blob[] blobs = blobCounter.GetObjects( image, false );
 
                 foreach ( Blob blob in blobs )
                 {

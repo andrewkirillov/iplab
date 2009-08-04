@@ -14,7 +14,7 @@ namespace IPLab
     /// </summary>
     public class RotateForm : System.Windows.Forms.Form
     {
-        private FilterRotate filter = null;
+        private BaseRotateFilter filter = null;
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox angleBox;

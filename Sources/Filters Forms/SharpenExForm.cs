@@ -13,7 +13,7 @@ namespace IPLab
     /// </summary>
     public class SharpenExForm : System.Windows.Forms.Form
     {
-        private SharpenEx filter = new SharpenEx( );
+        private GaussianSharpen filter = new GaussianSharpen( );
 
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;
