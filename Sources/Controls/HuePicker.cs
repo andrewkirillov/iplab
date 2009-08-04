@@ -1,3 +1,10 @@
+// Image Processing Lab
+// http://www.aforgenet.com/projects/iplab/
+//
+// Copyright © Andrew Kirillov, 2005-2009
+// andrew.kirillov@aforgenet.com
+//
+
 using System;
 using System.Collections;
 using System.ComponentModel;
