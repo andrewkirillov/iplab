@@ -34,17 +34,17 @@ namespace IPLab
         private System.Windows.Forms.TextBox minYBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox maxYBox;
-        private IPLab.ColorSlider ySlider;
+        private AForge.Controls.ColorSlider ySlider;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox minCbBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox maxCbBox;
-        private IPLab.ColorSlider cbSlider;
+        private AForge.Controls.ColorSlider cbSlider;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private IPLab.ColorSlider crSlider;
+        private AForge.Controls.ColorSlider crSlider;
         private System.Windows.Forms.TextBox maxCrBox;
         private System.Windows.Forms.TextBox minCrBox;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -124,19 +124,19 @@ namespace IPLab
         private void InitializeComponent( )
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox( );
-            this.ySlider = new IPLab.ColorSlider( );
+            this.ySlider = new AForge.Controls.ColorSlider( );
             this.maxYBox = new System.Windows.Forms.TextBox( );
             this.label2 = new System.Windows.Forms.Label( );
             this.minYBox = new System.Windows.Forms.TextBox( );
             this.label1 = new System.Windows.Forms.Label( );
             this.groupBox2 = new System.Windows.Forms.GroupBox( );
-            this.cbSlider = new IPLab.ColorSlider( );
+            this.cbSlider = new AForge.Controls.ColorSlider( );
             this.maxCbBox = new System.Windows.Forms.TextBox( );
             this.label4 = new System.Windows.Forms.Label( );
             this.minCbBox = new System.Windows.Forms.TextBox( );
             this.label3 = new System.Windows.Forms.Label( );
             this.groupBox3 = new System.Windows.Forms.GroupBox( );
-            this.crSlider = new IPLab.ColorSlider( );
+            this.crSlider = new AForge.Controls.ColorSlider( );
             this.maxCrBox = new System.Windows.Forms.TextBox( );
             this.label5 = new System.Windows.Forms.Label( );
             this.minCrBox = new System.Windows.Forms.TextBox( );
@@ -181,7 +181,7 @@ namespace IPLab
             this.ySlider.Name = "ySlider";
             this.ySlider.Size = new System.Drawing.Size( 263, 23 );
             this.ySlider.TabIndex = 4;
-            this.ySlider.Type = IPLab.ColorSliderType.InnerGradient;
+            this.ySlider.Type = AForge.Controls.ColorSlider.ColorSliderType.InnerGradient;
             this.ySlider.ValuesChanged += new System.EventHandler( this.ySlider_ValuesChanged );
             // 
             // maxYBox
@@ -238,7 +238,7 @@ namespace IPLab
             this.cbSlider.Name = "cbSlider";
             this.cbSlider.Size = new System.Drawing.Size( 263, 23 );
             this.cbSlider.TabIndex = 4;
-            this.cbSlider.Type = IPLab.ColorSliderType.InnerGradient;
+            this.cbSlider.Type = AForge.Controls.ColorSlider.ColorSliderType.InnerGradient;
             this.cbSlider.ValuesChanged += new System.EventHandler( this.cbSlider_ValuesChanged );
             // 
             // maxCbBox
@@ -295,7 +295,7 @@ namespace IPLab
             this.crSlider.Name = "crSlider";
             this.crSlider.Size = new System.Drawing.Size( 263, 23 );
             this.crSlider.TabIndex = 4;
-            this.crSlider.Type = IPLab.ColorSliderType.InnerGradient;
+            this.crSlider.Type = AForge.Controls.ColorSlider.ColorSliderType.InnerGradient;
             this.crSlider.ValuesChanged += new System.EventHandler( this.crSlider_ValuesChanged );
             // 
             // maxCrBox
@@ -651,8 +651,13 @@ namespace IPLab
         // Fill type changed
         private void fillTypeCombo_SelectedIndexChanged( object sender, System.EventArgs e )
         {
-            ColorSliderType[] types = new ColorSliderType[] { ColorSliderType.InnerGradient, ColorSliderType.OuterGradient };
-            ColorSliderType type = types[fillTypeCombo.SelectedIndex];
+            AForge.Controls.ColorSlider.ColorSliderType[] types =
+                new AForge.Controls.ColorSlider.ColorSliderType[]
+                {
+                    AForge.Controls.ColorSlider.ColorSliderType.InnerGradient,
+                    AForge.Controls.ColorSlider.ColorSliderType.OuterGradient
+                };
+            AForge.Controls.ColorSlider.ColorSliderType type = types[fillTypeCombo.SelectedIndex];
 
             ySlider.Type = type;
             cbSlider.Type = type;

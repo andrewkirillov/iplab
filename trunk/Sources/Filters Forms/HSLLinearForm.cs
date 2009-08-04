@@ -36,10 +36,10 @@ namespace IPLab
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox inMaxBox;
         private System.Windows.Forms.TextBox inMinBox;
-        private IPLab.Histogram histogram;
-        private IPLab.ColorSlider inSlider;
+        private AForge.Controls.Histogram histogram;
+        private AForge.Controls.ColorSlider inSlider;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private IPLab.ColorSlider outSlider;
+        private AForge.Controls.ColorSlider outSlider;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox outMaxBox;
         private System.Windows.Forms.TextBox outMinBox;
@@ -108,10 +108,10 @@ namespace IPLab
             this.label2 = new System.Windows.Forms.Label( );
             this.inMaxBox = new System.Windows.Forms.TextBox( );
             this.inMinBox = new System.Windows.Forms.TextBox( );
-            this.histogram = new IPLab.Histogram( );
-            this.inSlider = new IPLab.ColorSlider( );
+            this.histogram = new AForge.Controls.Histogram( );
+            this.inSlider = new AForge.Controls.ColorSlider( );
             this.pictureBox2 = new System.Windows.Forms.PictureBox( );
-            this.outSlider = new IPLab.ColorSlider( );
+            this.outSlider = new AForge.Controls.ColorSlider( );
             this.pictureBox3 = new System.Windows.Forms.PictureBox( );
             this.outMaxBox = new System.Windows.Forms.TextBox( );
             this.outMinBox = new System.Windows.Forms.TextBox( );

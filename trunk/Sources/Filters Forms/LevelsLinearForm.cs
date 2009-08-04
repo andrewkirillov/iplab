@@ -39,7 +39,7 @@ namespace IPLab
         private IntRange outBlue    = new IntRange( 0, 255 );
 
         private AForge.Imaging.ImageStatistics imgStat;
-        private IPLab.Histogram histogram;
+        private AForge.Controls.Histogram histogram;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox channelCombo;
         private System.Windows.Forms.Button okButton;
@@ -53,8 +53,8 @@ namespace IPLab
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox outMinBox;
         private System.Windows.Forms.TextBox outMaxBox;
-        private IPLab.ColorSlider inSlider;
-        private IPLab.ColorSlider outSlider;
+        private AForge.Controls.ColorSlider inSlider;
+        private AForge.Controls.ColorSlider outSlider;
         private System.Windows.Forms.GroupBox groupBox4;
         private IPLab.FilterPreview filterPreview;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -127,7 +127,7 @@ namespace IPLab
         /// </summary>
         private void InitializeComponent( )
         {
-            this.histogram = new IPLab.Histogram( );
+            this.histogram = new AForge.Controls.Histogram( );
             this.label1 = new System.Windows.Forms.Label( );
             this.channelCombo = new System.Windows.Forms.ComboBox( );
             this.okButton = new System.Windows.Forms.Button( );
@@ -141,8 +141,8 @@ namespace IPLab
             this.label3 = new System.Windows.Forms.Label( );
             this.outMinBox = new System.Windows.Forms.TextBox( );
             this.outMaxBox = new System.Windows.Forms.TextBox( );
-            this.inSlider = new IPLab.ColorSlider( );
-            this.outSlider = new IPLab.ColorSlider( );
+            this.inSlider = new AForge.Controls.ColorSlider( );
+            this.outSlider = new AForge.Controls.ColorSlider( );
             this.groupBox4 = new System.Windows.Forms.GroupBox( );
             this.filterPreview = new IPLab.FilterPreview( );
             this.pictureBox3 = new System.Windows.Forms.PictureBox( );
@@ -408,11 +408,11 @@ namespace IPLab
             outMaxBox.Text = output.Max.ToString( );
 
             // input slider
-            inSlider.Color2 = color;
+            inSlider.EndColor = color;
             inSlider.Min = input.Min;
             inSlider.Max = input.Max;
             // output slider
-            outSlider.Color2 = color;
+            outSlider.EndColor = color;
             outSlider.Min = output.Min;
             outSlider.Max = output.Max;
         }

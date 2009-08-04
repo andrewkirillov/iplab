@@ -54,9 +54,9 @@ namespace IPLab
         private IPLab.FilterPreview filterPreview;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
-        private IPLab.ColorSlider redSlider;
-        private IPLab.ColorSlider greenSlider;
-        private IPLab.ColorSlider blueSlider;
+        private AForge.Controls.ColorSlider redSlider;
+        private AForge.Controls.ColorSlider greenSlider;
+        private AForge.Controls.ColorSlider blueSlider;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox redFillTypeCombo;
         private System.Windows.Forms.ComboBox greenFillTypeCombo;
@@ -131,7 +131,7 @@ namespace IPLab
         private void InitializeComponent( )
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox( );
-            this.redSlider = new IPLab.ColorSlider( );
+            this.redSlider = new AForge.Controls.ColorSlider( );
             this.fillRBox = new System.Windows.Forms.TextBox( );
             this.label3 = new System.Windows.Forms.Label( );
             this.maxRBox = new System.Windows.Forms.TextBox( );
@@ -139,7 +139,7 @@ namespace IPLab
             this.minRBox = new System.Windows.Forms.TextBox( );
             this.label1 = new System.Windows.Forms.Label( );
             this.groupBox2 = new System.Windows.Forms.GroupBox( );
-            this.greenSlider = new IPLab.ColorSlider( );
+            this.greenSlider = new AForge.Controls.ColorSlider( );
             this.fillGBox = new System.Windows.Forms.TextBox( );
             this.label4 = new System.Windows.Forms.Label( );
             this.maxGBox = new System.Windows.Forms.TextBox( );
@@ -147,7 +147,7 @@ namespace IPLab
             this.minGBox = new System.Windows.Forms.TextBox( );
             this.label6 = new System.Windows.Forms.Label( );
             this.groupBox3 = new System.Windows.Forms.GroupBox( );
-            this.blueSlider = new IPLab.ColorSlider( );
+            this.blueSlider = new AForge.Controls.ColorSlider( );
             this.fillBBox = new System.Windows.Forms.TextBox( );
             this.label7 = new System.Windows.Forms.Label( );
             this.maxBBox = new System.Windows.Forms.TextBox( );
@@ -190,13 +190,13 @@ namespace IPLab
             // 
             // redSlider
             // 
-            this.redSlider.Color2 = System.Drawing.Color.Red;
+            this.redSlider.EndColor = System.Drawing.Color.Red;
             this.redSlider.Location = new System.Drawing.Point( 8, 45 );
             this.redSlider.Name = "redSlider";
             this.redSlider.Size = new System.Drawing.Size( 262, 23 );
             this.redSlider.TabIndex = 6;
             this.redSlider.TabStop = false;
-            this.redSlider.Type = IPLab.ColorSliderType.InnerGradient;
+            this.redSlider.Type = AForge.Controls.ColorSlider.ColorSliderType.InnerGradient;
             this.redSlider.ValuesChanged += new System.EventHandler( this.redSlider_ValuesChanged );
             // 
             // fillRBox
@@ -269,13 +269,13 @@ namespace IPLab
             // 
             // greenSlider
             // 
-            this.greenSlider.Color2 = System.Drawing.Color.Lime;
+            this.greenSlider.EndColor = System.Drawing.Color.Lime;
             this.greenSlider.Location = new System.Drawing.Point( 8, 45 );
             this.greenSlider.Name = "greenSlider";
             this.greenSlider.Size = new System.Drawing.Size( 262, 23 );
             this.greenSlider.TabIndex = 6;
             this.greenSlider.TabStop = false;
-            this.greenSlider.Type = IPLab.ColorSliderType.InnerGradient;
+            this.greenSlider.Type = AForge.Controls.ColorSlider.ColorSliderType.InnerGradient;
             this.greenSlider.ValuesChanged += new System.EventHandler( this.greenSlider_ValuesChanged );
             // 
             // fillGBox
@@ -348,13 +348,13 @@ namespace IPLab
             // 
             // blueSlider
             // 
-            this.blueSlider.Color2 = System.Drawing.Color.Blue;
+            this.blueSlider.EndColor = System.Drawing.Color.Blue;
             this.blueSlider.Location = new System.Drawing.Point( 8, 45 );
             this.blueSlider.Name = "blueSlider";
             this.blueSlider.Size = new System.Drawing.Size( 262, 23 );
             this.blueSlider.TabIndex = 6;
             this.blueSlider.TabStop = false;
-            this.blueSlider.Type = IPLab.ColorSliderType.InnerGradient;
+            this.blueSlider.Type = AForge.Controls.ColorSlider.ColorSliderType.InnerGradient;
             this.blueSlider.ValuesChanged += new System.EventHandler( this.blueSlider_ValuesChanged );
             // 
             // fillBBox
@@ -593,7 +593,7 @@ namespace IPLab
             {
                 fillR = byte.Parse( fillRBox.Text );
                 filter.FillRed = fillR;
-                redSlider.Color3 = Color.FromArgb( fillR, 0, 0 );
+                redSlider.FillColor = Color.FromArgb( fillR, 0, 0 );
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )
@@ -634,7 +634,7 @@ namespace IPLab
             {
                 fillG = byte.Parse( fillGBox.Text );
                 filter.FillGreen = fillG;
-                greenSlider.Color3 = Color.FromArgb( 0, fillG, 0 );
+                greenSlider.FillColor = Color.FromArgb( 0, fillG, 0 );
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )
@@ -675,7 +675,7 @@ namespace IPLab
             {
                 fillB = byte.Parse( fillBBox.Text );
                 filter.FillBlue = fillB;
-                blueSlider.Color3 = Color.FromArgb( 0, 0, fillB );
+                blueSlider.FillColor = Color.FromArgb( 0, 0, fillB );
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )
@@ -707,7 +707,9 @@ namespace IPLab
         // Red fill type changed
         private void redFillTypeCombo_SelectedIndexChanged( object sender, System.EventArgs e )
         {
-            redSlider.Type = ( redFillTypeCombo.SelectedIndex == 0 ) ? ColorSliderType.InnerGradient : ColorSliderType.OuterGradient;
+            redSlider.Type = ( redFillTypeCombo.SelectedIndex == 0 ) ?
+                AForge.Controls.ColorSlider.ColorSliderType.InnerGradient :
+                AForge.Controls.ColorSlider.ColorSliderType.OuterGradient;
             filter.RedFillOutsideRange = ( redFillTypeCombo.SelectedIndex == 0 );
             filterPreview.RefreshFilter( );
         }
@@ -715,7 +717,9 @@ namespace IPLab
         // Green fill type changed
         private void greenFillTypeCombo_SelectedIndexChanged( object sender, System.EventArgs e )
         {
-            greenSlider.Type = ( greenFillTypeCombo.SelectedIndex == 0 ) ? ColorSliderType.InnerGradient : ColorSliderType.OuterGradient;
+            greenSlider.Type = ( greenFillTypeCombo.SelectedIndex == 0 ) ?
+                AForge.Controls.ColorSlider.ColorSliderType.InnerGradient :
+                AForge.Controls.ColorSlider.ColorSliderType.OuterGradient;
             filter.GreenFillOutsideRange = ( greenFillTypeCombo.SelectedIndex == 0 );
             filterPreview.RefreshFilter( );
         }
@@ -723,7 +727,9 @@ namespace IPLab
         // Blue fill type changed
         private void blueFillTypeCombo_SelectedIndexChanged( object sender, System.EventArgs e )
         {
-            blueSlider.Type = ( blueFillTypeCombo.SelectedIndex == 0 ) ? ColorSliderType.InnerGradient : ColorSliderType.OuterGradient;
+            blueSlider.Type = ( blueFillTypeCombo.SelectedIndex == 0 ) ?
+                AForge.Controls.ColorSlider.ColorSliderType.InnerGradient :
+                AForge.Controls.ColorSlider.ColorSliderType.OuterGradient;
             filter.BlueFillOutsideRange = blueFillTypeCombo.SelectedIndex == 0;
             filterPreview.RefreshFilter( );
         }

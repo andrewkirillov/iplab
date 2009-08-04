@@ -33,9 +33,9 @@ namespace IPLab
         private System.Windows.Forms.TextBox blueBox;
         private System.Windows.Forms.GroupBox groupBox5;
         private IPLab.FilterPreview filterPreview;
-        private IPLab.ColorSlider redSlider;
-        private IPLab.ColorSlider greenSlider;
-        private IPLab.ColorSlider blueSlider;
+        private AForge.Controls.ColorSlider redSlider;
+        private AForge.Controls.ColorSlider greenSlider;
+        private AForge.Controls.ColorSlider blueSlider;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox radiusBox;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -113,9 +113,9 @@ namespace IPLab
         private void InitializeComponent( )
         {
             this.groupBox4 = new System.Windows.Forms.GroupBox( );
-            this.blueSlider = new IPLab.ColorSlider( );
-            this.greenSlider = new IPLab.ColorSlider( );
-            this.redSlider = new IPLab.ColorSlider( );
+            this.blueSlider = new AForge.Controls.ColorSlider( );
+            this.greenSlider = new AForge.Controls.ColorSlider( );
+            this.redSlider = new AForge.Controls.ColorSlider( );
             this.label4 = new System.Windows.Forms.Label( );
             this.label3 = new System.Windows.Forms.Label( );
             this.label10 = new System.Windows.Forms.Label( );
@@ -166,7 +166,7 @@ namespace IPLab
             // 
             // blueSlider
             // 
-            this.blueSlider.Color2 = System.Drawing.Color.Blue;
+            this.blueSlider.EndColor = System.Drawing.Color.Blue;
             this.blueSlider.DoubleArrow = false;
             this.blueSlider.Location = new System.Drawing.Point( 8, 90 );
             this.blueSlider.Name = "blueSlider";
@@ -177,7 +177,7 @@ namespace IPLab
             // 
             // greenSlider
             // 
-            this.greenSlider.Color2 = System.Drawing.Color.Lime;
+            this.greenSlider.EndColor = System.Drawing.Color.Lime;
             this.greenSlider.DoubleArrow = false;
             this.greenSlider.Location = new System.Drawing.Point( 8, 70 );
             this.greenSlider.Name = "greenSlider";
@@ -188,7 +188,7 @@ namespace IPLab
             // 
             // redSlider
             // 
-            this.redSlider.Color2 = System.Drawing.Color.Red;
+            this.redSlider.EndColor = System.Drawing.Color.Red;
             this.redSlider.DoubleArrow = false;
             this.redSlider.Location = new System.Drawing.Point( 8, 50 );
             this.redSlider.Name = "redSlider";
@@ -502,12 +502,12 @@ namespace IPLab
         private void UpdateCenterColor( )
         {
             // update slider colors
-            redSlider.Color1 = Color.FromArgb( 0, green, blue );
-            redSlider.Color2 = Color.FromArgb( 255, green, blue );
-            greenSlider.Color1 = Color.FromArgb( red, 0, blue );
-            greenSlider.Color2 = Color.FromArgb( red, 255, blue );
-            blueSlider.Color1 = Color.FromArgb( red, green, 0 );
-            blueSlider.Color2 = Color.FromArgb( red, green, 255 );
+            redSlider.StartColor   = Color.FromArgb( 0, green, blue );
+            redSlider.EndColor     = Color.FromArgb( 255, green, blue );
+            greenSlider.StartColor = Color.FromArgb( red, 0, blue );
+            greenSlider.EndColor   = Color.FromArgb( red, 255, blue );
+            blueSlider.StartColor  = Color.FromArgb( red, green, 0 );
+            blueSlider.EndColor    = Color.FromArgb( red, green, 255 );
 
             // update filter
             filter.CenterColor = Color.FromArgb( red, green, blue );

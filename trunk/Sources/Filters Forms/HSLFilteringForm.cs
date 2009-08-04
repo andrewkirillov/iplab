@@ -40,7 +40,7 @@ namespace IPLab
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox minSBox;
         private System.Windows.Forms.TextBox maxSBox;
-        private IPLab.ColorSlider saturationSlider;
+        private AForge.Controls.ColorSlider saturationSlider;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -63,7 +63,7 @@ namespace IPLab
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.TextBox minHBox;
-        private IPLab.ColorSlider luminanceSlider;
+        private AForge.Controls.ColorSlider luminanceSlider;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -135,13 +135,13 @@ namespace IPLab
             this.minHBox = new System.Windows.Forms.TextBox( );
             this.label1 = new System.Windows.Forms.Label( );
             this.groupBox2 = new System.Windows.Forms.GroupBox( );
-            this.saturationSlider = new IPLab.ColorSlider( );
+            this.saturationSlider = new AForge.Controls.ColorSlider( );
             this.maxSBox = new System.Windows.Forms.TextBox( );
             this.minSBox = new System.Windows.Forms.TextBox( );
             this.label4 = new System.Windows.Forms.Label( );
             this.label3 = new System.Windows.Forms.Label( );
             this.groupBox3 = new System.Windows.Forms.GroupBox( );
-            this.luminanceSlider = new IPLab.ColorSlider( );
+            this.luminanceSlider = new AForge.Controls.ColorSlider( );
             this.maxLBox = new System.Windows.Forms.TextBox( );
             this.minLBox = new System.Windows.Forms.TextBox( );
             this.label5 = new System.Windows.Forms.Label( );
@@ -246,7 +246,7 @@ namespace IPLab
             this.saturationSlider.Name = "saturationSlider";
             this.saturationSlider.Size = new System.Drawing.Size( 262, 23 );
             this.saturationSlider.TabIndex = 4;
-            this.saturationSlider.Type = IPLab.ColorSliderType.InnerGradient;
+            this.saturationSlider.Type = AForge.Controls.ColorSlider.ColorSliderType.InnerGradient;
             this.saturationSlider.ValuesChanged += new System.EventHandler( this.saturationSlider_ValuesChanged );
             // 
             // maxSBox
@@ -303,7 +303,7 @@ namespace IPLab
             this.luminanceSlider.Name = "luminanceSlider";
             this.luminanceSlider.Size = new System.Drawing.Size( 262, 23 );
             this.luminanceSlider.TabIndex = 9;
-            this.luminanceSlider.Type = IPLab.ColorSliderType.InnerGradient;
+            this.luminanceSlider.Type = AForge.Controls.ColorSlider.ColorSliderType.InnerGradient;
             this.luminanceSlider.ValuesChanged += new System.EventHandler( this.luminanceSlider_ValuesChanged );
             // 
             // maxLBox
@@ -685,9 +685,9 @@ namespace IPLab
             int v;
 
             v = (int) ( fillS * 255 );
-            saturationSlider.Color3 = Color.FromArgb( v, v, v );
+            saturationSlider.FillColor = Color.FromArgb( v, v, v );
             v = (int) ( fillL * 255 );
-            luminanceSlider.Color3 = Color.FromArgb( v, v, v );
+            luminanceSlider.FillColor = Color.FromArgb( v, v, v );
 
 
             filter.FillColor = new HSL( fillH, fillS, fillL );
@@ -718,8 +718,13 @@ namespace IPLab
         // Fill type changed
         private void fillTypeCombo_SelectedIndexChanged( object sender, System.EventArgs e )
         {
-            ColorSliderType[] types = new ColorSliderType[] { ColorSliderType.InnerGradient, ColorSliderType.OuterGradient };
-            ColorSliderType type = types[fillTypeCombo.SelectedIndex];
+            AForge.Controls.ColorSlider.ColorSliderType[] types =
+                new AForge.Controls.ColorSlider.ColorSliderType[]
+                {
+                    AForge.Controls.ColorSlider.ColorSliderType.InnerGradient,
+                    AForge.Controls.ColorSlider.ColorSliderType.OuterGradient
+                };
+            AForge.Controls.ColorSlider.ColorSliderType type = types[fillTypeCombo.SelectedIndex];
 
             saturationSlider.Type = type;
             luminanceSlider.Type = type;
