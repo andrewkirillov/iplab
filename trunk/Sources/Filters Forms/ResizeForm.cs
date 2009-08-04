@@ -15,7 +15,7 @@ namespace IPLab
     public class ResizeForm : System.Windows.Forms.Form
     {
         private Size originalSize;
-        private FilterResize filter = null;
+        private BaseResizeFilter filter = null;
         private bool updating = false;
 
         private System.Windows.Forms.RadioButton factorButton;

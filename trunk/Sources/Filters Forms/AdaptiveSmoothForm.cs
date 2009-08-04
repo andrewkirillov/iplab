@@ -13,7 +13,7 @@ namespace IPLab
     /// </summary>
     public class AdaptiveSmoothForm : System.Windows.Forms.Form
     {
-        private AdaptiveSmooth filter = new AdaptiveSmooth( 1.0 );
+        private AdaptiveSmoothing filter = new AdaptiveSmoothing( 1.0 );
         private double factor = 1.0;
 
         private System.Windows.Forms.Label label1;

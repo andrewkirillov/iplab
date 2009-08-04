@@ -134,7 +134,7 @@ namespace IPLab
                 {
                     hsl.Hue = i;
                     // convert from HSL to RGB
-                    AForge.Imaging.ColorConverter.HSL2RGB( hsl, rgb );
+                    AForge.Imaging.HSL.ToRGB( hsl, rgb );
                     // create brush
                     brush = new SolidBrush( rgb.Color );
                     // draw one hue value
@@ -148,12 +148,13 @@ namespace IPLab
                 // draw HSL pie
                 for ( int i = 0; i < 360; i++ )
                 {
-                    if ( ( ( min < max ) && ( i >= min ) && ( i <= max ) ) ||
+                    if (
+                        ( ( min < max ) && ( i >= min ) && ( i <= max ) ) ||
                         ( ( min > max ) && ( ( i >= min ) || ( i <= max ) ) ) )
                     {
                         hsl.Hue = i;
                         // convert from HSL to RGB
-                        AForge.Imaging.ColorConverter.HSL2RGB( hsl, rgb );
+                        AForge.Imaging.HSL.ToRGB( hsl, rgb );
                         // create brush
                         brush = new SolidBrush( rgb.Color );
                     }

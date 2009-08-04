@@ -1481,9 +1481,7 @@ namespace IPLab
 				{
 					Color	color = image.GetPixel(e.Location.X, e.Location.Y);
 					RGB		rgb = new RGB( color );
-					YCbCr	ycbcr = new YCbCr( );
-
-					AForge.Imaging.ColorConverter.RGB2YCbCr( rgb, ycbcr );
+                    YCbCr	ycbcr = AForge.Imaging.YCbCr.FromRGB( rgb );
 
 					// RGB
 					this.colorPanel.Text = string.Format( "RGB: {0}; {1}; {2}", color.R, color.G, color.B );

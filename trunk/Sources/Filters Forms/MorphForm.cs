@@ -49,7 +49,7 @@ namespace IPLab
             // create filter
             filter = new Morph( overlay );
             // set percent value on track bar
-            percentageBar.Value = (int) ( filter.Percent * 100 );
+            percentageBar.Value = (int) ( filter.SourcePercent * 100 );
             // set filter for preview window
             filterPreview.Filter = filter;
         }
@@ -178,7 +178,7 @@ namespace IPLab
         // Value changed of percentage scroll bar
         private void percentageBar_ValueChanged( object sender, System.EventArgs e )
         {
-            filter.Percent = (double) percentageBar.Value / 100.0;
+            filter.SourcePercent = (double) percentageBar.Value / 100.0;
             filterPreview.RefreshFilter( );
         }
     }
