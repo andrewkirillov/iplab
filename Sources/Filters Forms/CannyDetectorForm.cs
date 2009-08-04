@@ -27,7 +27,7 @@ namespace IPLab
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private IPLab.ColorSlider thresholdSlider;
+        private AForge.Controls.ColorSlider thresholdSlider;
         private System.Windows.Forms.GroupBox groupBox3;
         private IPLab.FilterPreview filterPreview;
         private System.Windows.Forms.Button cancelButton;
@@ -97,7 +97,7 @@ namespace IPLab
             this.groupBox1 = new System.Windows.Forms.GroupBox( );
             this.sigmaTrackBar = new System.Windows.Forms.TrackBar( );
             this.groupBox2 = new System.Windows.Forms.GroupBox( );
-            this.thresholdSlider = new IPLab.ColorSlider( );
+            this.thresholdSlider = new AForge.Controls.ColorSlider( );
             this.highThresholdBox = new System.Windows.Forms.TextBox( );
             this.label2 = new System.Windows.Forms.Label( );
             this.lowThresholdBox = new System.Windows.Forms.TextBox( );

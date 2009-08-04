@@ -24,7 +24,7 @@ namespace IPLab
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox thresholdBox;
-        private IPLab.ColorSlider slider;
+        private AForge.Controls.ColorSlider slider;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
@@ -90,7 +90,7 @@ namespace IPLab
         {
             this.label1 = new System.Windows.Forms.Label( );
             this.thresholdBox = new System.Windows.Forms.TextBox( );
-            this.slider = new IPLab.ColorSlider( );
+            this.slider = new AForge.Controls.ColorSlider( );
             this.pictureBox2 = new System.Windows.Forms.PictureBox( );
             this.okButton = new System.Windows.Forms.Button( );
             this.cancelButton = new System.Windows.Forms.Button( );
@@ -124,7 +124,7 @@ namespace IPLab
             this.slider.Name = "slider";
             this.slider.Size = new System.Drawing.Size( 262, 23 );
             this.slider.TabIndex = 4;
-            this.slider.Type = IPLab.ColorSliderType.Threshold;
+            this.slider.Type = AForge.Controls.ColorSlider.ColorSliderType.Threshold;
             this.slider.ValuesChanged += new System.EventHandler( this.slider_ValuesChanged );
             // 
             // pictureBox2

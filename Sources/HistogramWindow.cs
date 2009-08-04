@@ -33,7 +33,7 @@ namespace IPLab
         private int currentImageHash = 0;
 
         private ImageStatistics stat;
-        private IPLab.Histogram histogram;
+        private AForge.Controls.Histogram histogram;
         private AForge.Math.Histogram activeHistogram = null;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox channelCombo;
@@ -113,7 +113,7 @@ namespace IPLab
             this.minLabel = new System.Windows.Forms.Label( );
             this.maxLabel = new System.Windows.Forms.Label( );
             this.logCheck = new System.Windows.Forms.CheckBox( );
-            this.histogram = new IPLab.Histogram( );
+            this.histogram = new AForge.Controls.Histogram( );
             this.SuspendLayout( );
             // 
             // label1
@@ -274,8 +274,8 @@ namespace IPLab
             this.histogram.Name = "histogram";
             this.histogram.Size = new System.Drawing.Size( 258, 162 );
             this.histogram.TabIndex = 0;
-            this.histogram.SelectionChanged += new IPLab.Histogram.HistogramEventHandler( this.histogram_SelectionChanged );
-            this.histogram.PositionChanged += new IPLab.Histogram.HistogramEventHandler( this.histogram_PositionChanged );
+            this.histogram.SelectionChanged += new AForge.Controls.HistogramEventHandler( this.histogram_SelectionChanged );
+            this.histogram.PositionChanged += new AForge.Controls.HistogramEventHandler( this.histogram_PositionChanged );
             // 
             // HistogramWindow
             // 
@@ -418,7 +418,7 @@ namespace IPLab
         }
 
         // Cursor position changed over the hostogram
-        private void histogram_PositionChanged( object sender, IPLab.HistogramEventArgs e )
+        private void histogram_PositionChanged( object sender, AForge.Controls.HistogramEventArgs e )
         {
             int pos = e.Position;
 
@@ -437,7 +437,7 @@ namespace IPLab
         }
 
         // Selection changed in the hostogram
-        private void histogram_SelectionChanged( object sender, IPLab.HistogramEventArgs e )
+        private void histogram_SelectionChanged( object sender, AForge.Controls.HistogramEventArgs e )
         {
             int min = e.Min;
             int max = e.Max;
@@ -457,7 +457,7 @@ namespace IPLab
         // On "Log" check - switch mode
         private void logCheck_CheckedChanged( object sender, System.EventArgs e )
         {
-            histogram.LogView = logCheck.Checked;
+            histogram.IsLogarithmicView = logCheck.Checked;
         }
     }
 }

@@ -96,6 +96,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\AForge.dll</HintPath>
     </Reference>
+    <Reference Include="AForge.Controls, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\AForge.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="AForge.Imaging, Version=1.5.0.0, Culture=neutral, PublicKeyToken=38eb47741dd0492e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\AForge.Imaging.dll</HintPath>
@@ -143,9 +147,6 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\ColorSlider.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\FilterPreview.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -153,9 +154,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\GridArrayInt.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Histogram.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\HuePicker.cs">
@@ -288,10 +286,6 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ColorSlider.resx">
-      <DependentUpon>ColorSlider.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FilterPreview.resx">
       <DependentUpon>FilterPreview.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -301,10 +295,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GridArrayInt.resx">
       <DependentUpon>GridArrayInt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Histogram.resx">
-      <DependentUpon>Histogram.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\HuePicker.resx">
       <DependentUpon>HuePicker.cs</DependentUpon>
