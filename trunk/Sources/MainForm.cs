@@ -26,8 +26,8 @@ namespace IPLab
 	/// </summary>
 	public class MainForm : System.Windows.Forms.Form, IDocumentsHost
 	{
-		private static string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "app.config");
-		private static string dockManagerConfigFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockManager.config");
+        private static string configFile = Path.Combine( System.Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ), "app.config" );
+        private static string dockManagerConfigFile = Path.Combine( System.Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ), "DockManager.config" );
 
 		private int unnamedNumber = 0;
 		private Configuration config = new Configuration();
