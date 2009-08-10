@@ -245,7 +245,12 @@ namespace IPLab
                 image = (Bitmap) Bitmap.FromFile( fileName );
 
                 // format image
-                AForge.Imaging.Image.FormatImage( ref image );
+                if ( !AForge.Imaging.Image.IsGrayscale( image ) && ( image.PixelFormat != PixelFormat.Format24bppRgb ) )
+                {
+                    Bitmap temp = AForge.Imaging.Image.Clone( image, PixelFormat.Format24bppRgb );
+                    image.Dispose( );
+                    image = temp;
+                }
 
                 this.fileName = fileName;
             }
@@ -1652,7 +1657,7 @@ namespace IPLab
             // check pixel format
             if ( image.PixelFormat != PixelFormat.Format24bppRgb )
             {
-                MessageBox.Show( fileName + " can be applied to RGB images only.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                MessageBox.Show( filterName + " can be applied to RGB images only.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
                 return false;
             }
             return true;
@@ -1718,6 +1723,24 @@ namespace IPLab
         // Apply filter on the image
         private void ApplyFilter( IFilter filter )
         {
+            if ( filter is IFilterInformation )
+            {
+                IFilterInformation filterInfo = (IFilterInformation) filter;
+
+                if ( !filterInfo.FormatTransalations.ContainsKey( image.PixelFormat ) )
+                {
+                    if ( filterInfo.FormatTransalations.ContainsKey( PixelFormat.Format24bppRgb ) )
+                    {
+                        MessageBox.Show( "The selected image processing routine may be applied to color image only.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    }
+                    else
+                    {
+                        MessageBox.Show( "The selected image processing routine may be applied to grayscale or binary image only.\n\nUse grayscale (and threshold filter if required) before.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    }
+                    return;
+                }
+            }
+
             try
             {
                 // set wait cursor
@@ -1755,7 +1778,7 @@ namespace IPLab
             }
             catch ( ArgumentException )
             {
-                MessageBox.Show( "Selected filter can not be applied to the image", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                MessageBox.Show( "Error occured applying selected filter to the image", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
             finally
             {
@@ -1929,10 +1952,7 @@ namespace IPLab
         // Grayscale image
         private void Grayscale( )
         {
-            if ( CheckIfColor( "Grayscale filter" ) )
-            {
-                ApplyFilter( new GrayscaleBT709( ) );
-            }
+            ApplyFilter( new GrayscaleBT709( ) );
         }
 
         // On "Filter->Color->Grayscale"
@@ -1944,10 +1964,7 @@ namespace IPLab
         // Converts grayscale image to RGB
         private void toRgbColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( CheckIfGrayscale( "Conversion to RGB" ) )
-            {
-                ApplyFilter( new GrayscaleToRGB( ) );
-            }
+            ApplyFilter( new GrayscaleToRGB( ) );
         }
 
         // Remove green and blue channels
@@ -2052,37 +2069,28 @@ namespace IPLab
         // Replace red channel
         private void replaceRedColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( CheckIfColor( "Channels replacement" ) )
-            {
-                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the red channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the red channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
 
-                if ( channelImage != null )
-                    ApplyFilter( new ReplaceChannel( RGB.R, channelImage ) );
-            }
+            if ( channelImage != null )
+                ApplyFilter( new ReplaceChannel( RGB.R, channelImage ) );
         }
 
         // Replace green channel
         private void replaceGreenColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( CheckIfColor( "Channels replacement" ) )
-            {
-                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the green channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the green channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
 
-                if ( channelImage != null )
-                    ApplyFilter( new ReplaceChannel( RGB.G, channelImage ) );
-            }
+            if ( channelImage != null )
+                ApplyFilter( new ReplaceChannel( RGB.G, channelImage ) );
         }
 
         // Replace blue channel
         private void replaceBlueColorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( CheckIfColor( "Channels replacement" ) )
-            {
-                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the blue channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the blue channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
 
-                if ( channelImage != null )
-                    ApplyFilter( new ReplaceChannel( RGB.B, channelImage ) );
-            }
+            if ( channelImage != null )
+                ApplyFilter( new ReplaceChannel( RGB.B, channelImage ) );
         }
 
         // Adjust brighness using HSL
@@ -2244,37 +2252,28 @@ namespace IPLab
         // Replace Y channel of YCbCr color space
         private void replaceYFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( CheckIfColor( "Channels replacement" ) )
-            {
-                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Y channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Y channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
 
-                if ( channelImage != null )
-                    ApplyFilter( new YCbCrReplaceChannel( YCbCr.YIndex, channelImage ) );
-            }
+            if ( channelImage != null )
+                ApplyFilter( new YCbCrReplaceChannel( YCbCr.YIndex, channelImage ) );
         }
 
         // Replace Cb channel of YCbCr color space
         private void replaceCbFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( CheckIfColor( "Channels replacement" ) )
-            {
-                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Cb channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Cb channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
 
-                if ( channelImage != null )
-                    ApplyFilter( new YCbCrReplaceChannel( YCbCr.CbIndex, channelImage ) );
-            }
+            if ( channelImage != null )
+                ApplyFilter( new YCbCrReplaceChannel( YCbCr.CbIndex, channelImage ) );
         }
 
         // Replace Cr channel of YCbCr color space
         private void replaceCrFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( CheckIfColor( "Channels replacement" ) )
-            {
-                Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Cr channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
+            Bitmap channelImage = host.GetImage( this, "Select an image which will replace the Cr channel in the current image", new Size( width, height ), PixelFormat.Format8bppIndexed );
 
-                if ( channelImage != null )
-                    ApplyFilter( new YCbCrReplaceChannel( YCbCr.CrIndex, channelImage ) );
-            }
+            if ( channelImage != null )
+                ApplyFilter( new YCbCrReplaceChannel( YCbCr.CrIndex, channelImage ) );
         }
 
         // Threshold binarization
@@ -2708,10 +2707,7 @@ namespace IPLab
         // Conected components labeling
         private void labelingFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( CheckIfBinary( "Connected components labeling" ) )
-            {
-                ApplyFilter( new ConnectedComponentsLabeling( ) );
-            }
+            ApplyFilter( new ConnectedComponentsLabeling( ) );
         }
 
         // Extract separate blobs
