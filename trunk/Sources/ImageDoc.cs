@@ -194,6 +194,8 @@ namespace IPLab
         private MenuItem menuItem13;
         private MenuItem extractBiggestBlobMenuItem;
         private MenuItem menuItem30;
+        private MenuItem contrastStretchMenuItem;
+        private MenuItem histogramEqualizationMenuItem;
         private System.ComponentModel.IContainer components;
 
         // Image property
@@ -453,6 +455,8 @@ namespace IPLab
             this.medianFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.contrastStretchMenuItem = new System.Windows.Forms.MenuItem( );
+            this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -671,7 +675,8 @@ namespace IPLab
             this.rotateFiltersItem,
             this.menuItem26,
             this.levelsFiltersItem,
-            this.medianFiltersItem,
+            this.contrastStretchMenuItem,
+            this.histogramEqualizationMenuItem,
             this.menuItem25,
             this.fourierFiltersItem} );
             this.filtersItem.MergeOrder = 1;
@@ -1401,6 +1406,7 @@ namespace IPLab
             this.menuItem24.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.adaptiveSmoothingFiltersItem,
             this.conservativeSmoothingFiltersItem,
+            this.medianFiltersItem,
             this.menuItem34,
             this.perlinNoiseFiltersItem,
             this.oilPaintingFiltersItem,
@@ -1424,42 +1430,42 @@ namespace IPLab
             // 
             // menuItem34
             // 
-            this.menuItem34.Index = 2;
+            this.menuItem34.Index = 3;
             this.menuItem34.Text = "-";
             // 
             // perlinNoiseFiltersItem
             // 
-            this.perlinNoiseFiltersItem.Index = 3;
+            this.perlinNoiseFiltersItem.Index = 4;
             this.perlinNoiseFiltersItem.Text = "Perlin Noise";
             this.perlinNoiseFiltersItem.Click += new System.EventHandler( this.perlinNoiseFiltersItem_Click );
             // 
             // oilPaintingFiltersItem
             // 
-            this.oilPaintingFiltersItem.Index = 4;
+            this.oilPaintingFiltersItem.Index = 5;
             this.oilPaintingFiltersItem.Text = "&Oil Painting";
             this.oilPaintingFiltersItem.Click += new System.EventHandler( this.oilPaintingFiltersItem_Click );
             // 
             // jitterFiltersItem
             // 
-            this.jitterFiltersItem.Index = 5;
+            this.jitterFiltersItem.Index = 6;
             this.jitterFiltersItem.Text = "&Jitter";
             this.jitterFiltersItem.Click += new System.EventHandler( this.jitterFiltersItem_Click );
             // 
             // pixellateFiltersItem
             // 
-            this.pixellateFiltersItem.Index = 6;
+            this.pixellateFiltersItem.Index = 7;
             this.pixellateFiltersItem.Text = "&Pixellate";
             this.pixellateFiltersItem.Click += new System.EventHandler( this.pixellateFiltersItem_Click );
             // 
             // simpleSkeletonizationFiltersItem
             // 
-            this.simpleSkeletonizationFiltersItem.Index = 7;
+            this.simpleSkeletonizationFiltersItem.Index = 8;
             this.simpleSkeletonizationFiltersItem.Text = "Simple &Skeletonization";
             this.simpleSkeletonizationFiltersItem.Click += new System.EventHandler( this.simpleSkeletonizationFiltersItem_Click );
             // 
             // shrinkFiltersItem
             // 
-            this.shrinkFiltersItem.Index = 8;
+            this.shrinkFiltersItem.Index = 9;
             this.shrinkFiltersItem.Text = "Shrink";
             this.shrinkFiltersItem.Click += new System.EventHandler( this.shrinkFiltersItem_Click );
             // 
@@ -1494,20 +1500,32 @@ namespace IPLab
             // 
             // medianFiltersItem
             // 
-            this.medianFiltersItem.Index = 16;
+            this.medianFiltersItem.Index = 2;
             this.medianFiltersItem.Text = "Me&dian";
             this.medianFiltersItem.Click += new System.EventHandler( this.medianFiltersItem_Click );
             // 
             // menuItem25
             // 
-            this.menuItem25.Index = 17;
+            this.menuItem25.Index = 18;
             this.menuItem25.Text = "-";
             // 
             // fourierFiltersItem
             // 
-            this.fourierFiltersItem.Index = 18;
+            this.fourierFiltersItem.Index = 19;
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
+            // 
+            // contrastStretchMenuItem
+            // 
+            this.contrastStretchMenuItem.Index = 16;
+            this.contrastStretchMenuItem.Text = "Contrast Stretch ";
+            this.contrastStretchMenuItem.Click += new System.EventHandler( this.contrastStretchMenuItem_Click );
+            // 
+            // histogramEqualizationMenuItem
+            // 
+            this.histogramEqualizationMenuItem.Index = 17;
+            this.histogramEqualizationMenuItem.Text = "Histogram Equalization";
+            this.histogramEqualizationMenuItem.Click += new System.EventHandler( this.histogramEqualizationMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -1794,7 +1812,7 @@ namespace IPLab
                     UpdateNewImage( );
                 }
             }
-            catch ( ArgumentException )
+            catch
             {
                 MessageBox.Show( "Error occured applying selected filter to the image", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
@@ -2802,6 +2820,18 @@ namespace IPLab
         private void levelsFiltersItem_Click( object sender, System.EventArgs e )
         {
             Levels( );
+        }
+
+        // Contrast stretch filter
+        private void contrastStretchMenuItem_Click( object sender, EventArgs e )
+        {
+            ApplyFilter( new ContrastStretch( ) );
+        }
+
+        // Histogram equalization filter
+        private void histogramEqualizationMenuItem_Click( object sender, EventArgs e )
+        {
+            ApplyFilter( new HistogramEqualization( ) );
         }
 
         // Median filter
