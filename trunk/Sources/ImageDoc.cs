@@ -159,7 +159,6 @@ namespace IPLab
         private System.Windows.Forms.MenuItem edgeFiltersItem;
         private System.Windows.Forms.MenuItem homogenityEdgeFiltersItem;
         private System.Windows.Forms.MenuItem differenceEdgeFiltersItem;
-        private System.Windows.Forms.MenuItem menuItem30;
         private System.Windows.Forms.MenuItem labelingFiltersItem;
         private System.Windows.Forms.MenuItem sobelEdgeFiltersItem;
         private System.Windows.Forms.MenuItem gaussianConvolutionFiltersItem;
@@ -192,6 +191,9 @@ namespace IPLab
         private MenuItem noiseFiltersItem;
         private MenuItem additiveNoiseFiltersItem;
         private MenuItem saltNoiseFiltersItem;
+        private MenuItem menuItem13;
+        private MenuItem extractBiggestBlobMenuItem;
+        private MenuItem menuItem30;
         private System.ComponentModel.IContainer components;
 
         // Image property
@@ -329,6 +331,7 @@ namespace IPLab
             this.colorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.grayscaleColorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.toRgbColorFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.gammaFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem1 = new System.Windows.Forms.MenuItem( );
             this.sepiaColorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem2 = new System.Windows.Forms.MenuItem( );
@@ -427,6 +430,11 @@ namespace IPLab
             this.noiseFiltersItem = new System.Windows.Forms.MenuItem( );
             this.additiveNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
             this.saltNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem13 = new System.Windows.Forms.MenuItem( );
+            this.extractBiggestBlobMenuItem = new System.Windows.Forms.MenuItem( );
+            this.blobExtractorFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem30 = new System.Windows.Forms.MenuItem( );
+            this.labelingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem24 = new System.Windows.Forms.MenuItem( );
             this.adaptiveSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.conservativeSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -437,16 +445,12 @@ namespace IPLab
             this.pixellateFiltersItem = new System.Windows.Forms.MenuItem( );
             this.simpleSkeletonizationFiltersItem = new System.Windows.Forms.MenuItem( );
             this.shrinkFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.menuItem30 = new System.Windows.Forms.MenuItem( );
-            this.labelingFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.blobExtractorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem23 = new System.Windows.Forms.MenuItem( );
             this.resizeFiltersItem = new System.Windows.Forms.MenuItem( );
             this.rotateFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem26 = new System.Windows.Forms.MenuItem( );
             this.levelsFiltersItem = new System.Windows.Forms.MenuItem( );
             this.medianFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.gammaFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
@@ -660,6 +664,7 @@ namespace IPLab
             this.twosrcFiltersItem,
             this.edgeFiltersItem,
             this.noiseFiltersItem,
+            this.menuItem13,
             this.menuItem24,
             this.menuItem23,
             this.resizeFiltersItem,
@@ -717,6 +722,12 @@ namespace IPLab
             this.toRgbColorFiltersItem.Index = 1;
             this.toRgbColorFiltersItem.Text = "Grayscale To RGB";
             this.toRgbColorFiltersItem.Click += new System.EventHandler( this.toRgbColorFiltersItem_Click );
+            // 
+            // gammaFiltersItem
+            // 
+            this.gammaFiltersItem.Index = 2;
+            this.gammaFiltersItem.Text = "&Gamma Correction";
+            this.gammaFiltersItem.Click += new System.EventHandler( this.gammaFiltersItem_Click );
             // 
             // menuItem1
             // 
@@ -1351,9 +1362,42 @@ namespace IPLab
             this.saltNoiseFiltersItem.Text = "&Salt and Pepper";
             this.saltNoiseFiltersItem.Click += new System.EventHandler( this.saltNoiseFiltersItem_Click );
             // 
+            // menuItem13
+            // 
+            this.menuItem13.Index = 9;
+            this.menuItem13.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
+            this.extractBiggestBlobMenuItem,
+            this.blobExtractorFiltersItem,
+            this.menuItem30,
+            this.labelingFiltersItem} );
+            this.menuItem13.Text = "Blobs Processing";
+            // 
+            // extractBiggestBlobMenuItem
+            // 
+            this.extractBiggestBlobMenuItem.Index = 0;
+            this.extractBiggestBlobMenuItem.Text = "Extract Biggest Blob";
+            this.extractBiggestBlobMenuItem.Click += new System.EventHandler( this.extractBiggestBlobMenuItem_Click );
+            // 
+            // blobExtractorFiltersItem
+            // 
+            this.blobExtractorFiltersItem.Index = 1;
+            this.blobExtractorFiltersItem.Text = "&Blob Extractor";
+            this.blobExtractorFiltersItem.Click += new System.EventHandler( this.blobExtractorFiltersItem_Click );
+            // 
+            // menuItem30
+            // 
+            this.menuItem30.Index = 2;
+            this.menuItem30.Text = "-";
+            // 
+            // labelingFiltersItem
+            // 
+            this.labelingFiltersItem.Index = 3;
+            this.labelingFiltersItem.Text = "Connected Components Labeling";
+            this.labelingFiltersItem.Click += new System.EventHandler( this.labelingFiltersItem_Click );
+            // 
             // menuItem24
             // 
-            this.menuItem24.Index = 9;
+            this.menuItem24.Index = 10;
             this.menuItem24.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.adaptiveSmoothingFiltersItem,
             this.conservativeSmoothingFiltersItem,
@@ -1363,10 +1407,7 @@ namespace IPLab
             this.jitterFiltersItem,
             this.pixellateFiltersItem,
             this.simpleSkeletonizationFiltersItem,
-            this.shrinkFiltersItem,
-            this.menuItem30,
-            this.labelingFiltersItem,
-            this.blobExtractorFiltersItem} );
+            this.shrinkFiltersItem} );
             this.menuItem24.Text = "Other";
             // 
             // adaptiveSmoothingFiltersItem
@@ -1422,72 +1463,49 @@ namespace IPLab
             this.shrinkFiltersItem.Text = "Shrink";
             this.shrinkFiltersItem.Click += new System.EventHandler( this.shrinkFiltersItem_Click );
             // 
-            // menuItem30
-            // 
-            this.menuItem30.Index = 9;
-            this.menuItem30.Text = "-";
-            // 
-            // labelingFiltersItem
-            // 
-            this.labelingFiltersItem.Index = 10;
-            this.labelingFiltersItem.Text = "Connected Components Labeling";
-            this.labelingFiltersItem.Click += new System.EventHandler( this.labelingFiltersItem_Click );
-            // 
-            // blobExtractorFiltersItem
-            // 
-            this.blobExtractorFiltersItem.Index = 11;
-            this.blobExtractorFiltersItem.Text = "&Blob Extractor";
-            this.blobExtractorFiltersItem.Click += new System.EventHandler( this.blobExtractorFiltersItem_Click );
-            // 
             // menuItem23
             // 
-            this.menuItem23.Index = 10;
+            this.menuItem23.Index = 11;
             this.menuItem23.Text = "-";
             // 
             // resizeFiltersItem
             // 
-            this.resizeFiltersItem.Index = 11;
+            this.resizeFiltersItem.Index = 12;
             this.resizeFiltersItem.Text = "&Resize";
             this.resizeFiltersItem.Click += new System.EventHandler( this.resizeFiltersItem_Click );
             // 
             // rotateFiltersItem
             // 
-            this.rotateFiltersItem.Index = 12;
+            this.rotateFiltersItem.Index = 13;
             this.rotateFiltersItem.Text = "Ro&tate";
             this.rotateFiltersItem.Click += new System.EventHandler( this.rotateFiltersItem_Click );
             // 
             // menuItem26
             // 
-            this.menuItem26.Index = 13;
+            this.menuItem26.Index = 14;
             this.menuItem26.Text = "-";
             // 
             // levelsFiltersItem
             // 
-            this.levelsFiltersItem.Index = 14;
+            this.levelsFiltersItem.Index = 15;
             this.levelsFiltersItem.Shortcut = System.Windows.Forms.Shortcut.CtrlL;
             this.levelsFiltersItem.Text = "&Levels";
             this.levelsFiltersItem.Click += new System.EventHandler( this.levelsFiltersItem_Click );
             // 
             // medianFiltersItem
             // 
-            this.medianFiltersItem.Index = 15;
+            this.medianFiltersItem.Index = 16;
             this.medianFiltersItem.Text = "Me&dian";
             this.medianFiltersItem.Click += new System.EventHandler( this.medianFiltersItem_Click );
             // 
-            // gammaFiltersItem
-            // 
-            this.gammaFiltersItem.Index = 2;
-            this.gammaFiltersItem.Text = "&Gamma Correction";
-            this.gammaFiltersItem.Click += new System.EventHandler( this.gammaFiltersItem_Click );
-            // 
             // menuItem25
             // 
-            this.menuItem25.Index = 16;
+            this.menuItem25.Index = 17;
             this.menuItem25.Text = "-";
             // 
             // fourierFiltersItem
             // 
-            this.fourierFiltersItem.Index = 17;
+            this.fourierFiltersItem.Index = 18;
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
@@ -2723,6 +2741,12 @@ namespace IPLab
                     host.NewDocument( blob.Image );
                 }
             }
+        }
+
+        // Extract biggest blob
+        private void extractBiggestBlobMenuItem_Click( object sender, EventArgs e )
+        {
+            ApplyFilter( new ExtractBiggestBlob( ) );
         }
 
         // Resize the image
