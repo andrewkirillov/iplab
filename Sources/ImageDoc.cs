@@ -196,6 +196,10 @@ namespace IPLab
         private MenuItem menuItem30;
         private MenuItem contrastStretchMenuItem;
         private MenuItem histogramEqualizationMenuItem;
+        private MenuItem menuItem32;
+        private MenuItem extractRedFromNrgbMenuItem;
+        private MenuItem extractGreenFromNrgbMenuItem;
+        private MenuItem extractBlueFromNrgbMenuItem;
         private System.ComponentModel.IContainer components;
 
         // Image property
@@ -440,6 +444,7 @@ namespace IPLab
             this.menuItem24 = new System.Windows.Forms.MenuItem( );
             this.adaptiveSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.conservativeSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.medianFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem34 = new System.Windows.Forms.MenuItem( );
             this.perlinNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
             this.oilPaintingFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -452,11 +457,14 @@ namespace IPLab
             this.rotateFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem26 = new System.Windows.Forms.MenuItem( );
             this.levelsFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.medianFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.menuItem25 = new System.Windows.Forms.MenuItem( );
-            this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
             this.contrastStretchMenuItem = new System.Windows.Forms.MenuItem( );
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem25 = new System.Windows.Forms.MenuItem( );
+            this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem32 = new System.Windows.Forms.MenuItem( );
+            this.extractRedFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
+            this.extractGreenFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
+            this.extractBlueFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -660,6 +668,7 @@ namespace IPLab
             this.filtersItem.Index = 1;
             this.filtersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.colorFiltersItem,
+            this.menuItem32,
             this.hslFiltersItem,
             this.ycbcrFiltersItem,
             this.binaryFiltersItem,
@@ -714,7 +723,7 @@ namespace IPLab
             this.cyanColorFiltersItem,
             this.magentaColorFiltersItem,
             this.yellowColorFiltersItem} );
-            this.colorFiltersItem.Text = "&Color";
+            this.colorFiltersItem.Text = "&Color (RGB)";
             // 
             // grayscaleColorFiltersItem
             // 
@@ -879,7 +888,7 @@ namespace IPLab
             // 
             // hslFiltersItem
             // 
-            this.hslFiltersItem.Index = 1;
+            this.hslFiltersItem.Index = 2;
             this.hslFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.brightnessHslFiltersItem,
             this.contrastHslFiltersItem,
@@ -939,7 +948,7 @@ namespace IPLab
             // 
             // ycbcrFiltersItem
             // 
-            this.ycbcrFiltersItem.Index = 2;
+            this.ycbcrFiltersItem.Index = 3;
             this.ycbcrFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.linearYCbCrFiltersItem,
             this.filteringYCbCrFiltersItem,
@@ -1013,7 +1022,7 @@ namespace IPLab
             // 
             // binaryFiltersItem
             // 
-            this.binaryFiltersItem.Index = 3;
+            this.binaryFiltersItem.Index = 4;
             this.binaryFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.thresholdBinaryFiltersItem,
             this.menuItem15,
@@ -1107,7 +1116,7 @@ namespace IPLab
             // 
             // morphologyFiltersItem
             // 
-            this.morphologyFiltersItem.Index = 4;
+            this.morphologyFiltersItem.Index = 5;
             this.morphologyFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.erosionMorphologyFiltersItem,
             this.dilatationMorphologyFiltersItem,
@@ -1181,7 +1190,7 @@ namespace IPLab
             // 
             // convolutionFiltersItem
             // 
-            this.convolutionFiltersItem.Index = 5;
+            this.convolutionFiltersItem.Index = 6;
             this.convolutionFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.meanConvolutionFiltersItem,
             this.blurConvolutionFiltersItem,
@@ -1248,7 +1257,7 @@ namespace IPLab
             // 
             // twosrcFiltersItem
             // 
-            this.twosrcFiltersItem.Index = 6;
+            this.twosrcFiltersItem.Index = 7;
             this.twosrcFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.mergeTwosrcFiltersItem,
             this.intersectTwosrcFiltersItem,
@@ -1315,7 +1324,7 @@ namespace IPLab
             // 
             // edgeFiltersItem
             // 
-            this.edgeFiltersItem.Index = 7;
+            this.edgeFiltersItem.Index = 8;
             this.edgeFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.homogenityEdgeFiltersItem,
             this.differenceEdgeFiltersItem,
@@ -1349,7 +1358,7 @@ namespace IPLab
             // 
             // noiseFiltersItem
             // 
-            this.noiseFiltersItem.Index = 8;
+            this.noiseFiltersItem.Index = 9;
             this.noiseFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.additiveNoiseFiltersItem,
             this.saltNoiseFiltersItem} );
@@ -1369,7 +1378,7 @@ namespace IPLab
             // 
             // menuItem13
             // 
-            this.menuItem13.Index = 9;
+            this.menuItem13.Index = 10;
             this.menuItem13.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.extractBiggestBlobMenuItem,
             this.blobExtractorFiltersItem,
@@ -1402,7 +1411,7 @@ namespace IPLab
             // 
             // menuItem24
             // 
-            this.menuItem24.Index = 10;
+            this.menuItem24.Index = 11;
             this.menuItem24.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.adaptiveSmoothingFiltersItem,
             this.conservativeSmoothingFiltersItem,
@@ -1427,6 +1436,12 @@ namespace IPLab
             this.conservativeSmoothingFiltersItem.Index = 1;
             this.conservativeSmoothingFiltersItem.Text = "&ConservativeSmoothing";
             this.conservativeSmoothingFiltersItem.Click += new System.EventHandler( this.conservativeSmoothingFiltersItem_Click );
+            // 
+            // medianFiltersItem
+            // 
+            this.medianFiltersItem.Index = 2;
+            this.medianFiltersItem.Text = "Me&dian";
+            this.medianFiltersItem.Click += new System.EventHandler( this.medianFiltersItem_Click );
             // 
             // menuItem34
             // 
@@ -1471,61 +1486,82 @@ namespace IPLab
             // 
             // menuItem23
             // 
-            this.menuItem23.Index = 11;
+            this.menuItem23.Index = 12;
             this.menuItem23.Text = "-";
             // 
             // resizeFiltersItem
             // 
-            this.resizeFiltersItem.Index = 12;
+            this.resizeFiltersItem.Index = 13;
             this.resizeFiltersItem.Text = "&Resize";
             this.resizeFiltersItem.Click += new System.EventHandler( this.resizeFiltersItem_Click );
             // 
             // rotateFiltersItem
             // 
-            this.rotateFiltersItem.Index = 13;
+            this.rotateFiltersItem.Index = 14;
             this.rotateFiltersItem.Text = "Ro&tate";
             this.rotateFiltersItem.Click += new System.EventHandler( this.rotateFiltersItem_Click );
             // 
             // menuItem26
             // 
-            this.menuItem26.Index = 14;
+            this.menuItem26.Index = 15;
             this.menuItem26.Text = "-";
             // 
             // levelsFiltersItem
             // 
-            this.levelsFiltersItem.Index = 15;
+            this.levelsFiltersItem.Index = 16;
             this.levelsFiltersItem.Shortcut = System.Windows.Forms.Shortcut.CtrlL;
             this.levelsFiltersItem.Text = "&Levels";
             this.levelsFiltersItem.Click += new System.EventHandler( this.levelsFiltersItem_Click );
             // 
-            // medianFiltersItem
-            // 
-            this.medianFiltersItem.Index = 2;
-            this.medianFiltersItem.Text = "Me&dian";
-            this.medianFiltersItem.Click += new System.EventHandler( this.medianFiltersItem_Click );
-            // 
-            // menuItem25
-            // 
-            this.menuItem25.Index = 18;
-            this.menuItem25.Text = "-";
-            // 
-            // fourierFiltersItem
-            // 
-            this.fourierFiltersItem.Index = 19;
-            this.fourierFiltersItem.Text = "&Fourier Transformation";
-            this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
-            // 
             // contrastStretchMenuItem
             // 
-            this.contrastStretchMenuItem.Index = 16;
+            this.contrastStretchMenuItem.Index = 17;
             this.contrastStretchMenuItem.Text = "Contrast Stretch ";
             this.contrastStretchMenuItem.Click += new System.EventHandler( this.contrastStretchMenuItem_Click );
             // 
             // histogramEqualizationMenuItem
             // 
-            this.histogramEqualizationMenuItem.Index = 17;
+            this.histogramEqualizationMenuItem.Index = 18;
             this.histogramEqualizationMenuItem.Text = "Histogram Equalization";
             this.histogramEqualizationMenuItem.Click += new System.EventHandler( this.histogramEqualizationMenuItem_Click );
+            // 
+            // menuItem25
+            // 
+            this.menuItem25.Index = 19;
+            this.menuItem25.Text = "-";
+            // 
+            // fourierFiltersItem
+            // 
+            this.fourierFiltersItem.Index = 20;
+            this.fourierFiltersItem.Text = "&Fourier Transformation";
+            this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
+            // 
+            // menuItem32
+            // 
+            this.menuItem32.Index = 1;
+            this.menuItem32.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
+            this.extractRedFromNrgbMenuItem,
+            this.extractGreenFromNrgbMenuItem,
+            this.extractBlueFromNrgbMenuItem} );
+            this.menuItem32.Text = "Normalized RGB";
+            // 
+            // extractRedFromNrgbMenuItem
+            // 
+            this.extractRedFromNrgbMenuItem.Index = 0;
+            this.extractRedFromNrgbMenuItem.Text = "Extract Red Channel";
+            this.extractRedFromNrgbMenuItem.Click += new System.EventHandler( this.extractRedFromNrgbMenuItem_Click );
+            // 
+            // extractGreenFromNrgbMenuItem
+            // 
+            this.extractGreenFromNrgbMenuItem.Index = 1;
+            this.extractGreenFromNrgbMenuItem.Text = "Extract Green Channel";
+            this.extractGreenFromNrgbMenuItem.Click += new System.EventHandler( this.extractGreenFromNrgbMenuItem_Click );
+            // 
+            // extractBlueFromNrgbMenuItem
+            // 
+            this.extractBlueFromNrgbMenuItem.Index = 2;
+            this.extractBlueFromNrgbMenuItem.Text = "Extract Blue Channel";
+            this.extractBlueFromNrgbMenuItem.Click += new System.EventHandler( this.extractBlueFromNrgbMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -2127,6 +2163,24 @@ namespace IPLab
 
             if ( channelImage != null )
                 ApplyFilter( new ReplaceChannel( RGB.B, channelImage ) );
+        }
+
+        // Extract red channel of NRGB color space
+        private void extractRedFromNrgbMenuItem_Click( object sender, EventArgs e )
+        {
+            ApplyFilter( new ExtractNormalizedRGBChannel( RGB.R ) );
+        }
+
+        // Extract green channel of NRGB color space
+        private void extractGreenFromNrgbMenuItem_Click( object sender, EventArgs e )
+        {
+            ApplyFilter( new ExtractNormalizedRGBChannel( RGB.G ) );
+        }
+
+        // Extract blue channel of NRGB color space
+        private void extractBlueFromNrgbMenuItem_Click( object sender, EventArgs e )
+        {
+            ApplyFilter( new ExtractNormalizedRGBChannel( RGB.B ) );
         }
 
         // Adjust brighness using HSL
