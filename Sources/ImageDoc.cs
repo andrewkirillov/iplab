@@ -200,6 +200,7 @@ namespace IPLab
         private MenuItem extractRedFromNrgbMenuItem;
         private MenuItem extractGreenFromNrgbMenuItem;
         private MenuItem extractBlueFromNrgbMenuItem;
+        private MenuItem otsuThresholdMenuItem;
         private System.ComponentModel.IContainer components;
 
         // Image property
@@ -363,6 +364,10 @@ namespace IPLab
             this.cyanColorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.magentaColorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.yellowColorFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem32 = new System.Windows.Forms.MenuItem( );
+            this.extractRedFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
+            this.extractGreenFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
+            this.extractBlueFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
             this.hslFiltersItem = new System.Windows.Forms.MenuItem( );
             this.brightnessHslFiltersItem = new System.Windows.Forms.MenuItem( );
             this.contrastHslFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -397,6 +402,7 @@ namespace IPLab
             this.sierraBinaryFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem31 = new System.Windows.Forms.MenuItem( );
             this.sisThresholdBinaryFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.otsuThresholdMenuItem = new System.Windows.Forms.MenuItem( );
             this.morphologyFiltersItem = new System.Windows.Forms.MenuItem( );
             this.erosionMorphologyFiltersItem = new System.Windows.Forms.MenuItem( );
             this.dilatationMorphologyFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -461,10 +467,6 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.menuItem32 = new System.Windows.Forms.MenuItem( );
-            this.extractRedFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
-            this.extractGreenFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
-            this.extractBlueFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -886,6 +888,33 @@ namespace IPLab
             this.yellowColorFiltersItem.Text = "Yellow";
             this.yellowColorFiltersItem.Click += new System.EventHandler( this.yellowColorFiltersItem_Click );
             // 
+            // menuItem32
+            // 
+            this.menuItem32.Index = 1;
+            this.menuItem32.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
+            this.extractRedFromNrgbMenuItem,
+            this.extractGreenFromNrgbMenuItem,
+            this.extractBlueFromNrgbMenuItem} );
+            this.menuItem32.Text = "Normalized RGB";
+            // 
+            // extractRedFromNrgbMenuItem
+            // 
+            this.extractRedFromNrgbMenuItem.Index = 0;
+            this.extractRedFromNrgbMenuItem.Text = "Extract Red Channel";
+            this.extractRedFromNrgbMenuItem.Click += new System.EventHandler( this.extractRedFromNrgbMenuItem_Click );
+            // 
+            // extractGreenFromNrgbMenuItem
+            // 
+            this.extractGreenFromNrgbMenuItem.Index = 1;
+            this.extractGreenFromNrgbMenuItem.Text = "Extract Green Channel";
+            this.extractGreenFromNrgbMenuItem.Click += new System.EventHandler( this.extractGreenFromNrgbMenuItem_Click );
+            // 
+            // extractBlueFromNrgbMenuItem
+            // 
+            this.extractBlueFromNrgbMenuItem.Index = 2;
+            this.extractBlueFromNrgbMenuItem.Text = "Extract Blue Channel";
+            this.extractBlueFromNrgbMenuItem.Click += new System.EventHandler( this.extractBlueFromNrgbMenuItem_Click );
+            // 
             // hslFiltersItem
             // 
             this.hslFiltersItem.Index = 2;
@@ -1036,7 +1065,8 @@ namespace IPLab
             this.jarvisBinaryFiltersItem,
             this.sierraBinaryFiltersItem,
             this.menuItem31,
-            this.sisThresholdBinaryFiltersItem} );
+            this.sisThresholdBinaryFiltersItem,
+            this.otsuThresholdMenuItem} );
             this.binaryFiltersItem.Text = "&Binarization";
             // 
             // thresholdBinaryFiltersItem
@@ -1113,6 +1143,12 @@ namespace IPLab
             this.sisThresholdBinaryFiltersItem.Index = 12;
             this.sisThresholdBinaryFiltersItem.Text = "SIS Threshold";
             this.sisThresholdBinaryFiltersItem.Click += new System.EventHandler( this.sisThresholdBinaryFiltersItem_Click );
+            // 
+            // otsuThresholdMenuItem
+            // 
+            this.otsuThresholdMenuItem.Index = 13;
+            this.otsuThresholdMenuItem.Text = "Otsu Threshold";
+            this.otsuThresholdMenuItem.Click += new System.EventHandler( this.otsuThresholdMenuItem_Click );
             // 
             // morphologyFiltersItem
             // 
@@ -1535,33 +1571,6 @@ namespace IPLab
             this.fourierFiltersItem.Index = 20;
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
-            // 
-            // menuItem32
-            // 
-            this.menuItem32.Index = 1;
-            this.menuItem32.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-            this.extractRedFromNrgbMenuItem,
-            this.extractGreenFromNrgbMenuItem,
-            this.extractBlueFromNrgbMenuItem} );
-            this.menuItem32.Text = "Normalized RGB";
-            // 
-            // extractRedFromNrgbMenuItem
-            // 
-            this.extractRedFromNrgbMenuItem.Index = 0;
-            this.extractRedFromNrgbMenuItem.Text = "Extract Red Channel";
-            this.extractRedFromNrgbMenuItem.Click += new System.EventHandler( this.extractRedFromNrgbMenuItem_Click );
-            // 
-            // extractGreenFromNrgbMenuItem
-            // 
-            this.extractGreenFromNrgbMenuItem.Index = 1;
-            this.extractGreenFromNrgbMenuItem.Text = "Extract Green Channel";
-            this.extractGreenFromNrgbMenuItem.Click += new System.EventHandler( this.extractGreenFromNrgbMenuItem_Click );
-            // 
-            // extractBlueFromNrgbMenuItem
-            // 
-            this.extractBlueFromNrgbMenuItem.Index = 2;
-            this.extractBlueFromNrgbMenuItem.Text = "Extract Blue Channel";
-            this.extractBlueFromNrgbMenuItem.Click += new System.EventHandler( this.extractBlueFromNrgbMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -2441,6 +2450,12 @@ namespace IPLab
         private void sisThresholdBinaryFiltersItem_Click( object sender, System.EventArgs e )
         {
             ApplyFilter( new SISThreshold( ) );
+        }
+
+        // Otsu threshold
+        private void otsuThresholdMenuItem_Click( object sender, EventArgs e )
+        {
+            ApplyFilter( new OtsuThreshold( ) );
         }
 
         // Errosion (Mathematical Morphology)
