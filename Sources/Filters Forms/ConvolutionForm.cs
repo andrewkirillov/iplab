@@ -28,7 +28,7 @@ namespace IPLab
 
         private static int[] sizes = new int[] { 3, 5, 7, 9, 11, 13, 15 };
         private int[,] kernel;
-        private AForge.Imaging.Filters.IFilter filter;
+        private AForge.Imaging.Filters.Convolution filter;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button loadButton;
@@ -36,6 +36,8 @@ namespace IPLab
         private System.Windows.Forms.OpenFileDialog ofd;
         private IPLab.FilterPreview filterPreview;
         private System.Windows.Forms.GroupBox groupBox2;
+        private Label label2;
+        private TextBox thresholdBox;
 
         // Filter property
         public IFilter Filter
@@ -77,6 +79,8 @@ namespace IPLab
 
             // default size
             this.sizeCombo.SelectedIndex = 0;
+            // default threshold
+            thresholdBox.Text = filter.Threshold.ToString( );
         }
 
         /// <summary>
@@ -113,6 +117,8 @@ namespace IPLab
             this.ofd = new System.Windows.Forms.OpenFileDialog( );
             this.filterPreview = new IPLab.FilterPreview( );
             this.groupBox2 = new System.Windows.Forms.GroupBox( );
+            this.label2 = new System.Windows.Forms.Label( );
+            this.thresholdBox = new System.Windows.Forms.TextBox( );
             this.groupBox1.SuspendLayout( );
             this.groupBox2.SuspendLayout( );
             this.SuspendLayout( );
@@ -259,11 +265,30 @@ namespace IPLab
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Preview";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point( 450, 68 );
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size( 57, 13 );
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Threshold:";
+            // 
+            // thresholdBox
+            // 
+            this.thresholdBox.Location = new System.Drawing.Point( 510, 65 );
+            this.thresholdBox.Name = "thresholdBox";
+            this.thresholdBox.Size = new System.Drawing.Size( 105, 20 );
+            this.thresholdBox.TabIndex = 11;
+            this.thresholdBox.TextChanged += new System.EventHandler( this.thresholdBox_TextChanged );
+            // 
             // ConvolutionForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size( 5, 13 );
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size( 627, 396 );
+            this.Controls.Add( this.thresholdBox );
+            this.Controls.Add( this.label2 );
             this.Controls.Add( this.groupBox2 );
             this.Controls.Add( this.cancelButton );
             this.Controls.Add( this.okButton );
@@ -278,6 +303,7 @@ namespace IPLab
             this.groupBox1.ResumeLayout( false );
             this.groupBox2.ResumeLayout( false );
             this.ResumeLayout( false );
+            this.PerformLayout( );
 
         }
         #endregion
@@ -317,12 +343,6 @@ namespace IPLab
             }
         }
 
-        // Operator changed
-        private void operatorCombo_SelectedIndexChanged( object sender, System.EventArgs e )
-        {
-            UpdateFilter( );
-        }
-
         // Value changed in grid
         private void grid_ValueChanged( object sender, IPLab.GridEventArgs e )
         {
@@ -334,7 +354,15 @@ namespace IPLab
         {
             if ( kernel != null )
             {
-                filter = new Convolution( kernel );
+                try
+                {
+                    filter = new Convolution( kernel );
+                    filter.Threshold = int.Parse( thresholdBox.Text );
+                }
+                catch
+                {
+
+                }
             }
             filterPreview.Filter = filter;
         }
@@ -391,6 +419,12 @@ namespace IPLab
                     MessageBox.Show( this, "Failed loading kernel from specified file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                 }
             }
+        }
+
+        // Threshold value is chenged
+        private void thresholdBox_TextChanged( object sender, EventArgs e )
+        {
+            UpdateFilter( );
         }
     }
 }
