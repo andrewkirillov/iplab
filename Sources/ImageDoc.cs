@@ -201,6 +201,7 @@ namespace IPLab
         private MenuItem extractGreenFromNrgbMenuItem;
         private MenuItem extractBlueFromNrgbMenuItem;
         private MenuItem otsuThresholdMenuItem;
+        private MenuItem filterBlobsMenuItem;
         private System.ComponentModel.IContainer components;
 
         // Image property
@@ -467,6 +468,7 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.filterBlobsMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -1416,6 +1418,7 @@ namespace IPLab
             // 
             this.menuItem13.Index = 10;
             this.menuItem13.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
+            this.filterBlobsMenuItem,
             this.extractBiggestBlobMenuItem,
             this.blobExtractorFiltersItem,
             this.menuItem30,
@@ -1424,24 +1427,24 @@ namespace IPLab
             // 
             // extractBiggestBlobMenuItem
             // 
-            this.extractBiggestBlobMenuItem.Index = 0;
+            this.extractBiggestBlobMenuItem.Index = 1;
             this.extractBiggestBlobMenuItem.Text = "Extract Biggest Blob";
             this.extractBiggestBlobMenuItem.Click += new System.EventHandler( this.extractBiggestBlobMenuItem_Click );
             // 
             // blobExtractorFiltersItem
             // 
-            this.blobExtractorFiltersItem.Index = 1;
+            this.blobExtractorFiltersItem.Index = 2;
             this.blobExtractorFiltersItem.Text = "&Blob Extractor";
             this.blobExtractorFiltersItem.Click += new System.EventHandler( this.blobExtractorFiltersItem_Click );
             // 
             // menuItem30
             // 
-            this.menuItem30.Index = 2;
+            this.menuItem30.Index = 3;
             this.menuItem30.Text = "-";
             // 
             // labelingFiltersItem
             // 
-            this.labelingFiltersItem.Index = 3;
+            this.labelingFiltersItem.Index = 4;
             this.labelingFiltersItem.Text = "Connected Components Labeling";
             this.labelingFiltersItem.Click += new System.EventHandler( this.labelingFiltersItem_Click );
             // 
@@ -1571,6 +1574,12 @@ namespace IPLab
             this.fourierFiltersItem.Index = 20;
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
+            // 
+            // filterBlobsMenuItem
+            // 
+            this.filterBlobsMenuItem.Index = 0;
+            this.filterBlobsMenuItem.Text = "Filter Blobs";
+            this.filterBlobsMenuItem.Click += new System.EventHandler( this.filterBlobsMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -2826,6 +2835,22 @@ namespace IPLab
                 foreach ( Blob blob in blobs )
                 {
                     host.NewDocument( blob.Image );
+                }
+            }
+        }
+
+        // Filter blobs by size
+        private void filterBlobsMenuItem_Click( object sender, EventArgs e )
+        {
+            if ( CheckIfBinary( "Blobs' filtering" ) )
+            {
+                BlobsFilteringForm form = new BlobsFilteringForm( );
+
+                form.Image = image;
+
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
                 }
             }
         }

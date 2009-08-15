@@ -168,6 +168,12 @@
     <Compile Include="Filters Forms\AdditiveNoiseForm.Designer.cs">
       <DependentUpon>AdditiveNoiseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Filters Forms\BlobsFilteringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\BlobsFilteringForm.Designer.cs">
+      <DependentUpon>BlobsFilteringForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filters Forms\BrightnessForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +311,9 @@
     <EmbeddedResource Include="Filters Forms\AdditiveNoiseForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AdditiveNoiseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\BlobsFilteringForm.resx">
+      <DependentUpon>BlobsFilteringForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\BrightnessForm.resx">
       <DependentUpon>BrightnessForm.cs</DependentUpon>
