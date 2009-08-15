@@ -219,6 +219,12 @@
     <Compile Include="Filters Forms\MathMorphologyForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Filters Forms\MoravecCornersDetectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\MoravecCornersDetectorForm.Designer.cs">
+      <DependentUpon>MoravecCornersDetectorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filters Forms\MorphForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +257,12 @@
     </Compile>
     <Compile Include="Filters Forms\ShrinkForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\SusanCornersDetectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\SusanCornersDetectorForm.Designer.cs">
+      <DependentUpon>SusanCornersDetectorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Filters Forms\ThresholdForm.cs">
       <SubType>Form</SubType>
@@ -361,6 +373,9 @@
     <EmbeddedResource Include="Filters Forms\MathMorphologyForm.resx">
       <DependentUpon>MathMorphologyForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\MoravecCornersDetectorForm.resx">
+      <DependentUpon>MoravecCornersDetectorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\MorphForm.resx">
       <DependentUpon>MorphForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -391,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\ShrinkForm.resx">
       <DependentUpon>ShrinkForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\SusanCornersDetectorForm.resx">
+      <DependentUpon>SusanCornersDetectorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\ThresholdForm.resx">
       <DependentUpon>ThresholdForm.cs</DependentUpon>

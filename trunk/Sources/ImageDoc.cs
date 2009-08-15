@@ -202,6 +202,9 @@ namespace IPLab
         private MenuItem extractBlueFromNrgbMenuItem;
         private MenuItem otsuThresholdMenuItem;
         private MenuItem filterBlobsMenuItem;
+        private MenuItem menuItem35;
+        private MenuItem susanCornersDetectorMenuItem;
+        private MenuItem moravecCornersDetectorMenuItem;
         private System.ComponentModel.IContainer components;
 
         // Image property
@@ -440,14 +443,18 @@ namespace IPLab
             this.differenceEdgeFiltersItem = new System.Windows.Forms.MenuItem( );
             this.sobelEdgeFiltersItem = new System.Windows.Forms.MenuItem( );
             this.cannyEdgeFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.noiseFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.additiveNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.saltNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem35 = new System.Windows.Forms.MenuItem( );
+            this.susanCornersDetectorMenuItem = new System.Windows.Forms.MenuItem( );
+            this.moravecCornersDetectorMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem13 = new System.Windows.Forms.MenuItem( );
+            this.filterBlobsMenuItem = new System.Windows.Forms.MenuItem( );
             this.extractBiggestBlobMenuItem = new System.Windows.Forms.MenuItem( );
             this.blobExtractorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem30 = new System.Windows.Forms.MenuItem( );
             this.labelingFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.noiseFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.additiveNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.saltNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem24 = new System.Windows.Forms.MenuItem( );
             this.adaptiveSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.conservativeSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -468,7 +475,6 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.filterBlobsMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -680,8 +686,9 @@ namespace IPLab
             this.convolutionFiltersItem,
             this.twosrcFiltersItem,
             this.edgeFiltersItem,
-            this.noiseFiltersItem,
+            this.menuItem35,
             this.menuItem13,
+            this.noiseFiltersItem,
             this.menuItem24,
             this.menuItem23,
             this.resizeFiltersItem,
@@ -1394,25 +1401,25 @@ namespace IPLab
             this.cannyEdgeFiltersItem.Text = "&Canny";
             this.cannyEdgeFiltersItem.Click += new System.EventHandler( this.cannyEdgeFiltersItem_Click );
             // 
-            // noiseFiltersItem
+            // menuItem35
             // 
-            this.noiseFiltersItem.Index = 9;
-            this.noiseFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-            this.additiveNoiseFiltersItem,
-            this.saltNoiseFiltersItem} );
-            this.noiseFiltersItem.Text = "&Noise generation";
+            this.menuItem35.Index = 9;
+            this.menuItem35.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
+            this.susanCornersDetectorMenuItem,
+            this.moravecCornersDetectorMenuItem} );
+            this.menuItem35.Text = "Corners detectors";
             // 
-            // additiveNoiseFiltersItem
+            // susanCornersDetectorMenuItem
             // 
-            this.additiveNoiseFiltersItem.Index = 0;
-            this.additiveNoiseFiltersItem.Text = "&Additive";
-            this.additiveNoiseFiltersItem.Click += new System.EventHandler( this.additiveNoiseFiltersItem_Click );
+            this.susanCornersDetectorMenuItem.Index = 0;
+            this.susanCornersDetectorMenuItem.Text = "SUSAN";
+            this.susanCornersDetectorMenuItem.Click += new System.EventHandler( this.susanCornersDetectorMenuItem_Click );
             // 
-            // saltNoiseFiltersItem
+            // moravecCornersDetectorMenuItem
             // 
-            this.saltNoiseFiltersItem.Index = 1;
-            this.saltNoiseFiltersItem.Text = "&Salt and Pepper";
-            this.saltNoiseFiltersItem.Click += new System.EventHandler( this.saltNoiseFiltersItem_Click );
+            this.moravecCornersDetectorMenuItem.Index = 1;
+            this.moravecCornersDetectorMenuItem.Text = "Moravec";
+            this.moravecCornersDetectorMenuItem.Click += new System.EventHandler( this.moravecCornersDetectorMenuItem_Click );
             // 
             // menuItem13
             // 
@@ -1423,7 +1430,13 @@ namespace IPLab
             this.blobExtractorFiltersItem,
             this.menuItem30,
             this.labelingFiltersItem} );
-            this.menuItem13.Text = "Blobs Processing";
+            this.menuItem13.Text = "Blobs processing";
+            // 
+            // filterBlobsMenuItem
+            // 
+            this.filterBlobsMenuItem.Index = 0;
+            this.filterBlobsMenuItem.Text = "Filter Blobs";
+            this.filterBlobsMenuItem.Click += new System.EventHandler( this.filterBlobsMenuItem_Click );
             // 
             // extractBiggestBlobMenuItem
             // 
@@ -1448,9 +1461,29 @@ namespace IPLab
             this.labelingFiltersItem.Text = "Connected Components Labeling";
             this.labelingFiltersItem.Click += new System.EventHandler( this.labelingFiltersItem_Click );
             // 
+            // noiseFiltersItem
+            // 
+            this.noiseFiltersItem.Index = 11;
+            this.noiseFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
+            this.additiveNoiseFiltersItem,
+            this.saltNoiseFiltersItem} );
+            this.noiseFiltersItem.Text = "&Noise generation";
+            // 
+            // additiveNoiseFiltersItem
+            // 
+            this.additiveNoiseFiltersItem.Index = 0;
+            this.additiveNoiseFiltersItem.Text = "&Additive";
+            this.additiveNoiseFiltersItem.Click += new System.EventHandler( this.additiveNoiseFiltersItem_Click );
+            // 
+            // saltNoiseFiltersItem
+            // 
+            this.saltNoiseFiltersItem.Index = 1;
+            this.saltNoiseFiltersItem.Text = "&Salt and Pepper";
+            this.saltNoiseFiltersItem.Click += new System.EventHandler( this.saltNoiseFiltersItem_Click );
+            // 
             // menuItem24
             // 
-            this.menuItem24.Index = 11;
+            this.menuItem24.Index = 12;
             this.menuItem24.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.adaptiveSmoothingFiltersItem,
             this.conservativeSmoothingFiltersItem,
@@ -1525,61 +1558,55 @@ namespace IPLab
             // 
             // menuItem23
             // 
-            this.menuItem23.Index = 12;
+            this.menuItem23.Index = 13;
             this.menuItem23.Text = "-";
             // 
             // resizeFiltersItem
             // 
-            this.resizeFiltersItem.Index = 13;
+            this.resizeFiltersItem.Index = 14;
             this.resizeFiltersItem.Text = "&Resize";
             this.resizeFiltersItem.Click += new System.EventHandler( this.resizeFiltersItem_Click );
             // 
             // rotateFiltersItem
             // 
-            this.rotateFiltersItem.Index = 14;
+            this.rotateFiltersItem.Index = 15;
             this.rotateFiltersItem.Text = "Ro&tate";
             this.rotateFiltersItem.Click += new System.EventHandler( this.rotateFiltersItem_Click );
             // 
             // menuItem26
             // 
-            this.menuItem26.Index = 15;
+            this.menuItem26.Index = 16;
             this.menuItem26.Text = "-";
             // 
             // levelsFiltersItem
             // 
-            this.levelsFiltersItem.Index = 16;
+            this.levelsFiltersItem.Index = 17;
             this.levelsFiltersItem.Shortcut = System.Windows.Forms.Shortcut.CtrlL;
             this.levelsFiltersItem.Text = "&Levels";
             this.levelsFiltersItem.Click += new System.EventHandler( this.levelsFiltersItem_Click );
             // 
             // contrastStretchMenuItem
             // 
-            this.contrastStretchMenuItem.Index = 17;
+            this.contrastStretchMenuItem.Index = 18;
             this.contrastStretchMenuItem.Text = "Contrast Stretch ";
             this.contrastStretchMenuItem.Click += new System.EventHandler( this.contrastStretchMenuItem_Click );
             // 
             // histogramEqualizationMenuItem
             // 
-            this.histogramEqualizationMenuItem.Index = 18;
+            this.histogramEqualizationMenuItem.Index = 19;
             this.histogramEqualizationMenuItem.Text = "Histogram Equalization";
             this.histogramEqualizationMenuItem.Click += new System.EventHandler( this.histogramEqualizationMenuItem_Click );
             // 
             // menuItem25
             // 
-            this.menuItem25.Index = 19;
+            this.menuItem25.Index = 20;
             this.menuItem25.Text = "-";
             // 
             // fourierFiltersItem
             // 
-            this.fourierFiltersItem.Index = 20;
+            this.fourierFiltersItem.Index = 21;
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
-            // 
-            // filterBlobsMenuItem
-            // 
-            this.filterBlobsMenuItem.Index = 0;
-            this.filterBlobsMenuItem.Text = "Filter Blobs";
-            this.filterBlobsMenuItem.Click += new System.EventHandler( this.filterBlobsMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -2702,6 +2729,32 @@ namespace IPLab
         private void cannyEdgeFiltersItem_Click( object sender, System.EventArgs e )
         {
             CannyDetectorForm form = new CannyDetectorForm( );
+
+            form.Image = image;
+
+            if ( form.ShowDialog( ) == DialogResult.OK )
+            {
+                ApplyFilter( form.Filter );
+            }
+        }
+
+        // SUSAN corners detector
+        private void susanCornersDetectorMenuItem_Click( object sender, EventArgs e )
+        {
+            SusanCornersDetectorForm form = new SusanCornersDetectorForm( );
+
+            form.Image = image;
+
+            if ( form.ShowDialog( ) == DialogResult.OK )
+            {
+                ApplyFilter( form.Filter );
+            }
+        }
+
+        // Moravec corners detector
+        private void moravecCornersDetectorMenuItem_Click( object sender, EventArgs e )
+        {
+            MoravecCornersDetectorForm form = new MoravecCornersDetectorForm( );
 
             form.Image = image;
 
