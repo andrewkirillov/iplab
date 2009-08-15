@@ -258,6 +258,12 @@
     <Compile Include="Filters Forms\ShrinkForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Filters Forms\SimplePosterizationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\SimplePosterizationForm.Designer.cs">
+      <DependentUpon>SimplePosterizationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filters Forms\SusanCornersDetectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -406,6 +412,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\ShrinkForm.resx">
       <DependentUpon>ShrinkForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\SimplePosterizationForm.resx">
+      <DependentUpon>SimplePosterizationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\SusanCornersDetectorForm.resx">
       <DependentUpon>SusanCornersDetectorForm.cs</DependentUpon>
