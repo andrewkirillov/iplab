@@ -205,6 +205,7 @@ namespace IPLab
         private MenuItem menuItem35;
         private MenuItem susanCornersDetectorMenuItem;
         private MenuItem moravecCornersDetectorMenuItem;
+        private MenuItem simplePosterizatonMenuItem;
         private System.ComponentModel.IContainer components;
 
         // Image property
@@ -475,6 +476,7 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.simplePosterizatonMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -1494,7 +1496,8 @@ namespace IPLab
             this.jitterFiltersItem,
             this.pixellateFiltersItem,
             this.simpleSkeletonizationFiltersItem,
-            this.shrinkFiltersItem} );
+            this.shrinkFiltersItem,
+            this.simplePosterizatonMenuItem} );
             this.menuItem24.Text = "Other";
             // 
             // adaptiveSmoothingFiltersItem
@@ -1607,6 +1610,12 @@ namespace IPLab
             this.fourierFiltersItem.Index = 21;
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
+            // 
+            // simplePosterizatonMenuItem
+            // 
+            this.simplePosterizatonMenuItem.Index = 10;
+            this.simplePosterizatonMenuItem.Text = "Simple Posterization";
+            this.simplePosterizatonMenuItem.Click += new System.EventHandler( this.simplePosterizatonMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -2864,6 +2873,18 @@ namespace IPLab
         private void shrinkFiltersItem_Click( object sender, System.EventArgs e )
         {
             ShrinkForm form = new ShrinkForm( );
+
+            if ( form.ShowDialog( ) == DialogResult.OK )
+            {
+                ApplyFilter( form.Filter );
+            }
+        }
+
+        // Simple posterization
+        private void simplePosterizatonMenuItem_Click( object sender, EventArgs e )
+        {
+            SimplePosterizationForm form = new SimplePosterizationForm( );
+            form.Image = image;
 
             if ( form.ShowDialog( ) == DialogResult.OK )
             {
