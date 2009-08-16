@@ -267,6 +267,7 @@ namespace IPLab
             // 
             // label2
             // 
+            this.label2.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point( 450, 68 );
             this.label2.Name = "label2";
@@ -276,6 +277,7 @@ namespace IPLab
             // 
             // thresholdBox
             // 
+            this.thresholdBox.Anchor = ( (System.Windows.Forms.AnchorStyles) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.thresholdBox.Location = new System.Drawing.Point( 510, 65 );
             this.thresholdBox.Name = "thresholdBox";
             this.thresholdBox.Size = new System.Drawing.Size( 105, 20 );
