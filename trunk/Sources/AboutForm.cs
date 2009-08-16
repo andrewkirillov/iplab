@@ -99,7 +99,7 @@ namespace IPLab
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size( 168, 24 );
             this.label1.TabIndex = 12;
-            this.label1.Text = "Image Processing Lab v.2.5.1";
+            this.label1.Text = "Image Processing Lab v.2.6.0";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
