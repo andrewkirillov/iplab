@@ -20,7 +20,7 @@ Version updates and fixes:
 
 - Added Otsu thresholding.
 
-- Added threshold parameter to custom convolution filters, so filters like embos could be
+- Added threshold parameter to custom convolution filters, so filters like emboss could be
   created.
 
 - Added Extract Biggest Blob routine.
