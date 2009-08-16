@@ -2,7 +2,7 @@
 
 [Setup]
 AppName=Image Processing Lab
-AppVerName=Image Processing Lab 2.5.1
+AppVerName=Image Processing Lab 2.6.0
 AppPublisher=AForge.NET
 AppPublisherURL=http://www.aforgenet.com/projects/iplab/
 AppSupportURL=http://www.aforgenet.com/projects/iplab/
