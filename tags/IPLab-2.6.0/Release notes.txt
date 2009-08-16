@@ -1,0 +1,42 @@
+IPLab 2.6.0 release notes
+------------------------------
+16.08.2009.
+
+
+Version updates and fixes:
+
+* Fixed registered issues/requests:
+  - Issue 3: iplab won't build with provided dll reference file  
+  - Issue 4: Can not save to the just opened file  
+  
+
+- Application is update to use AForge.NET Framework version 2.0
+
+- Application configuration files are now stored in common local storage instead of
+  executable's folder to prevent security issues in case if installed to Program Files or
+  other protected folders.
+  
+- Added Contrast Stretch and Histogram Equalization routines.
+
+- Added Otsu thresholding.
+
+- Added threshold parameter to custom convolution filters, so filters like emboss could be
+  created.
+
+- Added Extract Biggest Blob routine.
+
+- Added blobs' filtering by size, so small unwanted objects could be removed.
+
+- Added SUSAN and Moravec corners' detectors.
+
+- Added simple posterizaton image processing routine.
+
+
+  
+
+
+IPLab 2.5.1 release notes
+------------------------------
+18.09.2007.
+
+First release of this application as Googles Code project.
