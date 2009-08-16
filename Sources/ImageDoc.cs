@@ -12,6 +12,7 @@ using System.Drawing.Drawing2D;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.IO;
 
 using WeifenLuo.WinFormsUI;
 
@@ -253,10 +254,27 @@ namespace IPLab
         // Construct from file
         public ImageDoc( string fileName, IDocumentsHost host ) : this( host )
         {
+            FileStream stream = null;
             try
             {
-                // load image
-                image = (Bitmap) Bitmap.FromFile( fileName );
+                // read image to temporary memory stream
+                // (.NET locks any stream until bitmap is disposed,
+                // so that is why this work around is required)
+                stream = File.OpenRead( fileName );
+                MemoryStream memoryStream = new MemoryStream( );
+
+                byte[] buffer = new byte[10000];
+                while ( true )
+                {
+                    int read = stream.Read( buffer, 0, 10000 );
+
+                    if ( read == 0 )
+                        break;
+
+                    memoryStream.Write( buffer, 0, read );
+                }
+
+                image = (Bitmap) Bitmap.FromStream( memoryStream );
 
                 // format image
                 if ( !AForge.Imaging.Image.IsGrayscale( image ) && ( image.PixelFormat != PixelFormat.Format24bppRgb ) )
@@ -266,11 +284,20 @@ namespace IPLab
                     image = temp;
                 }
 
+
                 this.fileName = fileName;
             }
             catch ( Exception )
             {
                 throw new ApplicationException( "Failed loading image" );
+            }
+            finally
+            {
+                if ( stream != null )
+                {
+                    stream.Close( );
+                    stream.Dispose( );
+                }
             }
 
             Init( );
