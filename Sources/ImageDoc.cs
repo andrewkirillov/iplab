@@ -2746,19 +2746,52 @@ namespace IPLab
         // Homogenity edge detector
         private void homogenityEdgeFiltersItem_Click( object sender, System.EventArgs e )
         {
-            ApplyFilter( new HomogenityEdgeDetector( ) );
+            if ( image.PixelFormat == PixelFormat.Format8bppIndexed )
+            {
+                ApplyFilter( new HomogenityEdgeDetector( ) );
+            }
+            else
+            {
+                ApplyFilter(
+                    new FiltersSequence(
+                        new GrayscaleBT709( ),
+                        new HomogenityEdgeDetector( )
+                        ) );
+            }
         }
 
         // Difference edge detector
         private void differenceEdgeFiltersItem_Click( object sender, System.EventArgs e )
         {
-            ApplyFilter( new DifferenceEdgeDetector( ) );
+            if ( image.PixelFormat == PixelFormat.Format8bppIndexed )
+            {
+                ApplyFilter( new DifferenceEdgeDetector( ) );
+            }
+            else
+            {
+                ApplyFilter(
+                    new FiltersSequence(
+                        new GrayscaleBT709( ),
+                        new DifferenceEdgeDetector( )
+                        ) );
+            }
         }
 
         // Sobel edge detector
         private void sobelEdgeFiltersItem_Click( object sender, System.EventArgs e )
         {
-            ApplyFilter( new SobelEdgeDetector( ) );
+            if ( image.PixelFormat == PixelFormat.Format8bppIndexed )
+            {
+                ApplyFilter( new SobelEdgeDetector( ) );
+            }
+            else
+            {
+                ApplyFilter(
+                    new FiltersSequence(
+                        new GrayscaleBT709( ),
+                        new SobelEdgeDetector( )
+                        ) );
+            }
         }
 
         // Canny edge detector

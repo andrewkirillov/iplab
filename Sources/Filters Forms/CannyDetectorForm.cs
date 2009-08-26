@@ -7,6 +7,7 @@
 
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace IPLab
     /// </summary>
     public class CannyDetectorForm : System.Windows.Forms.Form
     {
+        private FiltersSequence filterSequence = new FiltersSequence( );
         private CannyEdgeDetector filter = new CannyEdgeDetector( );
         private System.Windows.Forms.TextBox sigmaBox;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -34,6 +36,11 @@ namespace IPLab
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.TextBox highThresholdBox;
         private System.Windows.Forms.TextBox lowThresholdBox;
+
+        private bool updating = false;
+        private GroupBox groupBox4;
+        private Label label3;
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -42,12 +49,24 @@ namespace IPLab
         // Image property
         public Bitmap Image
         {
-            set { filterPreview.Image = value; }
+            set
+            {
+                filterPreview.Image = value;
+
+                filterSequence.Clear( );
+                if ( value.PixelFormat != PixelFormat.Format8bppIndexed )
+                {
+                    filterSequence.Add( new GrayscaleBT709( ) );
+                }
+                filterSequence.Add( filter );
+
+                filterPreview.RefreshFilter( );
+            }
         }
         // Filter property
         public IFilter Filter
         {
-            get { return filter; }
+            get { return filterSequence; }
         }
 
         // Constructor
@@ -68,7 +87,7 @@ namespace IPLab
             thresholdSlider.Min = filter.LowThreshold;
             thresholdSlider.Max = filter.HighThreshold;
 
-            filterPreview.Filter = filter;
+            filterPreview.Filter = filterSequence;
         }
 
         /// <summary>
@@ -93,6 +112,7 @@ namespace IPLab
         /// </summary>
         private void InitializeComponent( )
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( CannyDetectorForm ) );
             this.sigmaBox = new System.Windows.Forms.TextBox( );
             this.groupBox1 = new System.Windows.Forms.GroupBox( );
             this.sigmaTrackBar = new System.Windows.Forms.TrackBar( );
@@ -106,10 +126,13 @@ namespace IPLab
             this.filterPreview = new IPLab.FilterPreview( );
             this.cancelButton = new System.Windows.Forms.Button( );
             this.okButton = new System.Windows.Forms.Button( );
+            this.groupBox4 = new System.Windows.Forms.GroupBox( );
+            this.label3 = new System.Windows.Forms.Label( );
             this.groupBox1.SuspendLayout( );
             ( (System.ComponentModel.ISupportInitialize) ( this.sigmaTrackBar ) ).BeginInit( );
             this.groupBox2.SuspendLayout( );
             this.groupBox3.SuspendLayout( );
+            this.groupBox4.SuspendLayout( );
             this.SuspendLayout( );
             // 
             // sigmaBox
@@ -118,7 +141,6 @@ namespace IPLab
             this.sigmaBox.Name = "sigmaBox";
             this.sigmaBox.Size = new System.Drawing.Size( 60, 20 );
             this.sigmaBox.TabIndex = 1;
-            this.sigmaBox.Text = "";
             this.sigmaBox.TextChanged += new System.EventHandler( this.sigmaBox_TextChanged );
             // 
             // groupBox1
@@ -171,7 +193,6 @@ namespace IPLab
             this.highThresholdBox.Name = "highThresholdBox";
             this.highThresholdBox.Size = new System.Drawing.Size( 50, 20 );
             this.highThresholdBox.TabIndex = 3;
-            this.highThresholdBox.Text = "";
             this.highThresholdBox.TextChanged += new System.EventHandler( this.highThresholdBox_TextChanged );
             // 
             // label2
@@ -188,7 +209,6 @@ namespace IPLab
             this.lowThresholdBox.Name = "lowThresholdBox";
             this.lowThresholdBox.Size = new System.Drawing.Size( 50, 20 );
             this.lowThresholdBox.TabIndex = 1;
-            this.lowThresholdBox.Text = "";
             this.lowThresholdBox.TextChanged += new System.EventHandler( this.lowThresholdBox_TextChanged );
             // 
             // label1
@@ -221,8 +241,9 @@ namespace IPLab
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelButton.Location = new System.Drawing.Point( 244, 205 );
+            this.cancelButton.Location = new System.Drawing.Point( 244, 280 );
             this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size( 75, 23 );
             this.cancelButton.TabIndex = 13;
             this.cancelButton.Text = "Cancel";
             // 
@@ -230,17 +251,37 @@ namespace IPLab
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.okButton.Location = new System.Drawing.Point( 159, 205 );
+            this.okButton.Location = new System.Drawing.Point( 159, 280 );
             this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size( 75, 23 );
             this.okButton.TabIndex = 12;
             this.okButton.Text = "Ok";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add( this.label3 );
+            this.groupBox4.Location = new System.Drawing.Point( 10, 195 );
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size( 460, 70 );
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Note";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point( 10, 20 );
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size( 440, 43 );
+            this.label3.TabIndex = 0;
+            this.label3.Text = resources.GetString( "label3.Text" );
             // 
             // CannyDetectorForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size( 5, 13 );
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size( 479, 236 );
+            this.ClientSize = new System.Drawing.Size( 479, 316 );
+            this.Controls.Add( this.groupBox4 );
             this.Controls.Add( this.cancelButton );
             this.Controls.Add( this.okButton );
             this.Controls.Add( this.groupBox3 );
@@ -254,9 +295,12 @@ namespace IPLab
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Canny Edge Detector";
             this.groupBox1.ResumeLayout( false );
+            this.groupBox1.PerformLayout( );
             ( (System.ComponentModel.ISupportInitialize) ( this.sigmaTrackBar ) ).EndInit( );
             this.groupBox2.ResumeLayout( false );
+            this.groupBox2.PerformLayout( );
             this.groupBox3.ResumeLayout( false );
+            this.groupBox4.ResumeLayout( false );
             this.ResumeLayout( false );
 
         }
@@ -265,58 +309,76 @@ namespace IPLab
         // Changed value of sigma track bar
         private void sigmaTrackBar_ValueChanged( object sender, System.EventArgs e )
         {
-            double v = (double) sigmaTrackBar.Value / 20 + 1.0;
+            if ( !updating )
+            {
+                double v = (double) sigmaTrackBar.Value / 20 + 1.0;
 
-            sigmaBox.Text = v.ToString( );
+                sigmaBox.Text = v.ToString( );
+            }
         }
 
         // Treshold values changed using slider
         private void thresholdSlider_ValuesChanged( object sender, System.EventArgs e )
         {
-            lowThresholdBox.Text = thresholdSlider.Min.ToString( );
-            highThresholdBox.Text = thresholdSlider.Max.ToString( );
+            if ( !updating )
+            {
+                lowThresholdBox.Text = thresholdSlider.Min.ToString( );
+                highThresholdBox.Text = thresholdSlider.Max.ToString( );
+            }
         }
 
         // Sigma changed
         private void sigmaBox_TextChanged( object sender, System.EventArgs e )
         {
+            updating = true;
+
             try
             {
                 filter.GaussianSigma = double.Parse( sigmaBox.Text );
-
+                sigmaTrackBar.Value = (int) ( ( filter.GaussianSigma - 1 ) * 20 );
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )
             {
             }
+
+            updating = false;
         }
 
         // Low threshold value changed
         private void lowThresholdBox_TextChanged( object sender, System.EventArgs e )
         {
+            updating = true;
+
             try
             {
                 filter.LowThreshold = byte.Parse( lowThresholdBox.Text );
-
+                thresholdSlider.Min = filter.LowThreshold;
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )
             {
             }
+
+            updating = false;
         }
 
         // Hight threshold value changed
         private void highThresholdBox_TextChanged( object sender, System.EventArgs e )
         {
+            updating = true;
+
             try
             {
                 filter.HighThreshold = byte.Parse( highThresholdBox.Text );
-
+                thresholdSlider.Max = filter.HighThreshold;
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )
             {
             }
+
+            updating = false;
         }
     }
 }
