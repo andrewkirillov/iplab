@@ -306,7 +306,11 @@ namespace IPLab
         public ImageDoc( Bitmap image, IDocumentsHost host ) : this( host )
         {
             this.image = image;
-            AForge.Imaging.Image.FormatImage( ref this.image );
+
+            if ( !AForge.Imaging.Image.IsGrayscale( this.image ) )
+            {
+                this.image = AForge.Imaging.Image.Clone( image, PixelFormat.Format24bppRgb );
+            }
 
             Init( );
         }
