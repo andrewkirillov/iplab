@@ -1,3 +1,14 @@
+IPLab 2.6.1 release notes
+------------------------------
+01.10.2009.
+
+- Since most AForge.NET framework's image processing routines work with grayscale
+  images and 24 bpp color images (not all routines support 32 bpp images) the IPLab
+  converts image to 24 bpp color image on opening if it is not grayscale image.
+
+
+
+
 IPLab 2.6.0 release notes
 ------------------------------
 16.08.2009.
@@ -30,7 +41,6 @@ Version updates and fixes:
 - Added SUSAN and Moravec corners' detectors.
 
 - Added simple posterizaton image processing routine.
-
 
   
 
