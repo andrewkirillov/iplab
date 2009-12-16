@@ -254,27 +254,9 @@ namespace IPLab
         // Construct from file
         public ImageDoc( string fileName, IDocumentsHost host ) : this( host )
         {
-            FileStream stream = null;
             try
             {
-                // read image to temporary memory stream
-                // (.NET locks any stream until bitmap is disposed,
-                // so that is why this work around is required)
-                stream = File.OpenRead( fileName );
-                MemoryStream memoryStream = new MemoryStream( );
-
-                byte[] buffer = new byte[10000];
-                while ( true )
-                {
-                    int read = stream.Read( buffer, 0, 10000 );
-
-                    if ( read == 0 )
-                        break;
-
-                    memoryStream.Write( buffer, 0, read );
-                }
-
-                image = (Bitmap) Bitmap.FromStream( memoryStream );
+                image = LoadImageFromFile( fileName );
 
                 // format image
                 if ( !AForge.Imaging.Image.IsGrayscale( image ) && ( image.PixelFormat != PixelFormat.Format24bppRgb ) )
@@ -284,30 +266,22 @@ namespace IPLab
                     image = temp;
                 }
 
-
                 this.fileName = fileName;
             }
             catch ( Exception )
             {
                 throw new ApplicationException( "Failed loading image" );
             }
-            finally
-            {
-                if ( stream != null )
-                {
-                    stream.Close( );
-                    stream.Dispose( );
-                }
-            }
 
             Init( );
         }
+
         // Construct from image
         public ImageDoc( Bitmap image, IDocumentsHost host ) : this( host )
         {
             this.image = image;
 
-            if ( !AForge.Imaging.Image.IsGrayscale( this.image ) )
+            if ( !AForge.Imaging.Image.IsGrayscale( image ) && ( image.PixelFormat != PixelFormat.Format24bppRgb ) )
             {
                 this.image = AForge.Imaging.Image.Clone( image, PixelFormat.Format24bppRgb );
             }
@@ -1680,6 +1654,45 @@ namespace IPLab
             UpdateSize( );
         }
 
+        // Load image from file
+        private Bitmap LoadImageFromFile( string fileName )
+        {
+            Bitmap loadedImage = null;
+            FileStream stream = null;
+
+            try
+            {
+                // read image to temporary memory stream
+                // (.NET locks any stream until bitmap is disposed,
+                // so that is why this work around is required to prevent file locking)
+                stream = File.OpenRead( fileName );
+                MemoryStream memoryStream = new MemoryStream( );
+
+                byte[] buffer = new byte[10000];
+                while ( true )
+                {
+                    int read = stream.Read( buffer, 0, 10000 );
+
+                    if ( read == 0 )
+                        break;
+
+                    memoryStream.Write( buffer, 0, read );
+                }
+
+                loadedImage = (Bitmap) Bitmap.FromStream( memoryStream );
+            }
+            finally
+            {
+                if ( stream != null )
+                {
+                    stream.Close( );
+                    stream.Dispose( );
+                }
+            }
+
+            return loadedImage;
+        }
+
         // Execute command
         public void ExecuteCommand( ImageDocCommands cmd )
         {
@@ -1761,15 +1774,20 @@ namespace IPLab
                 try
                 {
                     // load image
-                    Bitmap newImage = (Bitmap) Bitmap.FromFile( fileName );
+                    Bitmap newImage = LoadImageFromFile( fileName );
 
-                    // Release current image
+                    // release current image
                     image.Dispose( );
                     // set document image to just loaded
                     image = newImage;
 
                     // format image
-                    AForge.Imaging.Image.FormatImage( ref image );
+                    if ( !AForge.Imaging.Image.IsGrayscale( image ) && ( image.PixelFormat != PixelFormat.Format24bppRgb ) )
+                    {
+                        Bitmap temp = AForge.Imaging.Image.Clone( image, PixelFormat.Format24bppRgb );
+                        image.Dispose( );
+                        image = temp;
+                    }
                 }
                 catch ( Exception )
                 {
