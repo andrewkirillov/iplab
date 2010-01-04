@@ -26,6 +26,16 @@ namespace IPLab
 	/// </summary>
 	public class MainForm : System.Windows.Forms.Form, IDocumentsHost
 	{
+        /// <summary>
+        /// Specifies the action the application performs upon starting.
+        /// </summary>
+        protected enum AutoOpenMode
+        {
+            None,
+            Clipboard,
+            File
+        }
+
         private static string configFile = Path.Combine( System.Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ), "app.config" );
         private static string dockManagerConfigFile = Path.Combine( System.Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ), "DockManager.config" );
 
@@ -121,8 +131,14 @@ namespace IPLab
 		private System.Windows.Forms.MenuItem statisticsViewItem;
 		private System.ComponentModel.IContainer components;
 
-		public MainForm()
+        private AutoOpenMode autoOpenMode;
+        private string autoOpenParam;
+
+        protected MainForm( AutoOpenMode autoOpenMode, string autoOpenParam )
 		{
+            this.autoOpenMode  = autoOpenMode;
+            this.autoOpenParam = autoOpenParam;
+
 			//
 			// Required for Windows Form Designer support
 			//
@@ -870,9 +886,55 @@ namespace IPLab
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main() 
+		static void Main( string[] args ) 
 		{
-			Application.Run(new MainForm());
+            // parse the command line
+            bool showUsage = false;
+            AutoOpenMode autoOpenMode = AutoOpenMode.None;
+            string autoOpenParam = string.Empty;
+
+            if ( args.Length >= 1 )
+            {
+                if ( string.Compare( args[0], "/paste", true ) == 0 )
+                {
+                    autoOpenMode = AutoOpenMode.Clipboard;
+                    if ( args.Length >= 2 )
+                    {
+                        showUsage = true;
+                    }
+                }
+                else if ( string.Compare( args[0], "/open", true ) == 0 )
+                {
+                    autoOpenMode = AutoOpenMode.File;
+                    if ( args.Length == 2 )
+                    {
+                        autoOpenParam = args[1];
+                    }
+                    else
+                    {
+                        showUsage = true;
+                    }
+                }
+                else if ( File.Exists( args[0] ) )
+                {
+                    // handle the case where somebody just drops the file on the application icon
+                    autoOpenMode  = AutoOpenMode.File;
+                    autoOpenParam = args[0];
+                }
+                else
+                {
+                    showUsage = true;
+                }
+            }
+
+            if ( showUsage )
+            {
+                MessageBox.Show( "Usage:\tiplab.exe [/paste | /open <fileName>]\r\n\r\nOptions:\t/paste\tPaste the contents of the clipboard.\r\n\t/open\tOpen the specified file.\r\n", "Image Processing Lab", MessageBoxButtons.OK, MessageBoxIcon.Information );
+            }
+            else
+            {
+                Application.Run( new MainForm( autoOpenMode, autoOpenParam ) );
+            }
 		}
 
 		#region IDocumentsHost implementation
@@ -996,6 +1058,17 @@ namespace IPLab
 
 			// show histogram
 			ShowHistogram(config.histogramVisible);
+
+            switch (autoOpenMode)
+            {
+                case AutoOpenMode.Clipboard:
+                    PasteFromClipboard( );
+                    break;
+
+                case AutoOpenMode.File:
+                    OpenFile( autoOpenParam );
+                    break;
+            }
 		}
 
 		// Callback for loading Dock Manager
@@ -1096,34 +1169,40 @@ namespace IPLab
 		}
 
 		// Open file
-		private void OpenFile()
+		private void OpenFile( )
 		{
-			if (ofd.ShowDialog() == DialogResult.OK)
+			if ( ofd.ShowDialog( ) == DialogResult.OK )
 			{
-				ImageDoc imgDoc = null;
-				
-				try
-				{
-					// create image document
-					imgDoc = new ImageDoc(ofd.FileName, (IDocumentsHost) this);
-					imgDoc.Text = Path.GetFileName(ofd.FileName);
-
-				}
-				catch (ApplicationException ex)
-				{
-					MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-
-				if (imgDoc != null)
-				{
-					imgDoc.Show(dockManager);
-					imgDoc.Focus();
-
-					// set events
-					SetupDocumentEvents(imgDoc);
-				}
+                OpenFile( ofd.FileName );
 			}		
 		}
+
+        // Open specified file
+        private void OpenFile( string fileName )
+        {
+            ImageDoc imgDoc = null;
+
+            try
+            {
+                // create image document
+                imgDoc = new ImageDoc( fileName, (IDocumentsHost) this );
+                imgDoc.Text = Path.GetFileName( fileName );
+
+            }
+            catch ( ApplicationException ex )
+            {
+                MessageBox.Show( ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+            }
+
+            if ( imgDoc != null )
+            {
+                imgDoc.Show( dockManager );
+                imgDoc.Focus( );
+
+                // set events
+                SetupDocumentEvents( imgDoc );
+            }
+        }
 
 		// Show/hide histogram
 		private void ShowHistogram(bool show)
