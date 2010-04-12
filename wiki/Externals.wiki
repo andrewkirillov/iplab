@@ -2,7 +2,7 @@
 #labels Featured
 
 The IPLab application uses numerous of open source components, which are listed below:
-  * [http://www.codeproject.com/KB/miscctrl/DockManager.aspx DockManager Control] by Weifen Luo;
+  * [http://sourceforge.net/projects/dockpanelsuite/ DockManager Control] by Weifen Luo (IPLab uses an old version which was published on CodeProject);
   * [http://www.codeproject.com/KB/grid/csharpgridcontrol.aspx SourceGrid - Open Source C# Grid Control] by Davide Icardi;
   * [http://www.codeproject.com/KB/menus/ToolBarDock.aspx A Simple C# Toolbar Docking Framework] by Rogério Paulo.
 
