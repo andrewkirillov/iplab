@@ -1902,9 +1902,9 @@ namespace IPLab
             {
                 IFilterInformation filterInfo = (IFilterInformation) filter;
 
-                if ( !filterInfo.FormatTransalations.ContainsKey( image.PixelFormat ) )
+                if ( !filterInfo.FormatTranslations.ContainsKey( image.PixelFormat ) )
                 {
-                    if ( filterInfo.FormatTransalations.ContainsKey( PixelFormat.Format24bppRgb ) )
+                    if ( filterInfo.FormatTranslations.ContainsKey( PixelFormat.Format24bppRgb ) )
                     {
                         MessageBox.Show( "The selected image processing routine may be applied to color image only.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                     }
