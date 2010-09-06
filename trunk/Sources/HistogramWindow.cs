@@ -54,10 +54,8 @@ namespace IPLab
         private System.Windows.Forms.Label minLabel;
         private System.Windows.Forms.Label maxLabel;
         private System.Windows.Forms.CheckBox logCheck;
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.Container components = null;
+        private ToolTip toolTip;
+        private IContainer components;
 
         public HistogramWindow( )
         {
@@ -93,6 +91,7 @@ namespace IPLab
         /// </summary>
         private void InitializeComponent( )
         {
+            this.components = new System.ComponentModel.Container( );
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( HistogramWindow ) );
             this.label1 = new System.Windows.Forms.Label( );
             this.channelCombo = new System.Windows.Forms.ComboBox( );
@@ -114,13 +113,14 @@ namespace IPLab
             this.maxLabel = new System.Windows.Forms.Label( );
             this.logCheck = new System.Windows.Forms.CheckBox( );
             this.histogram = new AForge.Controls.Histogram( );
+            this.toolTip = new System.Windows.Forms.ToolTip( this.components );
             this.SuspendLayout( );
             // 
             // label1
             // 
             this.label1.Location = new System.Drawing.Point( 5, 9 );
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size( 51, 16 );
+            this.label1.Size = new System.Drawing.Size( 55, 16 );
             this.label1.TabIndex = 1;
             this.label1.Text = "Channel:";
             // 
@@ -137,13 +137,13 @@ namespace IPLab
             // 
             this.label2.Location = new System.Drawing.Point( 5, 195 );
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size( 37, 15 );
+            this.label2.Size = new System.Drawing.Size( 50, 15 );
             this.label2.TabIndex = 4;
             this.label2.Text = "Mean:";
             // 
             // meanLabel
             // 
-            this.meanLabel.Location = new System.Drawing.Point( 50, 195 );
+            this.meanLabel.Location = new System.Drawing.Point( 55, 195 );
             this.meanLabel.Name = "meanLabel";
             this.meanLabel.Size = new System.Drawing.Size( 40, 14 );
             this.meanLabel.TabIndex = 5;
@@ -159,7 +159,7 @@ namespace IPLab
             // 
             // stdDevLabel
             // 
-            this.stdDevLabel.Location = new System.Drawing.Point( 50, 215 );
+            this.stdDevLabel.Location = new System.Drawing.Point( 55, 215 );
             this.stdDevLabel.Name = "stdDevLabel";
             this.stdDevLabel.Size = new System.Drawing.Size( 40, 14 );
             this.stdDevLabel.TabIndex = 7;
@@ -169,13 +169,13 @@ namespace IPLab
             // 
             this.label4.Location = new System.Drawing.Point( 5, 235 );
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size( 47, 15 );
+            this.label4.Size = new System.Drawing.Size( 50, 15 );
             this.label4.TabIndex = 8;
             this.label4.Text = "Median:";
             // 
             // medianLabel
             // 
-            this.medianLabel.Location = new System.Drawing.Point( 50, 235 );
+            this.medianLabel.Location = new System.Drawing.Point( 55, 235 );
             this.medianLabel.Name = "medianLabel";
             this.medianLabel.Size = new System.Drawing.Size( 40, 14 );
             this.medianLabel.TabIndex = 9;
@@ -185,7 +185,7 @@ namespace IPLab
             // 
             this.label5.Location = new System.Drawing.Point( 125, 195 );
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size( 44, 15 );
+            this.label5.Size = new System.Drawing.Size( 65, 15 );
             this.label5.TabIndex = 10;
             this.label5.Text = "Level:";
             // 
@@ -193,7 +193,7 @@ namespace IPLab
             // 
             this.label6.Location = new System.Drawing.Point( 125, 215 );
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size( 53, 15 );
+            this.label6.Size = new System.Drawing.Size( 65, 15 );
             this.label6.TabIndex = 11;
             this.label6.Text = "Count:";
             // 
@@ -201,7 +201,7 @@ namespace IPLab
             // 
             this.label7.Location = new System.Drawing.Point( 125, 235 );
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size( 59, 16 );
+            this.label7.Size = new System.Drawing.Size( 65, 16 );
             this.label7.TabIndex = 12;
             this.label7.Text = "Percentile:";
             // 
@@ -230,7 +230,7 @@ namespace IPLab
             // 
             this.label8.Location = new System.Drawing.Point( 5, 255 );
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size( 30, 15 );
+            this.label8.Size = new System.Drawing.Size( 50, 15 );
             this.label8.TabIndex = 16;
             this.label8.Text = "Min:";
             // 
@@ -238,13 +238,13 @@ namespace IPLab
             // 
             this.label9.Location = new System.Drawing.Point( 5, 275 );
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size( 30, 15 );
+            this.label9.Size = new System.Drawing.Size( 50, 15 );
             this.label9.TabIndex = 17;
             this.label9.Text = "Max:";
             // 
             // minLabel
             // 
-            this.minLabel.Location = new System.Drawing.Point( 50, 255 );
+            this.minLabel.Location = new System.Drawing.Point( 55, 255 );
             this.minLabel.Name = "minLabel";
             this.minLabel.Size = new System.Drawing.Size( 40, 14 );
             this.minLabel.TabIndex = 18;
@@ -252,7 +252,7 @@ namespace IPLab
             // 
             // maxLabel
             // 
-            this.maxLabel.Location = new System.Drawing.Point( 50, 275 );
+            this.maxLabel.Location = new System.Drawing.Point( 55, 275 );
             this.maxLabel.Name = "maxLabel";
             this.maxLabel.Size = new System.Drawing.Size( 40, 14 );
             this.maxLabel.TabIndex = 19;
@@ -265,6 +265,7 @@ namespace IPLab
             this.logCheck.Size = new System.Drawing.Size( 50, 20 );
             this.logCheck.TabIndex = 20;
             this.logCheck.Text = "Log";
+            this.toolTip.SetToolTip( this.logCheck, "Turn on/off logarithmic view" );
             this.logCheck.CheckedChanged += new System.EventHandler( this.logCheck_CheckedChanged );
             // 
             // histogram
@@ -274,6 +275,7 @@ namespace IPLab
             this.histogram.Name = "histogram";
             this.histogram.Size = new System.Drawing.Size( 258, 162 );
             this.histogram.TabIndex = 0;
+            this.histogram.Values = null;
             this.histogram.SelectionChanged += new AForge.Controls.HistogramEventHandler( this.histogram_SelectionChanged );
             this.histogram.PositionChanged += new AForge.Controls.HistogramEventHandler( this.histogram_PositionChanged );
             // 
