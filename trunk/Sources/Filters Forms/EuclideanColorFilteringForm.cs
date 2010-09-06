@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using AForge.Imaging;
 using AForge.Imaging.Filters;
 
 namespace IPLab
@@ -510,7 +511,7 @@ namespace IPLab
             blueSlider.EndColor    = Color.FromArgb( red, green, 255 );
 
             // update filter
-            filter.CenterColor = Color.FromArgb( red, green, blue );
+            filter.CenterColor = new RGB( red, green, blue );
             filterPreview.RefreshFilter( );
         }
 
@@ -544,7 +545,7 @@ namespace IPLab
                 fillG = byte.Parse( fillGBox.Text );
                 fillB = byte.Parse( fillBBox.Text );
 
-                filter.FillColor = Color.FromArgb( fillR, fillG, fillB );
+                filter.FillColor = new RGB( fillR, fillG, fillB );
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )
