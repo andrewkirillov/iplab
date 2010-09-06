@@ -221,7 +221,8 @@ namespace IPLab
 
                     break;
                 case 6:			// Rusty
-                    filter = new TexturedFilter( new CloudsTexture( ), new Sepia( ), new GrayscaleBT709( ) );
+                    filter = new TexturedFilter( new CloudsTexture( ), new Sepia( ),
+                        Grayscale.CommonAlgorithms.BT709 );
 
                     break;
             }

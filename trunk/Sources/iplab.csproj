@@ -291,11 +291,17 @@
     <Compile Include="ImageDoc.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ImageDoc.Designer.cs">
+      <DependentUpon>ImageDoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageStatisticsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SelectImageForm.cs">
       <SubType>Form</SubType>
