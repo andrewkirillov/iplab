@@ -56,7 +56,7 @@ namespace IPLab
                 filterSequence.Clear( );
                 if ( value.PixelFormat != PixelFormat.Format8bppIndexed )
                 {
-                    filterSequence.Add( new GrayscaleBT709( ) );
+                    filterSequence.Add( Grayscale.CommonAlgorithms.BT709 );
                 }
                 filterSequence.Add( filter );
 
