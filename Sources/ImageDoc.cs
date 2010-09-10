@@ -1586,6 +1586,52 @@ namespace IPLab
             }
         }
 
+        // Create stereo anaglyph using current image as the "left" image
+        private void CreateStereoAnaglyph( StereoAnaglyph.Algorithm algorithm )
+        {
+            // get overlay image
+            Bitmap overlayImage = host.GetImage( this, "Select an image which should be used as the 'right' image for stereo anaglyph.",
+                new Size( width, height ), image.PixelFormat );
+
+            if ( overlayImage != null )
+            {
+                StereoAnaglyph filter = new StereoAnaglyph( algorithm );
+                filter.OverlayImage = overlayImage;
+
+                ApplyFilter( filter );
+            }
+        }
+       
+        // True Stereo Anaglyph
+        private void trueAnaglyphMenuItem_Click( object sender, EventArgs e )
+        {
+            CreateStereoAnaglyph( StereoAnaglyph.Algorithm.TrueAnaglyph );
+        }
+
+        // Gray Stereo Anaglyph
+        private void grayAnaglyphMenuItem_Click( object sender, EventArgs e )
+        {
+            CreateStereoAnaglyph( StereoAnaglyph.Algorithm.GrayAnaglyph );
+        }
+
+        // Color Stereo Anaglyph
+        private void colorAnaglyphMenuItem_Click( object sender, EventArgs e )
+        {
+            CreateStereoAnaglyph( StereoAnaglyph.Algorithm.ColorAnaglyph );
+        }
+
+        // Half color Stereo Anaglyph
+        private void halfColorAnaglyphMenuItem_Click( object sender, EventArgs e )
+        {
+            CreateStereoAnaglyph( StereoAnaglyph.Algorithm.HalfColorAnaglyph );
+        }
+
+        // Optimized Stereo Anaglyph
+        private void optimizedAnaglyphMenuItem_Click( object sender, EventArgs e )
+        {
+            CreateStereoAnaglyph( StereoAnaglyph.Algorithm.OptimizedAnaglyph );
+        }
+
         // Fourier transformation
         private void ForwardFourierTransformation( )
         {

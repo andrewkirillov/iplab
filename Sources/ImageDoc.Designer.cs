@@ -353,6 +353,7 @@ namespace IPLab
             this.pixellateFiltersItem = new System.Windows.Forms.MenuItem( );
             this.simpleSkeletonizationFiltersItem = new System.Windows.Forms.MenuItem( );
             this.shrinkFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.simplePosterizatonMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem23 = new System.Windows.Forms.MenuItem( );
             this.resizeFiltersItem = new System.Windows.Forms.MenuItem( );
             this.rotateFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -362,7 +363,13 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.simplePosterizatonMenuItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem36 = new System.Windows.Forms.MenuItem( );
+            this.menuItem39 = new System.Windows.Forms.MenuItem( );
+            this.trueAnaglyphMenuItem = new System.Windows.Forms.MenuItem( );
+            this.grayAnaglyphMenuItem = new System.Windows.Forms.MenuItem( );
+            this.colorAnaglyphMenuItem = new System.Windows.Forms.MenuItem( );
+            this.halfColorAnaglyphMenuItem = new System.Windows.Forms.MenuItem( );
+            this.optimizedAnaglyphMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -1200,7 +1207,9 @@ namespace IPLab
             this.menuItem22,
             this.differenceTwosrcFiltersItem,
             this.moveTowardsTwosrcFiltersItem,
-            this.morphTwosrcFiltersItem} );
+            this.morphTwosrcFiltersItem,
+            this.menuItem36,
+            this.menuItem39} );
             this.twosrcFiltersItem.Text = "Two source filters";
             // 
             // mergeTwosrcFiltersItem
@@ -1445,6 +1454,12 @@ namespace IPLab
             this.shrinkFiltersItem.Text = "Shrink";
             this.shrinkFiltersItem.Click += new System.EventHandler( this.shrinkFiltersItem_Click );
             // 
+            // simplePosterizatonMenuItem
+            // 
+            this.simplePosterizatonMenuItem.Index = 10;
+            this.simplePosterizatonMenuItem.Text = "Simple Posterization";
+            this.simplePosterizatonMenuItem.Click += new System.EventHandler( this.simplePosterizatonMenuItem_Click );
+            // 
             // menuItem23
             // 
             this.menuItem23.Index = 13;
@@ -1497,11 +1512,51 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
-            // simplePosterizatonMenuItem
+            // menuItem36
             // 
-            this.simplePosterizatonMenuItem.Index = 10;
-            this.simplePosterizatonMenuItem.Text = "Simple Posterization";
-            this.simplePosterizatonMenuItem.Click += new System.EventHandler( this.simplePosterizatonMenuItem_Click );
+            this.menuItem36.Index = 9;
+            this.menuItem36.Text = "-";
+            // 
+            // menuItem39
+            // 
+            this.menuItem39.Index = 10;
+            this.menuItem39.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
+            this.trueAnaglyphMenuItem,
+            this.grayAnaglyphMenuItem,
+            this.colorAnaglyphMenuItem,
+            this.halfColorAnaglyphMenuItem,
+            this.optimizedAnaglyphMenuItem} );
+            this.menuItem39.Text = "Stereo Anaglyph";
+            // 
+            // trueAnaglyphMenuItem
+            // 
+            this.trueAnaglyphMenuItem.Index = 0;
+            this.trueAnaglyphMenuItem.Text = "True";
+            this.trueAnaglyphMenuItem.Click += new System.EventHandler( this.trueAnaglyphMenuItem_Click );
+            // 
+            // grayAnaglyphMenuItem
+            // 
+            this.grayAnaglyphMenuItem.Index = 1;
+            this.grayAnaglyphMenuItem.Text = "Gray";
+            this.grayAnaglyphMenuItem.Click += new System.EventHandler( this.grayAnaglyphMenuItem_Click );
+            // 
+            // colorAnaglyphMenuItem
+            // 
+            this.colorAnaglyphMenuItem.Index = 2;
+            this.colorAnaglyphMenuItem.Text = "Color";
+            this.colorAnaglyphMenuItem.Click += new System.EventHandler( this.colorAnaglyphMenuItem_Click );
+            // 
+            // halfColorAnaglyphMenuItem
+            // 
+            this.halfColorAnaglyphMenuItem.Index = 3;
+            this.halfColorAnaglyphMenuItem.Text = "Half Color";
+            this.halfColorAnaglyphMenuItem.Click += new System.EventHandler( this.halfColorAnaglyphMenuItem_Click );
+            // 
+            // optimizedAnaglyphMenuItem
+            // 
+            this.optimizedAnaglyphMenuItem.Index = 4;
+            this.optimizedAnaglyphMenuItem.Text = "Optimized";
+            this.optimizedAnaglyphMenuItem.Click += new System.EventHandler( this.optimizedAnaglyphMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -1519,5 +1574,13 @@ namespace IPLab
 
         }
         #endregion    
+
+        private System.Windows.Forms.MenuItem menuItem36;
+        private System.Windows.Forms.MenuItem menuItem39;
+        private System.Windows.Forms.MenuItem trueAnaglyphMenuItem;
+        private System.Windows.Forms.MenuItem grayAnaglyphMenuItem;
+        private System.Windows.Forms.MenuItem colorAnaglyphMenuItem;
+        private System.Windows.Forms.MenuItem halfColorAnaglyphMenuItem;
+        private System.Windows.Forms.MenuItem optimizedAnaglyphMenuItem;
     }
 }
