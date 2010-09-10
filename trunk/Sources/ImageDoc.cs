@@ -389,11 +389,11 @@ namespace IPLab
                 {
                     if ( filterInfo.FormatTranslations.ContainsKey( PixelFormat.Format24bppRgb ) )
                     {
-                        MessageBox.Show( "The selected image processing routine may be applied to color image only.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                        MessageBox.Show( "The selected image processing routine can be applied to color image only.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                     }
                     else
                     {
-                        MessageBox.Show( "The selected image processing routine may be applied to grayscale or binary image only.\n\nUse grayscale (and threshold filter if required) before.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                        MessageBox.Show( "The selected image processing routine can be applied to grayscale or binary image only.\n\nUse grayscale (and threshold filter if required) before.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                     }
                     return;
                 }
@@ -1466,31 +1466,25 @@ namespace IPLab
         // Extract separate blobs
         private void blobExtractorFiltersItem_Click( object sender, System.EventArgs e )
         {
-            if ( CheckIfBinary( "Blob extractor" ) )
-            {
-                BlobCounter blobCounter = new BlobCounter( image );
-                Blob[] blobs = blobCounter.GetObjects( image, false );
+            BlobCounter blobCounter = new BlobCounter( image );
+            Blob[] blobs = blobCounter.GetObjects( image, false );
 
-                foreach ( Blob blob in blobs )
-                {
-                    host.NewDocument( blob.Image );
-                }
+            foreach ( Blob blob in blobs )
+            {
+                host.NewDocument( blob.Image );
             }
         }
 
         // Filter blobs by size
         private void filterBlobsMenuItem_Click( object sender, EventArgs e )
         {
-            if ( CheckIfBinary( "Blobs' filtering" ) )
+            BlobsFilteringForm form = new BlobsFilteringForm( );
+
+            form.Image = image;
+
+            if ( form.ShowDialog( ) == DialogResult.OK )
             {
-                BlobsFilteringForm form = new BlobsFilteringForm( );
-
-                form.Image = image;
-
-                if ( form.ShowDialog( ) == DialogResult.OK )
-                {
-                    ApplyFilter( form.Filter );
-                }
+                ApplyFilter( form.Filter );
             }
         }
 
