@@ -6,6 +6,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
@@ -29,8 +30,8 @@ namespace IPLab
     /// </summary>
     public partial class ImageDoc : Content
     {
-        private System.Drawing.Bitmap backup = null;
-        private System.Drawing.Bitmap image = null;
+        private Bitmap backup = null;
+        private Bitmap image = null;
         private string fileName = null;
         private int width;
         private int height;
@@ -1492,6 +1493,71 @@ namespace IPLab
         private void extractBiggestBlobMenuItem_Click( object sender, EventArgs e )
         {
             ApplyFilter( new ExtractBiggestBlob( ) );
+        }
+
+        // Find quadrilateral
+        private void quadrilateralFinderMenuItem_Click( object sender, EventArgs e )
+        {
+            // get corners of the quadrilateral
+            QuadrilateralFinder qf = new QuadrilateralFinder( );
+            List<IntPoint> corners = qf.ProcessImage( image );
+
+            Bitmap imageToPaint = image;
+
+            if ( ( host.CreateNewDocumentOnChange ) || ( host.RememberOnChange ) )
+            {
+                // create copy image, so the original is kept
+                imageToPaint = AForge.Imaging.Image.Clone( image );
+            }
+
+            // lock image to draw on it with AForge.NET's methods
+            // (or draw directly on image without locking if it is unmanaged image)
+            BitmapData data = imageToPaint.LockBits( new Rectangle( 0, 0, image.Width, image.Height ),
+                ImageLockMode.ReadWrite, image.PixelFormat );
+
+            Drawing.Polygon( data, corners, Color.Red );
+            for ( int i = 0; i < corners.Count; i++ )
+            {
+                Drawing.FillRectangle( data,
+                    new Rectangle( corners[i].X - 2, corners[i].Y - 2, 5, 5 ),
+                    Color.FromArgb( i * 32 + 127 + 32, i * 64, i * 64 ) );
+            }
+
+            imageToPaint.UnlockBits( data );
+
+            if ( host.CreateNewDocumentOnChange )
+            {
+                // open new image in new document
+                host.NewDocument( imageToPaint );
+            }
+            else
+            {
+                if ( host.RememberOnChange )
+                {
+                    // backup current image
+                    if ( backup != null )
+                        backup.Dispose( );
+
+                    backup = image;
+                    image = imageToPaint;
+                }
+
+                // update
+                UpdateNewImage( );
+            }
+        }
+
+        // Transform quadrilateral
+        private void quadrilateralTransformationMenuItem_Click( object sender, EventArgs e )
+        {
+            // get corners of the quadrilateral
+            QuadrilateralFinder qf = new QuadrilateralFinder( );
+            List<IntPoint> corners = qf.ProcessImage( image );
+            // create filter
+            QuadrilateralTransformation filter =
+                new QuadrilateralTransformation( corners );
+
+            ApplyFilter( filter );
         }
 
         // Resize the image
