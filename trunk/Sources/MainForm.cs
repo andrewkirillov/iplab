@@ -473,27 +473,27 @@ namespace IPLab
 		{
 			Content	doc = dockManager.ActiveDocument;
 
-			if (doc != null)
+			if ( doc != null )
 			{
 				// set initial file name
-				if ((doc is ImageDoc) && (((ImageDoc) doc).FileName != null))
+				if ( ( doc is ImageDoc ) && ( ( (ImageDoc) doc ).FileName != null ) )
 				{
-					sfd.FileName = Path.GetFileName(((ImageDoc) doc).FileName);
+					sfd.FileName = Path.GetFileName( ( (ImageDoc) doc ).FileName );
 				}
 				else
 				{
-					sfd.FileName = doc.Text + ".jpg";
+					sfd.FileName = doc.Text + ".png";
 				}
 
 				sfd.FilterIndex = 0;
 
 				// show dialog
-				if (sfd.ShowDialog(this) == DialogResult.OK)
+				if ( sfd.ShowDialog( this ) == DialogResult.OK )
 				{
 					ImageFormat format = ImageFormat.Jpeg;
 
 					// resolve file format
-					switch (Path.GetExtension(sfd.FileName).ToLower())
+					switch ( Path.GetExtension( sfd.FileName ).ToLower( ) )
 					{
 						case ".jpg":
 							format = ImageFormat.Jpeg;
@@ -501,28 +501,31 @@ namespace IPLab
 						case ".bmp":
 							format = ImageFormat.Bmp;
 							break;
+                        case ".png":
+                            format = ImageFormat.Png;
+                            break;
 						default:
-							MessageBox.Show(this, "Unsupported image format was specified", "Error",
-								MessageBoxButtons.OK, MessageBoxIcon.Error);
+							MessageBox.Show( this, "Unsupported image format was specified", "Error",
+								MessageBoxButtons.OK, MessageBoxIcon.Error );
 							return;
 					}
 
 					// save the image
 					try
 					{
-						if (doc is ImageDoc)
+						if ( doc is ImageDoc )
 						{
-							((ImageDoc) doc).Image.Save(sfd.FileName, format);
+							( (ImageDoc) doc ).Image.Save( sfd.FileName, format );
 						}
 						if (doc is FourierDoc)
 						{
-							((FourierDoc) doc).Image.Save(sfd.FileName, format);
+							( (FourierDoc) doc ).Image.Save( sfd.FileName, format );
 						}
 					}
-					catch (Exception)
+					catch ( Exception )
 					{
-						MessageBox.Show(this, "Failed writing image file", "Error",
-							MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show( this, "Failed writing image file", "Error",
+							MessageBoxButtons.OK, MessageBoxIcon.Error );
 					}
 				}
 			}
@@ -531,7 +534,7 @@ namespace IPLab
 		// On "File->Save" - save the file
 		private void saveFileItem_Click(object sender, System.EventArgs e)
 		{
-			SaveFile();
+			SaveFile( );
 		}
 
 		// Copy image to clipboard
