@@ -1429,6 +1429,44 @@ namespace IPLab
             }
         }
 
+        // "Rombozoid" effect based on Image Warp
+        private void rombozoidMenuItem_Click( object sender, EventArgs e )
+        {
+            // build warp map
+            int width  = image.Width;
+            int height = image.Height;
+
+            IntPoint[,] warpMap = new IntPoint[height, width];
+
+            int size = 8;
+            int maxOffset = -size + 1;
+
+            for ( int y = 0; y < height; y++ )
+            {
+                for ( int x = 0; x < width; x++ )
+                {
+                    int dx = ( x / size ) * size - x;
+                    int dy = ( y / size ) * size - y;
+
+                    if ( dx + dy <= maxOffset )
+                    {
+                        int neighborX = ( x / size + 1 ) * size - 1;
+
+                        if ( neighborX < width )
+                        {
+                            dx = neighborX - x;
+                        }
+                    }
+
+                    warpMap[y, x] = new IntPoint( dx, dy );
+                }
+            }
+            // create filter
+            ImageWarp filter = new ImageWarp( warpMap );
+            // apply the filter
+            ApplyFilter( filter );
+        }
+
         // Simple skeletonization
         private void simpleSkeletonizationFiltersItem_Click( object sender, System.EventArgs e )
         {
