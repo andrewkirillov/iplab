@@ -1473,7 +1473,7 @@ namespace IPLab
             // conservativeSmoothingFiltersItem
             // 
             this.conservativeSmoothingFiltersItem.Index = 1;
-            this.conservativeSmoothingFiltersItem.Text = "&ConservativeSmoothing";
+            this.conservativeSmoothingFiltersItem.Text = "&Conservative Smoothing";
             this.conservativeSmoothingFiltersItem.Click += new System.EventHandler( this.conservativeSmoothingFiltersItem_Click );
             // 
             // medianFiltersItem
