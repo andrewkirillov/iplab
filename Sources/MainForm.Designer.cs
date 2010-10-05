@@ -112,8 +112,8 @@ namespace IPLab
         private void InitializeComponent( )
         {
             this.components = new System.ComponentModel.Container( );
-            System.Resources.ResourceManager resources = new System.Resources.ResourceManager( typeof( MainForm ) );
-            this.mainMenu = new System.Windows.Forms.MainMenu( );
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( MainForm ) );
+            this.mainMenu = new System.Windows.Forms.MainMenu( this.components );
             this.fileItem = new System.Windows.Forms.MenuItem( );
             this.OpenItem = new System.Windows.Forms.MenuItem( );
             this.reloadFileItem = new System.Windows.Forms.MenuItem( );
@@ -135,6 +135,7 @@ namespace IPLab
             this.imageBarViewItem = new System.Windows.Forms.MenuItem( );
             this.menuItem7 = new System.Windows.Forms.MenuItem( );
             this.histogramViewItem = new System.Windows.Forms.MenuItem( );
+            this.statisticsViewItem = new System.Windows.Forms.MenuItem( );
             this.redHistogramViewItem = new System.Windows.Forms.MenuItem( );
             this.greenHistogramViewItem = new System.Windows.Forms.MenuItem( );
             this.blueHistogramViewItem = new System.Windows.Forms.MenuItem( );
@@ -196,7 +197,6 @@ namespace IPLab
             this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog( );
             this.pageSetupDialog = new System.Windows.Forms.PageSetupDialog( );
             this.printDialog = new System.Windows.Forms.PrintDialog( );
-            this.statisticsViewItem = new System.Windows.Forms.MenuItem( );
             ( (System.ComponentModel.ISupportInitialize) ( this.zoomPanel ) ).BeginInit( );
             ( (System.ComponentModel.ISupportInitialize) ( this.sizePanel ) ).BeginInit( );
             ( (System.ComponentModel.ISupportInitialize) ( this.selectionPanel ) ).BeginInit( );
@@ -211,31 +211,31 @@ namespace IPLab
             // mainMenu
             // 
             this.mainMenu.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-																					 this.fileItem,
-																					 this.viewItem,
-																					 this.optionsItem,
-																					 this.windowItem,
-																					 this.helpItem} );
+            this.fileItem,
+            this.viewItem,
+            this.optionsItem,
+            this.windowItem,
+            this.helpItem} );
             // 
             // fileItem
             // 
             this.fileItem.Index = 0;
             this.fileItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-																					 this.OpenItem,
-																					 this.reloadFileItem,
-																					 this.saveFileItem,
-																					 this.menuItem1,
-																					 this.copyFileItem,
-																					 this.pasteFileItem,
-																					 this.menuItem5,
-																					 this.closeFileItem,
-																					 this.closeAllFileItem,
-																					 this.menuItem8,
-																					 this.pageSetupFileItem,
-																					 this.printFileItem,
-																					 this.printPreviewFileItem,
-																					 this.menuItem2,
-																					 this.exitFileItem} );
+            this.OpenItem,
+            this.reloadFileItem,
+            this.saveFileItem,
+            this.menuItem1,
+            this.copyFileItem,
+            this.pasteFileItem,
+            this.menuItem5,
+            this.closeFileItem,
+            this.closeAllFileItem,
+            this.menuItem8,
+            this.pageSetupFileItem,
+            this.printFileItem,
+            this.printPreviewFileItem,
+            this.menuItem2,
+            this.exitFileItem} );
             this.fileItem.Text = "&File";
             this.fileItem.Popup += new System.EventHandler( this.fileItem_Popup );
             // 
@@ -335,16 +335,16 @@ namespace IPLab
             // 
             this.viewItem.Index = 1;
             this.viewItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-																					 this.mainBarViewItem,
-																					 this.imageBarViewItem,
-																					 this.menuItem7,
-																					 this.histogramViewItem,
-																					 this.statisticsViewItem,
-																					 this.redHistogramViewItem,
-																					 this.greenHistogramViewItem,
-																					 this.blueHistogramViewItem,
-																					 this.menuItem3,
-																					 this.centerViewItem} );
+            this.mainBarViewItem,
+            this.imageBarViewItem,
+            this.menuItem7,
+            this.histogramViewItem,
+            this.statisticsViewItem,
+            this.redHistogramViewItem,
+            this.greenHistogramViewItem,
+            this.blueHistogramViewItem,
+            this.menuItem3,
+            this.centerViewItem} );
             this.viewItem.MergeOrder = 1;
             this.viewItem.Text = "&View";
             this.viewItem.Popup += new System.EventHandler( this.viewItem_Popup );
@@ -372,6 +372,13 @@ namespace IPLab
             this.histogramViewItem.Shortcut = System.Windows.Forms.Shortcut.CtrlH;
             this.histogramViewItem.Text = "&Histogram";
             this.histogramViewItem.Click += new System.EventHandler( this.histogramViewItem_Click );
+            // 
+            // statisticsViewItem
+            // 
+            this.statisticsViewItem.Index = 4;
+            this.statisticsViewItem.Shortcut = System.Windows.Forms.Shortcut.CtrlT;
+            this.statisticsViewItem.Text = "&Statistics";
+            this.statisticsViewItem.Click += new System.EventHandler( this.statisticsViewItem_Click );
             // 
             // redHistogramViewItem
             // 
@@ -413,8 +420,8 @@ namespace IPLab
             // 
             this.optionsItem.Index = 2;
             this.optionsItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-																						this.openInNewOptionsItem,
-																						this.rememberOptionsItem} );
+            this.openInNewOptionsItem,
+            this.rememberOptionsItem} );
             this.optionsItem.MergeOrder = 2;
             this.optionsItem.Text = "&Options";
             this.optionsItem.Popup += new System.EventHandler( this.optionsItem_Popup );
@@ -442,7 +449,7 @@ namespace IPLab
             // 
             this.helpItem.Index = 4;
             this.helpItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-																					 this.aboutHelpItem} );
+            this.aboutHelpItem} );
             this.helpItem.MergeOrder = 4;
             this.helpItem.Text = "&Help";
             // 
@@ -457,54 +464,61 @@ namespace IPLab
             this.statusBar.Location = new System.Drawing.Point( 0, 511 );
             this.statusBar.Name = "statusBar";
             this.statusBar.Panels.AddRange( new System.Windows.Forms.StatusBarPanel[] {
-																						 this.zoomPanel,
-																						 this.sizePanel,
-																						 this.selectionPanel,
-																						 this.colorPanel,
-																						 this.hslPanel,
-																						 this.ycbcrPanel,
-																						 this.infoPanel} );
+            this.zoomPanel,
+            this.sizePanel,
+            this.selectionPanel,
+            this.colorPanel,
+            this.hslPanel,
+            this.ycbcrPanel,
+            this.infoPanel} );
             this.statusBar.ShowPanels = true;
             this.statusBar.Size = new System.Drawing.Size( 792, 22 );
             this.statusBar.TabIndex = 1;
             // 
             // zoomPanel
             // 
+            this.zoomPanel.Name = "zoomPanel";
             this.zoomPanel.ToolTipText = "Zoom coefficient";
             this.zoomPanel.Width = 50;
             // 
             // sizePanel
             // 
+            this.sizePanel.Name = "sizePanel";
             this.sizePanel.ToolTipText = "Image size";
             // 
             // selectionPanel
             // 
+            this.selectionPanel.Name = "selectionPanel";
             this.selectionPanel.ToolTipText = "Current point and selection size";
             this.selectionPanel.Width = 120;
             // 
             // colorPanel
             // 
+            this.colorPanel.Name = "colorPanel";
             this.colorPanel.ToolTipText = "Current color";
             this.colorPanel.Width = 110;
             // 
             // hslPanel
             // 
+            this.hslPanel.Name = "hslPanel";
             this.hslPanel.Width = 130;
             // 
             // ycbcrPanel
             // 
+            this.ycbcrPanel.Name = "ycbcrPanel";
             this.ycbcrPanel.Width = 145;
             // 
             // infoPanel
             // 
             this.infoPanel.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-            this.infoPanel.Width = 121;
+            this.infoPanel.Name = "infoPanel";
+            this.infoPanel.Width = 120;
             // 
             // panel1
             // 
-            this.panel1.Controls.AddRange( new System.Windows.Forms.Control[] {
-																				 this.dockManager} );
+            this.panel1.Controls.Add( this.dockManager );
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point( 0, 0 );
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size( 792, 511 );
             this.panel1.TabIndex = 2;
@@ -512,10 +526,10 @@ namespace IPLab
             // dockManager
             // 
             this.dockManager.ActiveAutoHideContent = null;
-            this.dockManager.Controls.AddRange( new System.Windows.Forms.Control[] {
-																					  this.mainToolBar,
-																					  this.imageToolBar} );
+            this.dockManager.Controls.Add( this.mainToolBar );
+            this.dockManager.Controls.Add( this.imageToolBar );
             this.dockManager.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockManager.Location = new System.Drawing.Point( 0, 0 );
             this.dockManager.Name = "dockManager";
             this.dockManager.Size = new System.Drawing.Size( 792, 511 );
             this.dockManager.TabIndex = 2;
@@ -525,15 +539,15 @@ namespace IPLab
             // 
             this.mainToolBar.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
             this.mainToolBar.Buttons.AddRange( new System.Windows.Forms.ToolBarButton[] {
-																						   this.openButton,
-																						   this.saveButton,
-																						   this.sep1,
-																						   this.copyButton,
-																						   this.pasteButton,
-																						   this.toolBarButton9,
-																						   this.histogramButton,
-																						   this.toolBarButton4,
-																						   this.aboutButton} );
+            this.openButton,
+            this.saveButton,
+            this.sep1,
+            this.copyButton,
+            this.pasteButton,
+            this.toolBarButton9,
+            this.histogramButton,
+            this.toolBarButton4,
+            this.aboutButton} );
             this.mainToolBar.Divider = false;
             this.mainToolBar.Dock = System.Windows.Forms.DockStyle.None;
             this.mainToolBar.DropDownArrows = true;
@@ -541,84 +555,97 @@ namespace IPLab
             this.mainToolBar.Location = new System.Drawing.Point( 256, 32 );
             this.mainToolBar.Name = "mainToolBar";
             this.mainToolBar.ShowToolTips = true;
-            this.mainToolBar.Size = new System.Drawing.Size( 24, 199 );
+            this.mainToolBar.Size = new System.Drawing.Size( 24, 202 );
             this.mainToolBar.TabIndex = 2;
             this.mainToolBar.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler( this.mainToolBar_ButtonClick );
             // 
             // openButton
             // 
             this.openButton.ImageIndex = 0;
+            this.openButton.Name = "openButton";
             this.openButton.ToolTipText = "Open an image ";
             // 
             // saveButton
             // 
             this.saveButton.ImageIndex = 1;
+            this.saveButton.Name = "saveButton";
             this.saveButton.ToolTipText = "Save";
             // 
             // sep1
             // 
+            this.sep1.Name = "sep1";
             this.sep1.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // copyButton
             // 
             this.copyButton.ImageIndex = 2;
+            this.copyButton.Name = "copyButton";
             this.copyButton.ToolTipText = "Copy to clipboard";
             // 
             // pasteButton
             // 
             this.pasteButton.ImageIndex = 3;
+            this.pasteButton.Name = "pasteButton";
             this.pasteButton.ToolTipText = "Paste from clipboard";
             // 
             // toolBarButton9
             // 
+            this.toolBarButton9.Name = "toolBarButton9";
             this.toolBarButton9.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // histogramButton
             // 
             this.histogramButton.ImageIndex = 4;
+            this.histogramButton.Name = "histogramButton";
             this.histogramButton.ToolTipText = "Show histogram";
             // 
             // toolBarButton4
             // 
+            this.toolBarButton4.Name = "toolBarButton4";
             this.toolBarButton4.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // aboutButton
             // 
             this.aboutButton.ImageIndex = 5;
+            this.aboutButton.Name = "aboutButton";
             this.aboutButton.ToolTipText = "About";
             // 
             // imageList
             // 
-            this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            this.imageList.ImageSize = new System.Drawing.Size( 16, 16 );
             this.imageList.ImageStream = ( (System.Windows.Forms.ImageListStreamer) ( resources.GetObject( "imageList.ImageStream" ) ) );
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName( 0, "" );
+            this.imageList.Images.SetKeyName( 1, "" );
+            this.imageList.Images.SetKeyName( 2, "" );
+            this.imageList.Images.SetKeyName( 3, "" );
+            this.imageList.Images.SetKeyName( 4, "" );
+            this.imageList.Images.SetKeyName( 5, "" );
             // 
             // imageToolBar
             // 
             this.imageToolBar.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
             this.imageToolBar.Buttons.AddRange( new System.Windows.Forms.ToolBarButton[] {
-																							this.cloneButton,
-																							this.toolBarButton1,
-																							this.cropButton,
-																							this.toolBarButton2,
-																							this.zoomInButton,
-																							this.zoomOutButton,
-																							this.toolBarButton3,
-																							this.fitToScreenButton,
-																							this.toolBarButton5,
-																							this.resizeButton,
-																							this.rotateButton,
-																							this.toolBarButton7,
-																							this.levelsButton,
-																							this.grayscaleButton,
-																							this.thresholdButton,
-																							this.toolBarButton6,
-																							this.morphologyButton,
-																							this.convolutionButton,
-																							this.toolBarButton8,
-																							this.saturationButton,
-																							this.fourierButton} );
+            this.cloneButton,
+            this.toolBarButton1,
+            this.cropButton,
+            this.toolBarButton2,
+            this.zoomInButton,
+            this.zoomOutButton,
+            this.toolBarButton3,
+            this.fitToScreenButton,
+            this.toolBarButton5,
+            this.resizeButton,
+            this.rotateButton,
+            this.toolBarButton7,
+            this.levelsButton,
+            this.grayscaleButton,
+            this.thresholdButton,
+            this.toolBarButton6,
+            this.morphologyButton,
+            this.convolutionButton,
+            this.toolBarButton8,
+            this.saturationButton,
+            this.fourierButton} );
             this.imageToolBar.Divider = false;
             this.imageToolBar.Dock = System.Windows.Forms.DockStyle.None;
             this.imageToolBar.DropDownArrows = true;
@@ -626,115 +653,149 @@ namespace IPLab
             this.imageToolBar.Location = new System.Drawing.Point( 144, 312 );
             this.imageToolBar.Name = "imageToolBar";
             this.imageToolBar.ShowToolTips = true;
-            this.imageToolBar.Size = new System.Drawing.Size( 472, 23 );
+            this.imageToolBar.Size = new System.Drawing.Size( 472, 26 );
             this.imageToolBar.TabIndex = 3;
             this.imageToolBar.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler( this.imageToolBar_ButtonClick );
             // 
             // cloneButton
             // 
             this.cloneButton.ImageIndex = 0;
+            this.cloneButton.Name = "cloneButton";
             this.cloneButton.ToolTipText = "Clone the image";
             // 
             // toolBarButton1
             // 
+            this.toolBarButton1.Name = "toolBarButton1";
             this.toolBarButton1.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // cropButton
             // 
             this.cropButton.ImageIndex = 1;
+            this.cropButton.Name = "cropButton";
             this.cropButton.ToolTipText = "Crop image";
             // 
             // toolBarButton2
             // 
+            this.toolBarButton2.Name = "toolBarButton2";
             this.toolBarButton2.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // zoomInButton
             // 
             this.zoomInButton.ImageIndex = 2;
+            this.zoomInButton.Name = "zoomInButton";
             this.zoomInButton.ToolTipText = "Zoom In";
             // 
             // zoomOutButton
             // 
             this.zoomOutButton.ImageIndex = 3;
+            this.zoomOutButton.Name = "zoomOutButton";
             this.zoomOutButton.ToolTipText = "Zoom out";
             // 
             // toolBarButton3
             // 
             this.toolBarButton3.ImageIndex = 4;
+            this.toolBarButton3.Name = "toolBarButton3";
             this.toolBarButton3.ToolTipText = "Original size";
             // 
             // fitToScreenButton
             // 
             this.fitToScreenButton.ImageIndex = 5;
+            this.fitToScreenButton.Name = "fitToScreenButton";
             this.fitToScreenButton.ToolTipText = "Fit to window size";
             // 
             // toolBarButton5
             // 
+            this.toolBarButton5.Name = "toolBarButton5";
             this.toolBarButton5.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // resizeButton
             // 
             this.resizeButton.ImageIndex = 11;
+            this.resizeButton.Name = "resizeButton";
             this.resizeButton.ToolTipText = "Resize the image";
             // 
             // rotateButton
             // 
             this.rotateButton.ImageIndex = 12;
+            this.rotateButton.Name = "rotateButton";
             this.rotateButton.ToolTipText = "Rotate the image";
             // 
             // toolBarButton7
             // 
+            this.toolBarButton7.Name = "toolBarButton7";
             this.toolBarButton7.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // levelsButton
             // 
             this.levelsButton.ImageIndex = 6;
+            this.levelsButton.Name = "levelsButton";
             this.levelsButton.ToolTipText = "Levels correction";
             // 
             // grayscaleButton
             // 
             this.grayscaleButton.ImageIndex = 7;
+            this.grayscaleButton.Name = "grayscaleButton";
             this.grayscaleButton.ToolTipText = "Grayscale";
             // 
             // thresholdButton
             // 
             this.thresholdButton.ImageIndex = 8;
+            this.thresholdButton.Name = "thresholdButton";
             this.thresholdButton.ToolTipText = "Threshold";
             // 
             // toolBarButton6
             // 
+            this.toolBarButton6.Name = "toolBarButton6";
             this.toolBarButton6.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // morphologyButton
             // 
             this.morphologyButton.ImageIndex = 9;
+            this.morphologyButton.Name = "morphologyButton";
             this.morphologyButton.ToolTipText = "Custom morphology operator";
             // 
             // convolutionButton
             // 
             this.convolutionButton.ImageIndex = 10;
+            this.convolutionButton.Name = "convolutionButton";
             this.convolutionButton.ToolTipText = "Custom convolution operator";
             // 
             // toolBarButton8
             // 
+            this.toolBarButton8.Name = "toolBarButton8";
             this.toolBarButton8.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // saturationButton
             // 
             this.saturationButton.ImageIndex = 13;
+            this.saturationButton.Name = "saturationButton";
             this.saturationButton.ToolTipText = "Saturation (HSL)";
             // 
             // fourierButton
             // 
             this.fourierButton.ImageIndex = 14;
+            this.fourierButton.Name = "fourierButton";
             this.fourierButton.ToolTipText = "Fourier Transformation";
             // 
             // imageList2
             // 
-            this.imageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit;
-            this.imageList2.ImageSize = new System.Drawing.Size( 16, 16 );
             this.imageList2.ImageStream = ( (System.Windows.Forms.ImageListStreamer) ( resources.GetObject( "imageList2.ImageStream" ) ) );
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName( 0, "" );
+            this.imageList2.Images.SetKeyName( 1, "" );
+            this.imageList2.Images.SetKeyName( 2, "" );
+            this.imageList2.Images.SetKeyName( 3, "" );
+            this.imageList2.Images.SetKeyName( 4, "" );
+            this.imageList2.Images.SetKeyName( 5, "" );
+            this.imageList2.Images.SetKeyName( 6, "" );
+            this.imageList2.Images.SetKeyName( 7, "" );
+            this.imageList2.Images.SetKeyName( 8, "" );
+            this.imageList2.Images.SetKeyName( 9, "" );
+            this.imageList2.Images.SetKeyName( 10, "" );
+            this.imageList2.Images.SetKeyName( 11, "" );
+            this.imageList2.Images.SetKeyName( 12, "" );
+            this.imageList2.Images.SetKeyName( 13, "" );
+            this.imageList2.Images.SetKeyName( 14, "" );
             // 
             // ofd
             // 
@@ -745,7 +806,7 @@ namespace IPLab
             // 
             // sfd
             // 
-            this.sfd.Filter = "JPG files (*.jpg)|*.jpg|BMP files (*.bmp)|*.bmp";
+            this.sfd.Filter = "PNG files (*.png)|*.png|JPG files (*.jpg)|*.jpg|BMP files (*.bmp)|*.bmp";
             this.sfd.Title = "Save image";
             // 
             // printDocument
@@ -759,35 +820,23 @@ namespace IPLab
             this.printPreviewDialog.ClientSize = new System.Drawing.Size( 400, 300 );
             this.printPreviewDialog.Enabled = true;
             this.printPreviewDialog.Icon = ( (System.Drawing.Icon) ( resources.GetObject( "printPreviewDialog.Icon" ) ) );
-            this.printPreviewDialog.Location = new System.Drawing.Point( 598, 15 );
-            this.printPreviewDialog.MaximumSize = new System.Drawing.Size( 0, 0 );
             this.printPreviewDialog.Name = "printPreviewDialog";
-            this.printPreviewDialog.Opacity = 1;
-            this.printPreviewDialog.TransparencyKey = System.Drawing.Color.Empty;
             this.printPreviewDialog.Visible = false;
-            // 
-            // statisticsViewItem
-            // 
-            this.statisticsViewItem.Index = 4;
-            this.statisticsViewItem.Shortcut = System.Windows.Forms.Shortcut.CtrlT;
-            this.statisticsViewItem.Text = "&Statistics";
-            this.statisticsViewItem.Click += new System.EventHandler( this.statisticsViewItem_Click );
             // 
             // MainForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size( 5, 13 );
             this.ClientSize = new System.Drawing.Size( 792, 533 );
-            this.Controls.AddRange( new System.Windows.Forms.Control[] {
-																		  this.panel1,
-																		  this.statusBar} );
+            this.Controls.Add( this.panel1 );
+            this.Controls.Add( this.statusBar );
             this.Icon = ( (System.Drawing.Icon) ( resources.GetObject( "$this.Icon" ) ) );
             this.IsMdiContainer = true;
             this.Menu = this.mainMenu;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Image Processing Lab";
-            this.Closing += new System.ComponentModel.CancelEventHandler( this.MainForm_Closing );
             this.Load += new System.EventHandler( this.MainForm_Load );
+            this.Closing += new System.ComponentModel.CancelEventHandler( this.MainForm_Closing );
             ( (System.ComponentModel.ISupportInitialize) ( this.zoomPanel ) ).EndInit( );
             ( (System.ComponentModel.ISupportInitialize) ( this.sizePanel ) ).EndInit( );
             ( (System.ComponentModel.ISupportInitialize) ( this.selectionPanel ) ).EndInit( );
@@ -797,6 +846,7 @@ namespace IPLab
             ( (System.ComponentModel.ISupportInitialize) ( this.infoPanel ) ).EndInit( );
             this.panel1.ResumeLayout( false );
             this.dockManager.ResumeLayout( false );
+            this.dockManager.PerformLayout( );
             this.ResumeLayout( false );
 
         }
