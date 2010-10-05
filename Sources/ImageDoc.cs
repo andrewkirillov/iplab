@@ -1692,6 +1692,41 @@ namespace IPLab
             CreateStereoAnaglyph( StereoAnaglyph.Algorithm.OptimizedAnaglyph );
         }
 
+        // Align scanned document
+        private void documentAligningMenuItem_Click( object sender, EventArgs e )
+        {
+            try
+            {
+                // get grayscale image from current image
+                Bitmap grayImage = ( image.PixelFormat == PixelFormat.Format8bppIndexed ) ?
+                    AForge.Imaging.Image.Clone( image ) :
+                    AForge.Imaging.Filters.Grayscale.CommonAlgorithms.BT709.Apply( image );
+                // threshold it using adaptive Otsu thresholding
+                OtsuThreshold threshold = new OtsuThreshold( );
+                threshold.ApplyInPlace( grayImage );
+                // get skew angle
+                DocumentSkewChecker skewChecker = new DocumentSkewChecker( );
+                double angle = skewChecker.GetSkewAngle( grayImage );
+
+                if ( ( angle < -skewChecker.MaxSkewToDetect ) ||
+                     ( angle > skewChecker.MaxSkewToDetect ) )
+                {
+                    throw new ApplicationException( );
+                }
+
+                // create rotation filter
+                RotateBilinear rotationFilter = new RotateBilinear( -angle );
+                rotationFilter.FillColor = Color.White;
+                // rotate image applying the filter
+                ApplyFilter( rotationFilter );
+            }
+            catch
+            {
+                MessageBox.Show( "Failed determining skew angle. Is it reallly a scanned document?", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error );
+            }
+        }
+
         // Fourier transformation
         private void ForwardFourierTransformation( )
         {
