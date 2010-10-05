@@ -373,6 +373,7 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.documentAligningMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -1461,7 +1462,8 @@ namespace IPLab
             this.pixellateFiltersItem,
             this.simpleSkeletonizationFiltersItem,
             this.shrinkFiltersItem,
-            this.simplePosterizatonMenuItem} );
+            this.simplePosterizatonMenuItem,
+            this.documentAligningMenuItem} );
             this.menuItem24.Text = "Other";
             // 
             // adaptiveSmoothingFiltersItem
@@ -1581,6 +1583,12 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
+            // documentAligningMenuItem
+            // 
+            this.documentAligningMenuItem.Index = 11;
+            this.documentAligningMenuItem.Text = "Document Aligning";
+            this.documentAligningMenuItem.Click += new System.EventHandler( this.documentAligningMenuItem_Click );
+            // 
             // ImageDoc
             // 
             this.AllowedStates = WeifenLuo.WinFormsUI.ContentStates.Document;
@@ -1608,5 +1616,6 @@ namespace IPLab
         private System.Windows.Forms.MenuItem menuItem40;
         private System.Windows.Forms.MenuItem quadrilateralFinderMenuItem;
         private System.Windows.Forms.MenuItem quadrilateralTransformationMenuItem;
+        private System.Windows.Forms.MenuItem documentAligningMenuItem;
     }
 }
