@@ -273,6 +273,12 @@
     <Compile Include="Filters Forms\ThresholdForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Filters Forms\WaterWaveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\WaterWaveForm.Designer.cs">
+      <DependentUpon>WaterWaveForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filters Forms\YCbCrFilteringForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -427,6 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\ThresholdForm.resx">
       <DependentUpon>ThresholdForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\WaterWaveForm.resx">
+      <DependentUpon>WaterWaveForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\YCbCrFilteringForm.resx">
       <DependentUpon>YCbCrFilteringForm.cs</DependentUpon>
