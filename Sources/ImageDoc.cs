@@ -1467,6 +1467,19 @@ namespace IPLab
             ApplyFilter( filter );
         }
 
+        // Create water wave effect
+        private void waterWaveMenuItem_Click( object sender, EventArgs e )
+        {
+            WaterWaveForm form = new WaterWaveForm( );
+
+            form.Image = image;
+
+            if ( form.ShowDialog( ) == DialogResult.OK )
+            {
+                ApplyFilter( form.Filter );
+            }
+        }
+
         // Simple skeletonization
         private void simpleSkeletonizationFiltersItem_Click( object sender, System.EventArgs e )
         {

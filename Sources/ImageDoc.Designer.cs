@@ -352,15 +352,17 @@ namespace IPLab
             this.noiseFiltersItem = new System.Windows.Forms.MenuItem( );
             this.additiveNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
             this.saltNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.differentEffectsFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.perlinNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.oilPaintingFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.jitterFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.pixellateFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.rombozoidMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem24 = new System.Windows.Forms.MenuItem( );
             this.adaptiveSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.conservativeSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.medianFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem34 = new System.Windows.Forms.MenuItem( );
-            this.perlinNoiseFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.oilPaintingFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.jitterFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.pixellateFiltersItem = new System.Windows.Forms.MenuItem( );
             this.simpleSkeletonizationFiltersItem = new System.Windows.Forms.MenuItem( );
             this.shrinkFiltersItem = new System.Windows.Forms.MenuItem( );
             this.simplePosterizatonMenuItem = new System.Windows.Forms.MenuItem( );
@@ -374,8 +376,7 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.differentEffectsFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.rombozoidMenuItem = new System.Windows.Forms.MenuItem( );
+            this.waterWaveMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -1451,6 +1452,48 @@ namespace IPLab
             this.saltNoiseFiltersItem.Text = "&Salt and Pepper";
             this.saltNoiseFiltersItem.Click += new System.EventHandler( this.saltNoiseFiltersItem_Click );
             // 
+            // differentEffectsFiltersItem
+            // 
+            this.differentEffectsFiltersItem.Index = 12;
+            this.differentEffectsFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
+            this.perlinNoiseFiltersItem,
+            this.oilPaintingFiltersItem,
+            this.jitterFiltersItem,
+            this.pixellateFiltersItem,
+            this.rombozoidMenuItem,
+            this.waterWaveMenuItem} );
+            this.differentEffectsFiltersItem.Text = "Different Effects";
+            // 
+            // perlinNoiseFiltersItem
+            // 
+            this.perlinNoiseFiltersItem.Index = 0;
+            this.perlinNoiseFiltersItem.Text = "Perlin Noise";
+            this.perlinNoiseFiltersItem.Click += new System.EventHandler( this.perlinNoiseFiltersItem_Click );
+            // 
+            // oilPaintingFiltersItem
+            // 
+            this.oilPaintingFiltersItem.Index = 1;
+            this.oilPaintingFiltersItem.Text = "&Oil Painting";
+            this.oilPaintingFiltersItem.Click += new System.EventHandler( this.oilPaintingFiltersItem_Click );
+            // 
+            // jitterFiltersItem
+            // 
+            this.jitterFiltersItem.Index = 2;
+            this.jitterFiltersItem.Text = "&Jitter";
+            this.jitterFiltersItem.Click += new System.EventHandler( this.jitterFiltersItem_Click );
+            // 
+            // pixellateFiltersItem
+            // 
+            this.pixellateFiltersItem.Index = 3;
+            this.pixellateFiltersItem.Text = "&Pixellate";
+            this.pixellateFiltersItem.Click += new System.EventHandler( this.pixellateFiltersItem_Click );
+            // 
+            // rombozoidMenuItem
+            // 
+            this.rombozoidMenuItem.Index = 4;
+            this.rombozoidMenuItem.Text = "Rombozoid";
+            this.rombozoidMenuItem.Click += new System.EventHandler( this.rombozoidMenuItem_Click );
+            // 
             // menuItem24
             // 
             this.menuItem24.Index = 13;
@@ -1487,30 +1530,6 @@ namespace IPLab
             // 
             this.menuItem34.Index = 3;
             this.menuItem34.Text = "-";
-            // 
-            // perlinNoiseFiltersItem
-            // 
-            this.perlinNoiseFiltersItem.Index = 0;
-            this.perlinNoiseFiltersItem.Text = "Perlin Noise";
-            this.perlinNoiseFiltersItem.Click += new System.EventHandler( this.perlinNoiseFiltersItem_Click );
-            // 
-            // oilPaintingFiltersItem
-            // 
-            this.oilPaintingFiltersItem.Index = 1;
-            this.oilPaintingFiltersItem.Text = "&Oil Painting";
-            this.oilPaintingFiltersItem.Click += new System.EventHandler( this.oilPaintingFiltersItem_Click );
-            // 
-            // jitterFiltersItem
-            // 
-            this.jitterFiltersItem.Index = 2;
-            this.jitterFiltersItem.Text = "&Jitter";
-            this.jitterFiltersItem.Click += new System.EventHandler( this.jitterFiltersItem_Click );
-            // 
-            // pixellateFiltersItem
-            // 
-            this.pixellateFiltersItem.Index = 3;
-            this.pixellateFiltersItem.Text = "&Pixellate";
-            this.pixellateFiltersItem.Click += new System.EventHandler( this.pixellateFiltersItem_Click );
             // 
             // simpleSkeletonizationFiltersItem
             // 
@@ -1588,22 +1607,11 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
-            // differentEffectsFiltersItem
+            // waterWaveMenuItem
             // 
-            this.differentEffectsFiltersItem.Index = 12;
-            this.differentEffectsFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-            this.perlinNoiseFiltersItem,
-            this.oilPaintingFiltersItem,
-            this.jitterFiltersItem,
-            this.pixellateFiltersItem,
-            this.rombozoidMenuItem} );
-            this.differentEffectsFiltersItem.Text = "Different Effects";
-            // 
-            // rombozoidMenuItem
-            // 
-            this.rombozoidMenuItem.Index = 4;
-            this.rombozoidMenuItem.Text = "Rombozoid";
-            this.rombozoidMenuItem.Click += new System.EventHandler( this.rombozoidMenuItem_Click );
+            this.waterWaveMenuItem.Index = 5;
+            this.waterWaveMenuItem.Text = "Water Wave";
+            this.waterWaveMenuItem.Click += new System.EventHandler( this.waterWaveMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -1635,5 +1643,6 @@ namespace IPLab
         private System.Windows.Forms.MenuItem documentAligningMenuItem;
         private System.Windows.Forms.MenuItem differentEffectsFiltersItem;
         private System.Windows.Forms.MenuItem rombozoidMenuItem;
+        private System.Windows.Forms.MenuItem waterWaveMenuItem;
     }
 }
