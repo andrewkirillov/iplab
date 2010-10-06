@@ -1,3 +1,42 @@
+IPLab 2.7.0 release notes
+------------------------------
+06.10.2010.
+
+
+Version updates and fixes:
+
+- Updated AForge.NET framework's assemblies to the latest 2.1.4 version;
+
+- Added format check on image reloading (not only on initial loading);
+
+- Image reloading is now done without file locking similar to initial loading;
+
+- Added support for some command line arguments:
+  * iplab.exe /paste - starts application and opens image from clipboard;
+  * iplab.exe /open <file_name> (or just iplab.exe <file_name>) - starts application
+    and opens the specified file.
+
+- Added Stereo Anaglyph filter to collection of available filters, which accepts 2 images;
+
+- Allowing to apply blob extraction and filtering to color images as well, since the
+  AForge.NET framework allows this;
+  
+- Adding quadrilateral finder and quadrilateral transformation options (for now it
+  transforms only the automatically found quadrilateral);
+
+- Added PNG format to the list of formats in "Save As" dialog;
+
+- Added Document Skew Checker demonstration into the application;
+
+- Moving different effects like Perlin Noise, Oil Painting, etc. into separate menu item group;
+
+- Adding crazy "rombozoid" effect;
+
+- Added Water Wave effect.
+
+
+
+
 IPLab 2.6.1 release notes
 ------------------------------
 01.10.2009.
