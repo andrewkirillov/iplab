@@ -192,7 +192,7 @@ namespace IPLab
         {
             try
             {
-                filter.AdjustValue = double.Parse( brightnessBox.Text );
+                filter.AdjustValue = float.Parse( brightnessBox.Text );
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )

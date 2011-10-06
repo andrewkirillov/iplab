@@ -195,7 +195,7 @@ namespace IPLab
         {
             try
             {
-                filter.AdjustValue = double.Parse( saturationBox.Text );
+                filter.AdjustValue = float.Parse( saturationBox.Text );
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )

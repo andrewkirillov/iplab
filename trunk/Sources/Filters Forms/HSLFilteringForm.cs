@@ -25,10 +25,10 @@ namespace IPLab
     {
         private HSLFiltering filter = new HSLFiltering( );
         private IntRange hue = new IntRange( 0, 359 );
-        private DoubleRange saturation = new DoubleRange( 0, 1 );
-        private DoubleRange luminance = new DoubleRange( 0, 1 );
+        private Range saturation = new Range( 0, 1 );
+        private Range luminance = new Range( 0, 1 );
         private int fillH = 0;
-        private double fillS = 0, fillL = 0;
+        private float fillS = 0, fillL = 0;
 
         private IPLab.HuePicker huePicker;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -568,7 +568,7 @@ namespace IPLab
         {
             try
             {
-                saturation.Min = double.Parse( minSBox.Text );
+                saturation.Min = float.Parse( minSBox.Text );
                 saturationSlider.Min = (int) ( saturation.Min * 255 );
                 UpdateFilter( );
             }
@@ -582,7 +582,7 @@ namespace IPLab
         {
             try
             {
-                saturation.Max = double.Parse( maxSBox.Text );
+                saturation.Max = float.Parse( maxSBox.Text );
                 saturationSlider.Max = (int) ( saturation.Max * 255 );
                 UpdateFilter( );
             }
@@ -596,7 +596,7 @@ namespace IPLab
         {
             try
             {
-                luminance.Min = double.Parse( minLBox.Text );
+                luminance.Min = float.Parse( minLBox.Text );
                 luminanceSlider.Min = (int) ( luminance.Min * 255 );
                 UpdateFilter( );
             }
@@ -610,7 +610,7 @@ namespace IPLab
         {
             try
             {
-                luminance.Max = double.Parse( maxLBox.Text );
+                luminance.Max = float.Parse( maxLBox.Text );
                 luminanceSlider.Max = (int) ( luminance.Max * 255 );
                 UpdateFilter( );
             }
@@ -658,7 +658,7 @@ namespace IPLab
         {
             try
             {
-                fillS = double.Parse( fillSBox.Text );
+                fillS = float.Parse( fillSBox.Text );
                 UpdateFillColor( );
             }
             catch ( Exception )
@@ -671,7 +671,7 @@ namespace IPLab
         {
             try
             {
-                fillL = double.Parse( fillLBox.Text );
+                fillL = float.Parse( fillLBox.Text );
                 UpdateFillColor( );
             }
             catch ( Exception )

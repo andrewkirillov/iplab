@@ -696,9 +696,9 @@ namespace IPLab
             BitmapData imgData = image.LockBits( new Rectangle( 0, 0, width, height ), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb );
 
             // gather statistics
-            statRGB = new ImageStatistics( imgData );
-            statHSL = new ImageStatisticsHSL( imgData );
-            statYCbCr = new ImageStatisticsYCbCr( imgData );
+            statRGB = new ImageStatistics( new UnmanagedImage( imgData ) );
+            statHSL = new ImageStatisticsHSL( new UnmanagedImage( imgData ) );
+            statYCbCr = new ImageStatisticsYCbCr( new UnmanagedImage( imgData ) );
 
             // unlock image
             image.UnlockBits( imgData );

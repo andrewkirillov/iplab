@@ -58,7 +58,7 @@ namespace IPLab
             try
             {
                 int amplitude = int.Parse( noiseAmplitudeBox.Text );
-                filter.Generator = new UniformGenerator( new DoubleRange( -amplitude, amplitude ) );
+                filter.Generator = new UniformGenerator( new Range( -amplitude, amplitude ) );
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )

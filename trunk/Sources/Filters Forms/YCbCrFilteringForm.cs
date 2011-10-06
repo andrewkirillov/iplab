@@ -24,10 +24,10 @@ namespace IPLab
     public class YCbCrFilteringForm : System.Windows.Forms.Form
     {
         private YCbCrFiltering filter = new YCbCrFiltering( );
-        private DoubleRange yRange = new DoubleRange( 0, 1 );
-        private DoubleRange cbRange = new DoubleRange( -0.5, 0.5 );
-        private DoubleRange crRange = new DoubleRange( -0.5, 0.5 );
-        private double fillY = 0, fillCb = 0, fillCr = 0;
+        private Range yRange = new Range( 0, 1 );
+        private Range cbRange = new Range( -0.5f, 0.5f );
+        private Range crRange = new Range( -0.5f, 0.5f );
+        private float fillY = 0, fillCb = 0, fillCr = 0;
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
@@ -502,7 +502,7 @@ namespace IPLab
         {
             try
             {
-                yRange.Min = Math.Max( 0.0, Math.Min( 1.0, double.Parse( minYBox.Text ) ) );
+                yRange.Min = Math.Max( 0.0f, Math.Min( 1.0f, float.Parse( minYBox.Text ) ) );
                 ySlider.Min = (int) ( yRange.Min * 255 );
                 UpdateFilter( );
             }
@@ -516,7 +516,7 @@ namespace IPLab
         {
             try
             {
-                yRange.Max = Math.Max( 0.0, Math.Min( 1.0, double.Parse( maxYBox.Text ) ) );
+                yRange.Max = Math.Max( 0.0f, Math.Min( 1.0f, float.Parse( maxYBox.Text ) ) );
                 ySlider.Max = (int) ( yRange.Max * 255 );
                 UpdateFilter( );
             }
@@ -530,7 +530,7 @@ namespace IPLab
         {
             try
             {
-                cbRange.Min = Math.Max( -0.5, Math.Min( 0.5, double.Parse( minCbBox.Text ) ) );
+                cbRange.Min = Math.Max( -0.5f, Math.Min( 0.5f, float.Parse( minCbBox.Text ) ) );
                 cbSlider.Min = (int) ( ( cbRange.Min + 0.5 ) * 255 );
                 UpdateFilter( );
             }
@@ -544,7 +544,7 @@ namespace IPLab
         {
             try
             {
-                cbRange.Max = Math.Max( -0.5, Math.Min( 0.5, double.Parse( maxCbBox.Text ) ) );
+                cbRange.Max = Math.Max( -0.5f, Math.Min( 0.5f, float.Parse( maxCbBox.Text ) ) );
                 cbSlider.Max = (int) ( ( cbRange.Max + 0.5 ) * 255 );
                 UpdateFilter( );
             }
@@ -558,7 +558,7 @@ namespace IPLab
         {
             try
             {
-                crRange.Min = Math.Max( -0.5, Math.Min( 0.5, double.Parse( minCrBox.Text ) ) );
+                crRange.Min = Math.Max( -0.5f, Math.Min( 0.5f, float.Parse( minCrBox.Text ) ) );
                 crSlider.Min = (int) ( ( crRange.Min + 0.5 ) * 255 );
                 UpdateFilter( );
             }
@@ -572,7 +572,7 @@ namespace IPLab
         {
             try
             {
-                crRange.Max = Math.Max( -0.5, Math.Min( 0.5, double.Parse( maxCrBox.Text ) ) );
+                crRange.Max = Math.Max( -0.5f, Math.Min( 0.5f, float.Parse( maxCrBox.Text ) ) );
                 crSlider.Max = (int) ( ( crRange.Max + 0.5 ) * 255 );
                 UpdateFilter( );
             }
@@ -607,7 +607,7 @@ namespace IPLab
         {
             try
             {
-                fillY = double.Parse( fillYBox.Text );
+                fillY = float.Parse( fillYBox.Text );
                 UpdateFillColor( );
             }
             catch ( Exception )
@@ -620,7 +620,7 @@ namespace IPLab
         {
             try
             {
-                fillCb = double.Parse( fillCbBox.Text );
+                fillCb = float.Parse( fillCbBox.Text );
                 UpdateFillColor( );
             }
             catch ( Exception )
@@ -633,7 +633,7 @@ namespace IPLab
         {
             try
             {
-                fillCr = double.Parse( fillCrBox.Text );
+                fillCr = float.Parse( fillCrBox.Text );
                 UpdateFillColor( );
             }
             catch ( Exception )
