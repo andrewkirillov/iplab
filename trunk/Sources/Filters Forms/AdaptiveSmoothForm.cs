@@ -57,7 +57,7 @@ namespace IPLab
 
             //
             factorBox.Text = factor.ToString( );
-            trackBar.Value = (int) factor * 10;
+            trackBar.Value = (int) ( factor * 10 );
 
             filterPreview.Filter = filter;
         }
