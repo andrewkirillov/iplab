@@ -24,12 +24,12 @@ namespace IPLab
     public class YCbCrLinearForm : System.Windows.Forms.Form
     {
         private YCbCrLinear filter = new YCbCrLinear( );
-        private DoubleRange inY = new DoubleRange( 0, 1 );
-        private DoubleRange inCb = new DoubleRange( -0.5, 0.5 );
-        private DoubleRange inCr = new DoubleRange( -0.5, 0.5 );
-        private DoubleRange outY = new DoubleRange( 0, 1 );
-        private DoubleRange outCb = new DoubleRange( -0.5, 0.5 );
-        private DoubleRange outCr = new DoubleRange( -0.5, 0.5 );
+        private Range inY = new Range( 0, 1 );
+        private Range inCb = new Range( -0.5f, 0.5f );
+        private Range inCr = new Range( -0.5f, 0.5f );
+        private Range outY = new Range( 0, 1 );
+        private Range outCb = new Range( -0.5f, 0.5f );
+        private Range outCr = new Range( -0.5f, 0.5f );
         private AForge.Imaging.ImageStatisticsYCbCr imgStat;
 
         private System.Windows.Forms.Button cancelButton;
@@ -331,8 +331,8 @@ namespace IPLab
         private void componentCombo_SelectedIndexChanged( object sender, System.EventArgs e )
         {
             AForge.Math.ContinuousHistogram h = null;
-            DoubleRange input = new DoubleRange( 0, 1 );
-            DoubleRange output = new DoubleRange( 0, 1 );
+            Range input = new Range( 0, 1 );
+            Range output = new Range( 0, 1 );
             double start = 0;
 
             switch ( componentCombo.SelectedIndex )
@@ -381,19 +381,19 @@ namespace IPLab
         {
             try
             {
-                double v = double.Parse( inMinBox.Text );
+                float v = float.Parse( inMinBox.Text );
                 double start = ( componentCombo.SelectedIndex == 0 ) ? 0.0 : -0.5;
 
                 switch ( componentCombo.SelectedIndex )
                 {
                     case 0:	// Y
-                        inY.Min = Math.Max( 0.0, Math.Min( 1.0, v ) );
+                        inY.Min = Math.Max( 0.0f, Math.Min( 1.0f, v ) );
                         break;
                     case 1:	// Cb
-                        inCb.Min = Math.Max( -0.5, Math.Min( 0.5, v ) );
+                        inCb.Min = Math.Max( -0.5f, Math.Min( 0.5f, v ) );
                         break;
                     case 2:	// Cr
-                        inCr.Min = Math.Max( -0.5, Math.Min( 0.5, v ) );
+                        inCr.Min = Math.Max( -0.5f, Math.Min( 0.5f, v ) );
                         break;
                 }
                 inSlider.Min = (int) ( ( v - start ) * 255 );
@@ -409,19 +409,19 @@ namespace IPLab
         {
             try
             {
-                double v = double.Parse( inMaxBox.Text );
+                float v = float.Parse( inMaxBox.Text );
                 double start = ( componentCombo.SelectedIndex == 0 ) ? 0.0 : -0.5;
 
                 switch ( componentCombo.SelectedIndex )
                 {
                     case 0:	// Y
-                        inY.Max = Math.Max( 0.0, Math.Min( 1.0, v ) );
+                        inY.Max = Math.Max( 0.0f, Math.Min( 1.0f, v ) );
                         break;
                     case 1:	// Cb
-                        inCb.Max = Math.Max( -0.5, Math.Min( 0.5, v ) );
+                        inCb.Max = Math.Max( -0.5f, Math.Min( 0.5f, v ) );
                         break;
                     case 2:	// Cr
-                        inCr.Max = Math.Max( -0.5, Math.Min( 0.5, v ) );
+                        inCr.Max = Math.Max( -0.5f, Math.Min( 0.5f, v ) );
                         break;
                 }
                 inSlider.Max = (int) ( ( v - start ) * 255 );
@@ -437,19 +437,19 @@ namespace IPLab
         {
             try
             {
-                double v = double.Parse( outMinBox.Text );
+                float v = float.Parse( outMinBox.Text );
                 double start = ( componentCombo.SelectedIndex == 0 ) ? 0.0 : -0.5;
 
                 switch ( componentCombo.SelectedIndex )
                 {
                     case 0:	// Y
-                        outY.Min = Math.Max( 0.0, Math.Min( 1.0, v ) );
+                        outY.Min = Math.Max( 0.0f, Math.Min( 1.0f, v ) );
                         break;
                     case 1:	// Cb
-                        outCb.Min = Math.Max( -0.5, Math.Min( 0.5, v ) );
+                        outCb.Min = Math.Max( -0.5f, Math.Min( 0.5f, v ) );
                         break;
                     case 2:	// Cr
-                        outCr.Min = Math.Max( -0.5, Math.Min( 0.5, v ) );
+                        outCr.Min = Math.Max( -0.5f, Math.Min( 0.5f, v ) );
                         break;
                 }
                 outSlider.Min = (int) ( ( v - start ) * 255 );
@@ -465,19 +465,19 @@ namespace IPLab
         {
             try
             {
-                double v = double.Parse( outMaxBox.Text );
+                float v = float.Parse( outMaxBox.Text );
                 double start = ( componentCombo.SelectedIndex == 0 ) ? 0.0 : -0.5;
 
                 switch ( componentCombo.SelectedIndex )
                 {
                     case 0:	// Y
-                        outY.Max = Math.Max( 0.0, Math.Min( 1.0, v ) );
+                        outY.Max = Math.Max( 0.0f, Math.Min( 1.0f, v ) );
                         break;
                     case 1:	// Cb
-                        outCb.Max = Math.Max( -0.5, Math.Min( 0.5, v ) );
+                        outCb.Max = Math.Max( -0.5f, Math.Min( 0.5f, v ) );
                         break;
                     case 2:	// Cr
-                        outCr.Max = Math.Max( -0.5, Math.Min( 0.5, v ) );
+                        outCr.Max = Math.Max( -0.5f, Math.Min( 0.5f, v ) );
                         break;
                 }
                 outSlider.Max = (int) ( ( v - start ) * 255 );

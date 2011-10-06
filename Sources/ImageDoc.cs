@@ -23,6 +23,8 @@ using AForge.Imaging;
 using AForge.Imaging.Filters;
 using AForge.Imaging.Textures;
 
+using Point = System.Drawing.Point;
+
 namespace IPLab
 {
     /// <summary>
@@ -1523,7 +1525,7 @@ namespace IPLab
 
             foreach ( Blob blob in blobs )
             {
-                host.NewDocument( blob.Image );
+                host.NewDocument( blob.Image.ToManagedImage( ) );
             }
         }
 

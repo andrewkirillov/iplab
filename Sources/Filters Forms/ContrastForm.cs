@@ -195,7 +195,7 @@ namespace IPLab
         {
             try
             {
-                filter.Factor = double.Parse( contrastBox.Text );
+                filter.Factor = float.Parse( contrastBox.Text );
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )

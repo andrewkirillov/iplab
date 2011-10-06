@@ -24,10 +24,10 @@ namespace IPLab
     public class HSLLinearForm : System.Windows.Forms.Form
     {
         private HSLLinear filter = new HSLLinear( );
-        private DoubleRange inSaturation = new DoubleRange( 0, 1 );
-        private DoubleRange inLuminance = new DoubleRange( 0, 1 );
-        private DoubleRange outSaturation = new DoubleRange( 0, 1 );
-        private DoubleRange outLuminance = new DoubleRange( 0, 1 );
+        private Range inSaturation = new Range( 0, 1 );
+        private Range inLuminance = new Range( 0, 1 );
+        private Range outSaturation = new Range( 0, 1 );
+        private Range outLuminance = new Range( 0, 1 );
         private AForge.Imaging.ImageStatisticsHSL imgStat;
 
         private System.Windows.Forms.Label label1;
@@ -328,8 +328,8 @@ namespace IPLab
         private void componentCombo_SelectedIndexChanged( object sender, System.EventArgs e )
         {
             AForge.Math.ContinuousHistogram h = null;
-            DoubleRange input = new DoubleRange( 0, 1 );
-            DoubleRange output = new DoubleRange( 0, 1 );
+            Range input = new Range( 0, 1 );
+            Range output = new Range( 0, 1 );
 
             if ( componentCombo.SelectedIndex == 0 )
             {
@@ -366,7 +366,7 @@ namespace IPLab
         {
             try
             {
-                double v = double.Parse( inMinBox.Text );
+                float v = float.Parse( inMinBox.Text );
 
                 if ( componentCombo.SelectedIndex == 0 )
                 {
@@ -389,7 +389,7 @@ namespace IPLab
         {
             try
             {
-                double v = double.Parse( inMaxBox.Text );
+                float v = float.Parse( inMaxBox.Text );
 
                 if ( componentCombo.SelectedIndex == 0 )
                 {
@@ -412,7 +412,7 @@ namespace IPLab
         {
             try
             {
-                double v = double.Parse( outMinBox.Text );
+                float v = float.Parse( outMinBox.Text );
 
                 if ( componentCombo.SelectedIndex == 0 )
                 {
@@ -435,7 +435,7 @@ namespace IPLab
         {
             try
             {
-                double v = double.Parse( outMaxBox.Text );
+                float v = float.Parse( outMaxBox.Text );
 
                 if ( componentCombo.SelectedIndex == 0 )
                 {

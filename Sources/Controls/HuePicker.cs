@@ -131,8 +131,8 @@ namespace IPLab
             rcPie = new Rectangle( 4, 4, Math.Min( rc.Right, rc.Bottom ) - 8, Math.Min( rc.Right, rc.Bottom ) - 8 );
 
             // init HSL value
-            hsl.Luminance = 0.5;
-            hsl.Saturation = 1.0;
+            hsl.Luminance = 0.5f;
+            hsl.Saturation = 1.0f;
 
             if ( type == HuePickerType.Value )
             {
