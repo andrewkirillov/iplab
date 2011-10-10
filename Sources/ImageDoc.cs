@@ -1038,6 +1038,12 @@ namespace IPLab
             ApplyFilter( new OtsuThreshold( ) );
         }
 
+        // Bradley local thresholdingb
+        private void bradleyLocalThresholdingMenuItem_Click( object sender, EventArgs e )
+        {
+            ApplyFilter( new BradleyLocalThresholding( ) );
+        }
+
         // Errosion (Mathematical Morphology)
         private void erosionMorphologyFiltersItem_Click( object sender, System.EventArgs e )
         {
