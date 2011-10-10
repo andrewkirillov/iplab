@@ -358,6 +358,7 @@ namespace IPLab
             this.jitterFiltersItem = new System.Windows.Forms.MenuItem( );
             this.pixellateFiltersItem = new System.Windows.Forms.MenuItem( );
             this.rombozoidMenuItem = new System.Windows.Forms.MenuItem( );
+            this.waterWaveMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem24 = new System.Windows.Forms.MenuItem( );
             this.adaptiveSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.conservativeSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -376,7 +377,7 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.waterWaveMenuItem = new System.Windows.Forms.MenuItem( );
+            this.bradleyLocalThresholdingMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -978,7 +979,8 @@ namespace IPLab
             this.sierraBinaryFiltersItem,
             this.menuItem31,
             this.sisThresholdBinaryFiltersItem,
-            this.otsuThresholdMenuItem} );
+            this.otsuThresholdMenuItem,
+            this.bradleyLocalThresholdingMenuItem} );
             this.binaryFiltersItem.Text = "&Binarization";
             // 
             // thresholdBinaryFiltersItem
@@ -1494,6 +1496,12 @@ namespace IPLab
             this.rombozoidMenuItem.Text = "Rombozoid";
             this.rombozoidMenuItem.Click += new System.EventHandler( this.rombozoidMenuItem_Click );
             // 
+            // waterWaveMenuItem
+            // 
+            this.waterWaveMenuItem.Index = 5;
+            this.waterWaveMenuItem.Text = "Water Wave";
+            this.waterWaveMenuItem.Click += new System.EventHandler( this.waterWaveMenuItem_Click );
+            // 
             // menuItem24
             // 
             this.menuItem24.Index = 13;
@@ -1607,11 +1615,11 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
-            // waterWaveMenuItem
+            // menuItem41
             // 
-            this.waterWaveMenuItem.Index = 5;
-            this.waterWaveMenuItem.Text = "Water Wave";
-            this.waterWaveMenuItem.Click += new System.EventHandler( this.waterWaveMenuItem_Click );
+            this.bradleyLocalThresholdingMenuItem.Index = 14;
+            this.bradleyLocalThresholdingMenuItem.Text = "Bradley Local Thresholding ";
+            this.bradleyLocalThresholdingMenuItem.Click += new System.EventHandler( this.bradleyLocalThresholdingMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -1621,10 +1629,10 @@ namespace IPLab
             this.Menu = this.mainMenu;
             this.Name = "ImageDoc";
             this.Text = "Image";
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler( this.ImageDoc_MouseUp );
             this.MouseDown += new System.Windows.Forms.MouseEventHandler( this.ImageDoc_MouseDown );
             this.MouseLeave += new System.EventHandler( this.ImageDoc_MouseLeave );
             this.MouseMove += new System.Windows.Forms.MouseEventHandler( this.ImageDoc_MouseMove );
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler( this.ImageDoc_MouseUp );
             this.ResumeLayout( false );
 
         }
@@ -1644,5 +1652,6 @@ namespace IPLab
         private System.Windows.Forms.MenuItem differentEffectsFiltersItem;
         private System.Windows.Forms.MenuItem rombozoidMenuItem;
         private System.Windows.Forms.MenuItem waterWaveMenuItem;
+        private System.Windows.Forms.MenuItem bradleyLocalThresholdingMenuItem;
     }
 }
