@@ -30,7 +30,7 @@ namespace IPLab
         private int fillH = 0;
         private float fillS = 0, fillL = 0;
 
-        private IPLab.HuePicker huePicker;
+        private AForge.Controls.HuePicker huePicker;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -128,7 +128,7 @@ namespace IPLab
         /// </summary>
         private void InitializeComponent( )
         {
-            this.huePicker = new IPLab.HuePicker( );
+            this.huePicker = new AForge.Controls.HuePicker( );
             this.groupBox1 = new System.Windows.Forms.GroupBox( );
             this.maxHBox = new System.Windows.Forms.TextBox( );
             this.label2 = new System.Windows.Forms.Label( );
@@ -175,7 +175,7 @@ namespace IPLab
             this.huePicker.Name = "huePicker";
             this.huePicker.Size = new System.Drawing.Size( 170, 170 );
             this.huePicker.TabIndex = 0;
-            this.huePicker.Type = IPLab.HuePickerType.Region;
+            this.huePicker.Type = AForge.Controls.HuePicker.HuePickerType.Range;
             this.huePicker.ValuesChanged += new System.EventHandler( this.huePicker_ValuesChanged );
             // 
             // groupBox1

@@ -26,7 +26,7 @@ namespace IPLab
         private System.Windows.Forms.GroupBox groupBox2;
         private IPLab.FilterPreview filterPreview;
         private System.Windows.Forms.TextBox hueBox;
-        private IPLab.HuePicker huePicker;
+        private AForge.Controls.HuePicker huePicker;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;
         /// <summary>
@@ -83,7 +83,7 @@ namespace IPLab
         private void InitializeComponent( )
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox( );
-            this.huePicker = new IPLab.HuePicker( );
+            this.huePicker = new AForge.Controls.HuePicker( );
             this.hueBox = new System.Windows.Forms.TextBox( );
             this.label1 = new System.Windows.Forms.Label( );
             this.groupBox2 = new System.Windows.Forms.GroupBox( );
