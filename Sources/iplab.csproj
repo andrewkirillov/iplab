@@ -156,9 +156,6 @@
     <Compile Include="Controls\GridArrayInt.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\HuePicker.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Filters Forms\AdaptiveSmoothForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,9 +328,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GridArrayInt.resx">
       <DependentUpon>GridArrayInt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\HuePicker.resx">
-      <DependentUpon>HuePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\AdaptiveSmoothForm.resx">
       <DependentUpon>AdaptiveSmoothForm.cs</DependentUpon>
