@@ -51,10 +51,7 @@ namespace IPLab
             //
             InitializeComponent( );
 
-            //
             brightnessBox.Text = filter.AdjustValue.ToString( );
-            brightnessTrackBar.Value = (int) ( filter.AdjustValue * 1000 );
-
             filterPreview.Filter = filter;
         }
 
@@ -83,10 +80,10 @@ namespace IPLab
             this.label1 = new System.Windows.Forms.Label( );
             this.brightnessBox = new System.Windows.Forms.TextBox( );
             this.groupBox1 = new System.Windows.Forms.GroupBox( );
-            this.filterPreview = new IPLab.FilterPreview( );
             this.brightnessTrackBar = new System.Windows.Forms.TrackBar( );
             this.cancelButton = new System.Windows.Forms.Button( );
             this.okButton = new System.Windows.Forms.Button( );
+            this.filterPreview = new IPLab.FilterPreview( );
             this.groupBox1.SuspendLayout( );
             ( (System.ComponentModel.ISupportInitialize) ( this.brightnessTrackBar ) ).BeginInit( );
             this.SuspendLayout( );
@@ -101,11 +98,10 @@ namespace IPLab
             // 
             // brightnessBox
             // 
-            this.brightnessBox.Location = new System.Drawing.Point( 115, 10 );
+            this.brightnessBox.Location = new System.Drawing.Point( 120, 10 );
             this.brightnessBox.Name = "brightnessBox";
             this.brightnessBox.Size = new System.Drawing.Size( 50, 20 );
             this.brightnessBox.TabIndex = 1;
-            this.brightnessBox.Text = "";
             this.brightnessBox.TextChanged += new System.EventHandler( this.brightnessBox_TextChanged );
             // 
             // groupBox1
@@ -118,23 +114,15 @@ namespace IPLab
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preview";
             // 
-            // filterPreview
-            // 
-            this.filterPreview.Image = null;
-            this.filterPreview.Location = new System.Drawing.Point( 10, 15 );
-            this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size( 140, 140 );
-            this.filterPreview.TabIndex = 12;
-            // 
             // brightnessTrackBar
             // 
             this.brightnessTrackBar.Location = new System.Drawing.Point( 10, 40 );
-            this.brightnessTrackBar.Maximum = 1000;
-            this.brightnessTrackBar.Minimum = -1000;
+            this.brightnessTrackBar.Maximum = 255;
+            this.brightnessTrackBar.Minimum = -255;
             this.brightnessTrackBar.Name = "brightnessTrackBar";
-            this.brightnessTrackBar.Size = new System.Drawing.Size( 250, 42 );
+            this.brightnessTrackBar.Size = new System.Drawing.Size( 250, 45 );
             this.brightnessTrackBar.TabIndex = 16;
-            this.brightnessTrackBar.TickFrequency = 50;
+            this.brightnessTrackBar.TickFrequency = 25;
             this.brightnessTrackBar.ValueChanged += new System.EventHandler( this.brightnessTrackBar_ValueChanged );
             // 
             // cancelButton
@@ -143,6 +131,7 @@ namespace IPLab
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Location = new System.Drawing.Point( 150, 143 );
             this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size( 75, 23 );
             this.cancelButton.TabIndex = 18;
             this.cancelButton.Text = "&Cancel";
             // 
@@ -152,8 +141,17 @@ namespace IPLab
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.okButton.Location = new System.Drawing.Point( 60, 143 );
             this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size( 75, 23 );
             this.okButton.TabIndex = 17;
             this.okButton.Text = "&Ok";
+            // 
+            // filterPreview
+            // 
+            this.filterPreview.Image = null;
+            this.filterPreview.Location = new System.Drawing.Point( 10, 15 );
+            this.filterPreview.Name = "filterPreview";
+            this.filterPreview.Size = new System.Drawing.Size( 140, 140 );
+            this.filterPreview.TabIndex = 12;
             // 
             // BrightnessForm
             // 
@@ -177,27 +175,40 @@ namespace IPLab
             this.groupBox1.ResumeLayout( false );
             ( (System.ComponentModel.ISupportInitialize) ( this.brightnessTrackBar ) ).EndInit( );
             this.ResumeLayout( false );
+            this.PerformLayout( );
 
         }
         #endregion
 
+        private bool updating = false;
+
         // value of brightness track bar changed
         private void brightnessTrackBar_ValueChanged( object sender, System.EventArgs e )
         {
-            brightnessBox.Text = ( (double) brightnessTrackBar.Value / 1000 ).ToString( );
+            if ( !updating )
+            {
+                brightnessBox.Text = brightnessTrackBar.Value.ToString( );
+            }
         }
 
         // value of brightness text box changed
         private void brightnessBox_TextChanged( object sender, System.EventArgs e )
         {
+            updating = true;
+
             try
             {
-                filter.AdjustValue = float.Parse( brightnessBox.Text );
+                filter.AdjustValue =
+                    Math.Max( Math.Min( int.Parse( brightnessBox.Text ), brightnessTrackBar.Maximum ), brightnessTrackBar.Minimum );
+
+                brightnessTrackBar.Value = filter.AdjustValue;
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )
             {
             }
+
+            updating = false;
         }
     }
 }

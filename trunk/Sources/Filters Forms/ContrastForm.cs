@@ -51,10 +51,7 @@ namespace IPLab
             //
             InitializeComponent( );
 
-            //
             contrastBox.Text = filter.Factor.ToString( );
-            contrastTrackBar.Value = (int) ( filter.Factor * 1000 );
-
             filterPreview.Filter = filter;
         }
 
@@ -105,25 +102,22 @@ namespace IPLab
             this.contrastBox.Name = "contrastBox";
             this.contrastBox.Size = new System.Drawing.Size( 50, 20 );
             this.contrastBox.TabIndex = 1;
-            this.contrastBox.Text = "";
             this.contrastBox.TextChanged += new System.EventHandler( this.contrastBox_TextChanged );
             // 
             // contrastTrackBar
             // 
             this.contrastTrackBar.Location = new System.Drawing.Point( 10, 40 );
-            this.contrastTrackBar.Maximum = 5000;
-            this.contrastTrackBar.Minimum = 1;
+            this.contrastTrackBar.Maximum = 127;
+            this.contrastTrackBar.Minimum = -127;
             this.contrastTrackBar.Name = "contrastTrackBar";
-            this.contrastTrackBar.Size = new System.Drawing.Size( 250, 42 );
+            this.contrastTrackBar.Size = new System.Drawing.Size( 250, 45 );
             this.contrastTrackBar.TabIndex = 17;
-            this.contrastTrackBar.TickFrequency = 200;
-            this.contrastTrackBar.Value = 1;
+            this.contrastTrackBar.TickFrequency = 10;
             this.contrastTrackBar.ValueChanged += new System.EventHandler( this.contrastTrackBar_ValueChanged );
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.AddRange( new System.Windows.Forms.Control[] {
-																					this.filterPreview} );
+            this.groupBox1.Controls.Add( this.filterPreview );
             this.groupBox1.Location = new System.Drawing.Point( 270, 5 );
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size( 160, 165 );
@@ -145,6 +139,7 @@ namespace IPLab
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Location = new System.Drawing.Point( 150, 143 );
             this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size( 75, 23 );
             this.cancelButton.TabIndex = 20;
             this.cancelButton.Text = "&Cancel";
             // 
@@ -154,6 +149,7 @@ namespace IPLab
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.okButton.Location = new System.Drawing.Point( 60, 143 );
             this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size( 75, 23 );
             this.okButton.TabIndex = 19;
             this.okButton.Text = "&Ok";
             // 
@@ -163,13 +159,12 @@ namespace IPLab
             this.AutoScaleBaseSize = new System.Drawing.Size( 5, 13 );
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size( 439, 178 );
-            this.Controls.AddRange( new System.Windows.Forms.Control[] {
-																		  this.cancelButton,
-																		  this.okButton,
-																		  this.groupBox1,
-																		  this.contrastTrackBar,
-																		  this.contrastBox,
-																		  this.label1} );
+            this.Controls.Add( this.cancelButton );
+            this.Controls.Add( this.okButton );
+            this.Controls.Add( this.groupBox1 );
+            this.Controls.Add( this.contrastTrackBar );
+            this.Controls.Add( this.contrastBox );
+            this.Controls.Add( this.label1 );
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -180,27 +175,40 @@ namespace IPLab
             ( (System.ComponentModel.ISupportInitialize) ( this.contrastTrackBar ) ).EndInit( );
             this.groupBox1.ResumeLayout( false );
             this.ResumeLayout( false );
+            this.PerformLayout( );
 
         }
         #endregion
 
+        private bool updating = false;
+
         // value of contrast track bar changed
         private void contrastTrackBar_ValueChanged( object sender, System.EventArgs e )
         {
-            contrastBox.Text = ( (double) contrastTrackBar.Value / 1000 ).ToString( );
+            if ( !updating )
+            {
+                contrastBox.Text = contrastTrackBar.Value.ToString( );
+            }
         }
 
         // value of contrast text box changed
         private void contrastBox_TextChanged( object sender, System.EventArgs e )
         {
+            updating = true;
+
             try
             {
-                filter.Factor = float.Parse( contrastBox.Text );
+                filter.Factor =
+                    Math.Max( Math.Min( int.Parse( contrastBox.Text ), contrastTrackBar.Maximum ), contrastTrackBar.Minimum );
+
+                contrastTrackBar.Value = filter.Factor;
                 filterPreview.RefreshFilter( );
             }
             catch ( Exception )
             {
             }
+
+            updating = false;
         }
     }
 }

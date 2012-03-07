@@ -1,3 +1,214 @@
+AForge.NET Framework 2.2.4.1 release notes
+----------------------------------------
+28.02.2012.
+
+Version updates and fixes:
+
+* Fixed registered issues/requests:
+  - Issue 290: Very noticeable video flicker/blinking using multiple different devices
+
+
+* AForge.Video.DirechShow
+  - Resetting flag which requires update of crossbar input right after the input type was set. There was a bug
+    in the code which was resulting setting crossbar input type again and again causing flickering.
+
+
+
+
+AForge.NET Framework 2.2.4 release notes
+----------------------------------------
+23.02.2012.
+
+Version updates and fixes:
+
+* Fixed registered issues/requests:
+  - Issue  53: Video Capture
+  - Issue  76: Can?t open video camera tv card
+  - Issue 271: Complex.Phase is slightly incorrect (or at least non-standard)
+  - Issue 272: Patch for /trunk/Sources/Neuro/Neurons/ActivationNeuron.cs
+  - Issue 273: static Random doesn't work in multi threading without locking...
+  - Issue 275: Resilient Backpropagation Learning
+  - Issue 277: Test if videoCapabilities is null
+  - Issue 279: Blob and BlobCounter cannot be extended as their constructors are internal. It would be good if we can extend these class.
+  - Issue 280: DisplayCrossbarPropertPage method for CaptureVideoDevices.
+  - Issue 281: GetPixel in UnmanagedImage class
+  - Issue 282: Image is not capturing from Capture Card
+  - Issue 283: Bilateral filter
+
+
+* AForge.Math
+  - Fixed Complex.Phase property, so it provides proper value for cases when real part is less than zero.
+
+
+* AForge.Imaging
+  - Blob'c constructor is made public, so could be reused by using inheritance.
+  
+  - Blob.CenterOfGravity property is changed to have AForge.Point type, which is float, so now calculated CoG is more accurate.
+  
+  - Added UnmanagedImage.GetPixel() method, which allows to get pixel out of 8/24/32 bpp image.
+  
+  - Added UnmanagedImage.SetPixel(int, int, byte) method, which allows setting pixel with all color component set to same value
+    (for grayscale image this method is more intuitive since there is no RGB-to-grayscale conversion).
+    
+  - Added support of 32 bpp RGB (not ARGB) images for BlobCounter.
+  
+  - Added implementation of Bilateral smoothing image processing routine.
+  
+  - Changing BrightnessCorrection and ContrastCorrection filter to use RGB color space instead of HSL:
+        1) It makes those filters faster;
+        2) It removes HSL related artifacts related to Hue;
+        3) It makes those filters simpler and more straight forward to users.
+        If someone is unhappy by this change, he can still use HSLLinear filter to get the effect as before.
+  
+
+* AForge.Neuro
+  - Replaced Neuron's static random numbers generator with its thread safe version.
+  
+  - Exposed Neuron.Weights, Layer.Neurons, Network.Layers properties instead of using [] accessors.
+  
+  - Optimized access to arrays to eliminate bound-checking.
+  
+  - Added implementation RProp (Resilient Back Propagation) neural network learning algorithm contributed by Cesar Souza.
+  
+  
+* AForge.Video.DirechShow
+  - VideoCaptureDevice is updated to never provide null for VideoCapabilities property. If device does not support video
+    capabilities or it failed providing them, then the property will return 0 length array, but not null.
+    
+  - Added VideoCaptureDevice.DisplayCrossbarPropertyPage() method, which allows showing property page of a crossbar for
+    the currently running video source (if it provide crossbar configuration).    
+
+  - Added VideoCaptureDevice.AvailableCrossbarVideoInputs property, which lists available video inputs of the capture card.
+    This can be used to select video input to use before running video device using your own UI.
+    
+  - Added VideoCaptureDevice.CrossbarVideoInput property, which allows setting video input to use by the video device.
+  
+  - VideoCaptureDeviceForm is updated to allow selecting video input for capture cards.
+  
+  
+* AForge.Video.FFMPEG
+  - Fixing VideoFileReader and VideoFileWriter classes so they convert file name to UTF8 string before opening file.
+  
+  - Fixing signing of AForge.Video.FFMPEG.dll assembly, so now it has valid signature.
+  
+  
+* AForge.Video.Kinect
+  - Updating libfreenect library with newer version which is checked out from master branch and built on February 20 2012.
+  
+  - Updated Kinect cameras' stopping routines, so they don't block when device was disconnected and user tries to stop cameras.
+  
+  - Added Kinect disconnection routine, so when Kinect device gets disconnected, cameras will stop automatically and
+    specify DeviceLost as a reason.
+    
+  - KNOWN ISSUES: It seems like libfreenect's freenect_process_events_timeout() function still blocks when device gets lost
+    causing some issue on the USB side, making it hardly possible to gracefully stop managed Kinect's status thread.
+    As a workaround the AForge.NET's code sets thread type to "background", so it does not stop application from exiting.
+
+
+* AForge.Controls
+  - Updated Chart control so it does not check if points coordinates are in X/Y range of the control when drawing them.
+    Instead of this the control sets clipping rectangle, so unwanted point/lines are not drawn.
+    
+  - Updated VideoSourcePlayer.GetCurrentVideoFrame() method so it returns complete copy of the current frame rather than
+    the object produced by Bitmap.Clone().
+    
+    
+
+
+AForge.NET Framework 2.2.3 release notes
+----------------------------------------
+12.12.2011.
+
+Version updates and fixes:
+
+* Fixed registered issues/requests:
+  - Issue 217: Support for Alpha component in Image.Drawing methods
+  - Issue 238: Build errors and warnings under VS 2010
+  - Issue 251: Cannot build from SVN
+  - Issue 252: Rotate filter incorrectly calculates the size of the image after rotation
+  - Issue 261: VideoFileWriter should implement IDisposable
+  - Issue 262: Convolution filter generating AccessViolationException for 640x480 16bpp gray scale image
+  - Issue 264: Support for the alpha channel in convolution filters
+  - Issue 266: GA: Donate thread-safety to chromosomes
+  - Issue 269: Support basic authentication when connecting to IP Cameras
+
+
+* General
+  - Updated project/solution files of the framework's sources, tool and unit tests to VS.NET 2010 (C#/C++ express 2010).
+
+  - Updated project/solution files of all sample to use C# express edition 2010.
+
+
+* AForge
+  - Added ThreadSafeRandom class which is a wrapper for the System.Random class providing thread safety for random numbers
+    generation methods.
+
+
+* AForge.Imaging
+  - Added implementation of Run Length Smoothing Algorithm (horizontal and vertical versions).
+
+  - Improved performance of grayscale filters so those are about ~4.5 times faster doing conversion of 24/32 bpp color
+    images to 8 bpp grayscale images, which is achieved by replacing floating point calculation with integer calculation.
+
+  - Fixing Convolution filter so it processes correctly 16bpp grayscale images. Previously there was a bug causing 16 bpp
+    grayscale images to be processed as 24/32 colour image.
+
+  - Adding Width and Height properties to IntegralImage.
+
+  - Added IntegralImage.GetHaarXWavelet() and IntegralImage.GetHaarYWavelet(), which calculate horizontal and vertical Haar wavelets.
+
+  - Convolution filter is extended to support processing of alpha channel for 32 bpp and 64 bpp images, which is controlled
+    by ProcessAlpha property (set to false by default). For filters like Blur, Mean and GaussianBlur the property is set to
+    true by default, so the alpha channel gets blurred also.
+
+  - Fixed rotation filters, so those don't shift image by one pixel, which was easy to notice when rotating by -90/90 angles.
+    The bug was caused by the fact that for edge pixels source position was calculated one pixel out of image's bounds.
+
+  - Added support for alpha blending for methods of AForge.Imaging.Drawing class.
+
+
+* AForge.Math
+  - Updated classes of AForge.Math namespaces to use new ThreadSafeRandom class, so random numbers generation in those
+    classes becomes thread safe.
+
+
+* AForge.Genetic
+  - Updated classes of AForge.Genetic namespaces to use new ThreadSafeRandom class, so random numbers generation in those
+    classes becomes thread safe.
+
+
+* AForge.Video
+  - Changing IVideoSource.BytesReceived property type from int to long, so it may fit higher values.
+
+  - Fixing AsyncVideoSource so it does full deep cloning of bitmap provided by nested video source instead of using
+    System.Drawing.Image.Clone(), which does not seem to be reliable.
+
+  - Added ForceBasicAuthentication property for MJPEGStream and JPEGStream classes, which allows to force HTTP basic
+    authentication by adding required HTTP header.
+
+
+* AForge.Video.FFMPEG
+  - Allow specifying of video stream bit rate when open video file using VideoFileWriter, so user could trade between
+    video quality and file size.
+
+  - Implemented IDisposable interface for VideoFileReader and VideoFileWriter classes.
+
+  - Updating external FFMPEG library to version from November 30 2011. Updated AForge.Video.FFMPEG to build fine with
+    the new FFMPEG build.
+
+
+* AForge.Video.DirectShow
+  - Fixed BytesReceived property of FileVideoSource and VideoCaptureDevice, so those provide number of provided bytes.
+
+
+* Samples
+  - Fixing few bugs in Blobs Explorer sample application:
+    + If convex hull contain 3 point or less, then don't try finding its quadrilateral;
+    + If object's edge contains only one pixel, then need to draw it individually instead of using Graphics.DrawLines() method.
+
+
+
+
 AForge.NET Framework 2.2.2 release notes
 ----------------------------------------
 16.09.2011.

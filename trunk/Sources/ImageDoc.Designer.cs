@@ -614,6 +614,8 @@ namespace IPLab
             this.grayscaleColorFiltersItem,
             this.toRgbColorFiltersItem,
             this.gammaFiltersItem,
+            this.brightnessHslFiltersItem,
+            this.contrastHslFiltersItem,
             this.menuItem1,
             this.sepiaColorFiltersItem,
             this.menuItem2,
@@ -661,144 +663,144 @@ namespace IPLab
             // 
             // menuItem1
             // 
-            this.menuItem1.Index = 3;
+            this.menuItem1.Index = 5;
             this.menuItem1.Text = "-";
             // 
             // sepiaColorFiltersItem
             // 
-            this.sepiaColorFiltersItem.Index = 4;
+            this.sepiaColorFiltersItem.Index = 6;
             this.sepiaColorFiltersItem.Text = "&Sepia";
             this.sepiaColorFiltersItem.Click += new System.EventHandler( this.sepiaColorFiltersItem_Click );
             // 
             // menuItem2
             // 
-            this.menuItem2.Index = 5;
+            this.menuItem2.Index = 7;
             this.menuItem2.Text = "-";
             // 
             // invertColorFiltersItem
             // 
-            this.invertColorFiltersItem.Index = 6;
+            this.invertColorFiltersItem.Index = 8;
             this.invertColorFiltersItem.Text = "&Invert";
             this.invertColorFiltersItem.Click += new System.EventHandler( this.invertColorFiltersItem_Click );
             // 
             // rotateColorFiltersItem
             // 
-            this.rotateColorFiltersItem.Index = 7;
+            this.rotateColorFiltersItem.Index = 9;
             this.rotateColorFiltersItem.Text = "&Rotate";
             this.rotateColorFiltersItem.Click += new System.EventHandler( this.rotateColorFiltersItem_Click );
             // 
             // menuItem16
             // 
-            this.menuItem16.Index = 8;
+            this.menuItem16.Index = 10;
             this.menuItem16.Text = "-";
             // 
             // colorFilteringColorFiltersItem
             // 
-            this.colorFilteringColorFiltersItem.Index = 9;
+            this.colorFilteringColorFiltersItem.Index = 11;
             this.colorFilteringColorFiltersItem.Text = "Color Filtering";
             this.colorFilteringColorFiltersItem.Click += new System.EventHandler( this.colorFilteringColorFiltersItem_Click );
             // 
             // euclideanFilteringColorFiltersItem
             // 
-            this.euclideanFilteringColorFiltersItem.Index = 10;
+            this.euclideanFilteringColorFiltersItem.Index = 12;
             this.euclideanFilteringColorFiltersItem.Text = "Euclidean Color Filtering";
             this.euclideanFilteringColorFiltersItem.Click += new System.EventHandler( this.euclideanFilteringColorFiltersItem_Click );
             // 
             // channelsFilteringColorFiltersItem
             // 
-            this.channelsFilteringColorFiltersItem.Index = 11;
+            this.channelsFilteringColorFiltersItem.Index = 13;
             this.channelsFilteringColorFiltersItem.Text = "Channels Filtering";
             this.channelsFilteringColorFiltersItem.Click += new System.EventHandler( this.channelsFilteringColorFiltersItem_Click );
             // 
             // menuItem19
             // 
-            this.menuItem19.Index = 12;
+            this.menuItem19.Index = 14;
             this.menuItem19.Text = "-";
             // 
             // extractRedColorFiltersItem
             // 
-            this.extractRedColorFiltersItem.Index = 13;
+            this.extractRedColorFiltersItem.Index = 15;
             this.extractRedColorFiltersItem.Text = "Extract Red Channel";
             this.extractRedColorFiltersItem.Click += new System.EventHandler( this.extractRedColorFiltersItem_Click );
             // 
             // extractGreenColorFiltersItem
             // 
-            this.extractGreenColorFiltersItem.Index = 14;
+            this.extractGreenColorFiltersItem.Index = 16;
             this.extractGreenColorFiltersItem.Text = "Extract Green Channel";
             this.extractGreenColorFiltersItem.Click += new System.EventHandler( this.extractGreenColorFiltersItem_Click );
             // 
             // extractRedBlueFiltersItem
             // 
-            this.extractRedBlueFiltersItem.Index = 15;
+            this.extractRedBlueFiltersItem.Index = 17;
             this.extractRedBlueFiltersItem.Text = "Extract Blue Channel";
             this.extractRedBlueFiltersItem.Click += new System.EventHandler( this.extractRedBlueFiltersItem_Click );
             // 
             // menuItem20
             // 
-            this.menuItem20.Index = 16;
+            this.menuItem20.Index = 18;
             this.menuItem20.Text = "-";
             // 
             // replaceRedColorFiltersItem
             // 
-            this.replaceRedColorFiltersItem.Index = 17;
+            this.replaceRedColorFiltersItem.Index = 19;
             this.replaceRedColorFiltersItem.Text = "Replace Red Channel";
             this.replaceRedColorFiltersItem.Click += new System.EventHandler( this.replaceRedColorFiltersItem_Click );
             // 
             // replaceGreenColorFiltersItem
             // 
-            this.replaceGreenColorFiltersItem.Index = 18;
+            this.replaceGreenColorFiltersItem.Index = 20;
             this.replaceGreenColorFiltersItem.Text = "Replace Green Channel";
             this.replaceGreenColorFiltersItem.Click += new System.EventHandler( this.replaceGreenColorFiltersItem_Click );
             // 
             // replaceBlueColorFiltersItem
             // 
-            this.replaceBlueColorFiltersItem.Index = 19;
+            this.replaceBlueColorFiltersItem.Index = 21;
             this.replaceBlueColorFiltersItem.Text = "Replace Blue Channel";
             this.replaceBlueColorFiltersItem.Click += new System.EventHandler( this.replaceBlueColorFiltersItem_Click );
             // 
             // menuItem18
             // 
-            this.menuItem18.Index = 20;
+            this.menuItem18.Index = 22;
             this.menuItem18.Text = "-";
             // 
             // redColorFiltersItem
             // 
-            this.redColorFiltersItem.Index = 21;
+            this.redColorFiltersItem.Index = 23;
             this.redColorFiltersItem.Text = "Red";
             this.redColorFiltersItem.Click += new System.EventHandler( this.redColorFiltersItem_Click );
             // 
             // greenColorFiltersItem
             // 
-            this.greenColorFiltersItem.Index = 22;
+            this.greenColorFiltersItem.Index = 24;
             this.greenColorFiltersItem.Text = "Green";
             this.greenColorFiltersItem.Click += new System.EventHandler( this.greenColorFiltersItem_Click );
             // 
             // blueColorFiltersItem
             // 
-            this.blueColorFiltersItem.Index = 23;
+            this.blueColorFiltersItem.Index = 25;
             this.blueColorFiltersItem.Text = "Blue";
             this.blueColorFiltersItem.Click += new System.EventHandler( this.blueColorFiltersItem_Click );
             // 
             // menuItem17
             // 
-            this.menuItem17.Index = 24;
+            this.menuItem17.Index = 26;
             this.menuItem17.Text = "-";
             // 
             // cyanColorFiltersItem
             // 
-            this.cyanColorFiltersItem.Index = 25;
+            this.cyanColorFiltersItem.Index = 27;
             this.cyanColorFiltersItem.Text = "Cyan";
             this.cyanColorFiltersItem.Click += new System.EventHandler( this.cyanColorFiltersItem_Click );
             // 
             // magentaColorFiltersItem
             // 
-            this.magentaColorFiltersItem.Index = 26;
+            this.magentaColorFiltersItem.Index = 28;
             this.magentaColorFiltersItem.Text = "Magenta";
             this.magentaColorFiltersItem.Click += new System.EventHandler( this.magentaColorFiltersItem_Click );
             // 
             // yellowColorFiltersItem
             // 
-            this.yellowColorFiltersItem.Index = 27;
+            this.yellowColorFiltersItem.Index = 29;
             this.yellowColorFiltersItem.Text = "Yellow";
             this.yellowColorFiltersItem.Click += new System.EventHandler( this.yellowColorFiltersItem_Click );
             // 
@@ -833,8 +835,6 @@ namespace IPLab
             // 
             this.hslFiltersItem.Index = 2;
             this.hslFiltersItem.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
-            this.brightnessHslFiltersItem,
-            this.contrastHslFiltersItem,
             this.saturationHslFiltersItem,
             this.menuItem29,
             this.linearHslFiltersItem,
@@ -845,47 +845,47 @@ namespace IPLab
             // 
             // brightnessHslFiltersItem
             // 
-            this.brightnessHslFiltersItem.Index = 0;
+            this.brightnessHslFiltersItem.Index = 3;
             this.brightnessHslFiltersItem.Text = "&Brightness";
             this.brightnessHslFiltersItem.Click += new System.EventHandler( this.brightnessHslFiltersItem_Click );
             // 
             // contrastHslFiltersItem
             // 
-            this.contrastHslFiltersItem.Index = 1;
+            this.contrastHslFiltersItem.Index = 4;
             this.contrastHslFiltersItem.Text = "&Contrast";
             this.contrastHslFiltersItem.Click += new System.EventHandler( this.contrastHslFiltersItem_Click );
             // 
             // saturationHslFiltersItem
             // 
-            this.saturationHslFiltersItem.Index = 2;
+            this.saturationHslFiltersItem.Index = 0;
             this.saturationHslFiltersItem.Text = "&Saturation";
             this.saturationHslFiltersItem.Click += new System.EventHandler( this.saturationHslFiltersItem_Click );
             // 
             // menuItem29
             // 
-            this.menuItem29.Index = 3;
+            this.menuItem29.Index = 1;
             this.menuItem29.Text = "-";
             // 
             // linearHslFiltersItem
             // 
-            this.linearHslFiltersItem.Index = 4;
+            this.linearHslFiltersItem.Index = 2;
             this.linearHslFiltersItem.Text = "HSL Linear";
             this.linearHslFiltersItem.Click += new System.EventHandler( this.linearHslFiltersItem_Click );
             // 
             // menuItem28
             // 
-            this.menuItem28.Index = 5;
+            this.menuItem28.Index = 3;
             this.menuItem28.Text = "-";
             // 
             // filteringHslFiltersItem
             // 
-            this.filteringHslFiltersItem.Index = 6;
+            this.filteringHslFiltersItem.Index = 4;
             this.filteringHslFiltersItem.Text = "HSL &Filtering";
             this.filteringHslFiltersItem.Click += new System.EventHandler( this.filteringHslFiltersItem_Click );
             // 
             // hueHslFiltersItem
             // 
-            this.hueHslFiltersItem.Index = 7;
+            this.hueHslFiltersItem.Index = 5;
             this.hueHslFiltersItem.Text = "&Hue Modifier";
             this.hueHslFiltersItem.Click += new System.EventHandler( this.hueHslFiltersItem_Click );
             // 
