@@ -201,6 +201,12 @@
     <Compile Include="Filters Forms\GaussianForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Filters Forms\HolesFillingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\HolesFillingForm.Designer.cs">
+      <DependentUpon>HolesFillingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filters Forms\HSLFilteringForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -369,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\GaussianForm.resx">
       <DependentUpon>GaussianForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\HolesFillingForm.resx">
+      <DependentUpon>HolesFillingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\HSLFilteringForm.resx">
       <DependentUpon>HSLFilteringForm.cs</DependentUpon>

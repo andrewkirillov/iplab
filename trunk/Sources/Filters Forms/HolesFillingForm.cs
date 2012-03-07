@@ -1,7 +1,7 @@
 ﻿// Image Processing Lab
 // http://www.aforgenet.com/projects/iplab/
 //
-// Copyright © Andrew Kirillov, 2005-2009
+// Copyright © Andrew Kirillov, 2005-2012
 // andrew.kirillov@aforgenet.com
 //
 
@@ -17,9 +17,9 @@ using AForge.Imaging.Filters;
 
 namespace IPLab
 {
-    public partial class BlobsFilteringForm : Form
+    public partial class HolesFillingForm : Form
     {
-        private BlobsFiltering filter = new BlobsFiltering( );
+        private FillHoles filter = new FillHoles( );
         private bool updating = false;
 
         // Image property
@@ -29,11 +29,11 @@ namespace IPLab
             {
                 filterPreview.Image = value;
 
-                minWidthTrackBar.Maximum  = filterPreview.Image.Width;
-                minHeightTrackBar.Maximum = filterPreview.Image.Height;
+                maxWidthTrackBar.Maximum = filterPreview.Image.Width;
+                maxHeightTrackBar.Maximum = filterPreview.Image.Height;
 
-                minWidthTrackBar.TickFrequency  = minWidthTrackBar.Maximum / 50;
-                minHeightTrackBar.TickFrequency = minHeightTrackBar.Maximum / 50;
+                maxWidthTrackBar.TickFrequency = maxWidthTrackBar.Maximum / 50;
+                maxHeightTrackBar.TickFrequency = maxHeightTrackBar.Maximum / 50;
             }
         }
 
@@ -44,75 +44,77 @@ namespace IPLab
         }
 
         // Constructor
-        public BlobsFilteringForm( )
+        public HolesFillingForm( )
         {
             InitializeComponent( );
 
+            filter.MaxHoleWidth  = 100;
+            filter.MaxHoleHeight = 100;
             filterPreview.Filter = filter;
 
             // default filtering settings
-            minWidthBox.Text  = filter.MinWidth.ToString( );
-            minHeightBox.Text = filter.MinHeight.ToString( );
+            maxWidthBox.Text = filter.MaxHoleWidth.ToString( );
+            maxHeightBox.Text = filter.MaxHoleHeight.ToString( );
 
             // uncoupled filtering mode
             modeCombo.SelectedIndex = ( filter.CoupledSizeFiltering ) ? 1 : 0;
         }
 
-        // Minimum width was changed
-        private void minWidthBox_TextChanged( object sender, EventArgs e )
+        // Maximum hole width was changed
+        private void maxWidthBox_TextChanged( object sender, EventArgs e )
         {
             updating = true;
 
             try
             {
-                filter.MinWidth = Math.Min( int.Parse( minWidthBox.Text ), minWidthTrackBar.Maximum );
+                filter.MaxHoleWidth = Math.Min( int.Parse( maxWidthBox.Text ), maxWidthTrackBar.Maximum );
             }
             catch
             {
-                minWidthBox.Text = filter.MinWidth.ToString( );
+                maxWidthBox.Text = filter.MaxHoleWidth.ToString( );
             }
 
-            minWidthTrackBar.Value = filter.MinWidth;
+            maxWidthTrackBar.Value = filter.MaxHoleWidth;
             filterPreview.RefreshFilter( );
 
             updating = false;
         }
 
-        // Minimum height was changed
-        private void minHeightBox_TextChanged( object sender, EventArgs e )
+        // Maximum hole height was changed
+        private void maxHeightBox_TextChanged( object sender, EventArgs e )
         {
             updating = true;
 
             try
             {
-                filter.MinHeight = Math.Min( int.Parse( minHeightBox.Text ), minHeightTrackBar.Maximum );
+                filter.MaxHoleHeight = Math.Min( int.Parse( maxHeightBox.Text ), maxHeightTrackBar.Maximum );
             }
             catch
             {
-                minHeightBox.Text = filter.MinHeight.ToString( );
+                maxHeightBox.Text = filter.MaxHoleHeight.ToString( );
             }
 
-            minHeightTrackBar.Value = filter.MinHeight;
+            maxHeightTrackBar.Value = filter.MaxHoleHeight;
             filterPreview.RefreshFilter( );
 
             updating = false;
         }
 
-        // Minimum width was changed
-        private void minWidthTrackBar_ValueChanged( object sender, EventArgs e )
+        // Maximum hole width was changed
+        private void maxWidthTrackBar_ValueChanged( object sender, EventArgs e )
         {
             if ( !updating )
             {
-                minWidthBox.Text = minWidthTrackBar.Value.ToString( );
+                maxWidthBox.Text = maxWidthTrackBar.Value.ToString( );
             }
         }
 
-        // Minimum height was changed
-        private void minHeightTrackBar_ValueChanged( object sender, EventArgs e )
+        // Maximum hole height was changed
+        private void maxHeightTrackBar_ValueChanged( object sender, EventArgs e )
         {
             if ( !updating )
             {
-                minHeightBox.Text = minHeightTrackBar.Value.ToString( );
+                maxHeightBox.Text = maxHeightTrackBar.Value.ToString( );
             }
         }
 
