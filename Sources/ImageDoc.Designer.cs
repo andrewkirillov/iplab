@@ -294,6 +294,7 @@ namespace IPLab
             this.menuItem31 = new System.Windows.Forms.MenuItem( );
             this.sisThresholdBinaryFiltersItem = new System.Windows.Forms.MenuItem( );
             this.otsuThresholdMenuItem = new System.Windows.Forms.MenuItem( );
+            this.bradleyLocalThresholdingMenuItem = new System.Windows.Forms.MenuItem( );
             this.morphologyFiltersItem = new System.Windows.Forms.MenuItem( );
             this.erosionMorphologyFiltersItem = new System.Windows.Forms.MenuItem( );
             this.dilatationMorphologyFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -344,6 +345,7 @@ namespace IPLab
             this.filterBlobsMenuItem = new System.Windows.Forms.MenuItem( );
             this.extractBiggestBlobMenuItem = new System.Windows.Forms.MenuItem( );
             this.blobExtractorFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.fillHolesMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem30 = new System.Windows.Forms.MenuItem( );
             this.labelingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem40 = new System.Windows.Forms.MenuItem( );
@@ -377,7 +379,6 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.bradleyLocalThresholdingMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -1064,6 +1065,12 @@ namespace IPLab
             this.otsuThresholdMenuItem.Text = "Otsu Threshold";
             this.otsuThresholdMenuItem.Click += new System.EventHandler( this.otsuThresholdMenuItem_Click );
             // 
+            // bradleyLocalThresholdingMenuItem
+            // 
+            this.bradleyLocalThresholdingMenuItem.Index = 14;
+            this.bradleyLocalThresholdingMenuItem.Text = "Bradley Local Thresholding ";
+            this.bradleyLocalThresholdingMenuItem.Click += new System.EventHandler( this.bradleyLocalThresholdingMenuItem_Click );
+            // 
             // morphologyFiltersItem
             // 
             this.morphologyFiltersItem.Index = 5;
@@ -1381,6 +1388,7 @@ namespace IPLab
             this.filterBlobsMenuItem,
             this.extractBiggestBlobMenuItem,
             this.blobExtractorFiltersItem,
+            this.fillHolesMenuItem,
             this.menuItem30,
             this.labelingFiltersItem,
             this.menuItem40,
@@ -1406,31 +1414,37 @@ namespace IPLab
             this.blobExtractorFiltersItem.Text = "&Blob Extractor";
             this.blobExtractorFiltersItem.Click += new System.EventHandler( this.blobExtractorFiltersItem_Click );
             // 
+            // fillHolesMenuItem
+            // 
+            this.fillHolesMenuItem.Index = 3;
+            this.fillHolesMenuItem.Text = "Fill &Holes";
+            this.fillHolesMenuItem.Click += new System.EventHandler( this.fillHolesMenuItem_Click );
+            // 
             // menuItem30
             // 
-            this.menuItem30.Index = 3;
+            this.menuItem30.Index = 4;
             this.menuItem30.Text = "-";
             // 
             // labelingFiltersItem
             // 
-            this.labelingFiltersItem.Index = 4;
+            this.labelingFiltersItem.Index = 5;
             this.labelingFiltersItem.Text = "Connected Components Labeling";
             this.labelingFiltersItem.Click += new System.EventHandler( this.labelingFiltersItem_Click );
             // 
             // menuItem40
             // 
-            this.menuItem40.Index = 5;
+            this.menuItem40.Index = 6;
             this.menuItem40.Text = "-";
             // 
             // quadrilateralFinderMenuItem
             // 
-            this.quadrilateralFinderMenuItem.Index = 6;
+            this.quadrilateralFinderMenuItem.Index = 7;
             this.quadrilateralFinderMenuItem.Text = "Quadrilateral Finder ";
             this.quadrilateralFinderMenuItem.Click += new System.EventHandler( this.quadrilateralFinderMenuItem_Click );
             // 
             // quadrilateralTransformationMenuItem
             // 
-            this.quadrilateralTransformationMenuItem.Index = 7;
+            this.quadrilateralTransformationMenuItem.Index = 8;
             this.quadrilateralTransformationMenuItem.Text = "Quadrilateral Transformation ";
             this.quadrilateralTransformationMenuItem.Click += new System.EventHandler( this.quadrilateralTransformationMenuItem_Click );
             // 
@@ -1615,12 +1629,6 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
-            // menuItem41
-            // 
-            this.bradleyLocalThresholdingMenuItem.Index = 14;
-            this.bradleyLocalThresholdingMenuItem.Text = "Bradley Local Thresholding ";
-            this.bradleyLocalThresholdingMenuItem.Click += new System.EventHandler( this.bradleyLocalThresholdingMenuItem_Click );
-            // 
             // ImageDoc
             // 
             this.AllowedStates = WeifenLuo.WinFormsUI.ContentStates.Document;
@@ -1653,5 +1661,6 @@ namespace IPLab
         private System.Windows.Forms.MenuItem rombozoidMenuItem;
         private System.Windows.Forms.MenuItem waterWaveMenuItem;
         private System.Windows.Forms.MenuItem bradleyLocalThresholdingMenuItem;
+        private System.Windows.Forms.MenuItem fillHolesMenuItem;
     }
 }

@@ -1535,6 +1535,22 @@ namespace IPLab
             }
         }
 
+        // Fill holes in binary image
+        private void fillHolesMenuItem_Click( object sender, EventArgs e )
+        {
+            if ( CheckIfBinary( "Fill Holes filter" ) )
+            {
+                HolesFillingForm form = new HolesFillingForm( );
+
+                form.Image = image;
+
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
+            }
+        }
+
         // Filter blobs by size
         private void filterBlobsMenuItem_Click( object sender, EventArgs e )
         {
