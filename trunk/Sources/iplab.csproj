@@ -165,6 +165,12 @@
     <Compile Include="Filters Forms\AdditiveNoiseForm.Designer.cs">
       <DependentUpon>AdditiveNoiseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Filters Forms\BayerFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\BayerFilterForm.Designer.cs">
+      <DependentUpon>BayerFilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filters Forms\BilateralForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,6 +353,9 @@
     <EmbeddedResource Include="Filters Forms\AdditiveNoiseForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AdditiveNoiseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\BayerFilterForm.resx">
+      <DependentUpon>BayerFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\BilateralForm.resx">
       <DependentUpon>BilateralForm.cs</DependentUpon>

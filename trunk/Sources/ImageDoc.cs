@@ -610,6 +610,20 @@ namespace IPLab
             ApplyFilter( new Sepia( ) );
         }
 
+        // Bayet filter
+        private void bayerFiltersItem_Click( object sender, EventArgs e )
+        {
+            if ( CheckIfGrayscale( "Bayer filter" ) )
+            {
+                BayerFilterForm form = new BayerFilterForm( );
+
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
+            }
+        }
+
         // Grayscale image
         private void Grayscale( )
         {
