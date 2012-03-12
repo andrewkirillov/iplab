@@ -230,6 +230,8 @@ namespace IPLab
             this.grayscaleColorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.toRgbColorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.gammaFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.brightnessHslFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.contrastHslFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem1 = new System.Windows.Forms.MenuItem( );
             this.sepiaColorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem2 = new System.Windows.Forms.MenuItem( );
@@ -260,8 +262,6 @@ namespace IPLab
             this.extractGreenFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
             this.extractBlueFromNrgbMenuItem = new System.Windows.Forms.MenuItem( );
             this.hslFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.brightnessHslFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.contrastHslFiltersItem = new System.Windows.Forms.MenuItem( );
             this.saturationHslFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem29 = new System.Windows.Forms.MenuItem( );
             this.linearHslFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -379,6 +379,7 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.bilateralSmoothingFiltersItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -661,6 +662,18 @@ namespace IPLab
             this.gammaFiltersItem.Text = "&Gamma Correction";
             this.gammaFiltersItem.Click += new System.EventHandler( this.gammaFiltersItem_Click );
             // 
+            // brightnessHslFiltersItem
+            // 
+            this.brightnessHslFiltersItem.Index = 3;
+            this.brightnessHslFiltersItem.Text = "&Brightness";
+            this.brightnessHslFiltersItem.Click += new System.EventHandler( this.brightnessHslFiltersItem_Click );
+            // 
+            // contrastHslFiltersItem
+            // 
+            this.contrastHslFiltersItem.Index = 4;
+            this.contrastHslFiltersItem.Text = "&Contrast";
+            this.contrastHslFiltersItem.Click += new System.EventHandler( this.contrastHslFiltersItem_Click );
+            // 
             // menuItem1
             // 
             this.menuItem1.Index = 5;
@@ -842,18 +855,6 @@ namespace IPLab
             this.filteringHslFiltersItem,
             this.hueHslFiltersItem} );
             this.hslFiltersItem.Text = "&HSL Color space";
-            // 
-            // brightnessHslFiltersItem
-            // 
-            this.brightnessHslFiltersItem.Index = 3;
-            this.brightnessHslFiltersItem.Text = "&Brightness";
-            this.brightnessHslFiltersItem.Click += new System.EventHandler( this.brightnessHslFiltersItem_Click );
-            // 
-            // contrastHslFiltersItem
-            // 
-            this.contrastHslFiltersItem.Index = 4;
-            this.contrastHslFiltersItem.Text = "&Contrast";
-            this.contrastHslFiltersItem.Click += new System.EventHandler( this.contrastHslFiltersItem_Click );
             // 
             // saturationHslFiltersItem
             // 
@@ -1522,6 +1523,7 @@ namespace IPLab
             this.menuItem24.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.adaptiveSmoothingFiltersItem,
             this.conservativeSmoothingFiltersItem,
+            this.bilateralSmoothingFiltersItem,
             this.medianFiltersItem,
             this.menuItem34,
             this.simpleSkeletonizationFiltersItem,
@@ -1544,36 +1546,36 @@ namespace IPLab
             // 
             // medianFiltersItem
             // 
-            this.medianFiltersItem.Index = 2;
+            this.medianFiltersItem.Index = 3;
             this.medianFiltersItem.Text = "Me&dian";
             this.medianFiltersItem.Click += new System.EventHandler( this.medianFiltersItem_Click );
             // 
             // menuItem34
             // 
-            this.menuItem34.Index = 3;
+            this.menuItem34.Index = 4;
             this.menuItem34.Text = "-";
             // 
             // simpleSkeletonizationFiltersItem
             // 
-            this.simpleSkeletonizationFiltersItem.Index = 4;
+            this.simpleSkeletonizationFiltersItem.Index = 5;
             this.simpleSkeletonizationFiltersItem.Text = "Simple &Skeletonization";
             this.simpleSkeletonizationFiltersItem.Click += new System.EventHandler( this.simpleSkeletonizationFiltersItem_Click );
             // 
             // shrinkFiltersItem
             // 
-            this.shrinkFiltersItem.Index = 5;
+            this.shrinkFiltersItem.Index = 6;
             this.shrinkFiltersItem.Text = "Shrink";
             this.shrinkFiltersItem.Click += new System.EventHandler( this.shrinkFiltersItem_Click );
             // 
             // simplePosterizatonMenuItem
             // 
-            this.simplePosterizatonMenuItem.Index = 6;
+            this.simplePosterizatonMenuItem.Index = 7;
             this.simplePosterizatonMenuItem.Text = "Simple Posterization";
             this.simplePosterizatonMenuItem.Click += new System.EventHandler( this.simplePosterizatonMenuItem_Click );
             // 
             // documentAligningMenuItem
             // 
-            this.documentAligningMenuItem.Index = 7;
+            this.documentAligningMenuItem.Index = 8;
             this.documentAligningMenuItem.Text = "Document Aligning";
             this.documentAligningMenuItem.Click += new System.EventHandler( this.documentAligningMenuItem_Click );
             // 
@@ -1629,6 +1631,12 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
+            // bilateralSmoothingFiltersItem
+            // 
+            this.bilateralSmoothingFiltersItem.Index = 2;
+            this.bilateralSmoothingFiltersItem.Text = "Bilateral Smoothing";
+            this.bilateralSmoothingFiltersItem.Click += new System.EventHandler( this.bilateralSmoothingFiltersItem_Click );
+            // 
             // ImageDoc
             // 
             this.AllowedStates = WeifenLuo.WinFormsUI.ContentStates.Document;
@@ -1662,5 +1670,6 @@ namespace IPLab
         private System.Windows.Forms.MenuItem waterWaveMenuItem;
         private System.Windows.Forms.MenuItem bradleyLocalThresholdingMenuItem;
         private System.Windows.Forms.MenuItem fillHolesMenuItem;
+        private System.Windows.Forms.MenuItem bilateralSmoothingFiltersItem;
     }
 }

@@ -1392,6 +1392,19 @@ namespace IPLab
             ApplyFilter( new ConservativeSmoothing( ) );
         }
 
+        // Bilateral smoothing filter
+        private void bilateralSmoothingFiltersItem_Click( object sender, EventArgs e )
+        {
+            BilateralForm form = new BilateralForm( );
+
+            form.Image = image;
+
+            if ( form.ShowDialog( ) == DialogResult.OK )
+            {
+                ApplyFilter( form.Filter );
+            }
+        }
+
         // Perlin noise effects
         private void perlinNoiseFiltersItem_Click( object sender, System.EventArgs e )
         {
