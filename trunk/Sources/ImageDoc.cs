@@ -1829,6 +1829,28 @@ namespace IPLab
             }
         }
 
+        // Transform image "to polar" system
+        private void transformToPolarMenuItem_Click( object sender, EventArgs e )
+        {
+            PolarFilterForm form = new PolarFilterForm( true, image.Size );
+
+            if ( form.ShowDialog( ) == DialogResult.OK )
+            {
+                ApplyFilter( form.Filter );
+            }
+        }
+
+        // Transform image "from polar" system
+        private void transformFromPolarMenuItem_Click( object sender, EventArgs e )
+        {
+            PolarFilterForm form = new PolarFilterForm( false, image.Size );
+
+            if ( form.ShowDialog( ) == DialogResult.OK )
+            {
+                ApplyFilter( form.Filter );
+            }
+        }
+
         // Fourier transformation
         private void ForwardFourierTransformation( )
         {

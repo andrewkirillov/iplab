@@ -288,6 +288,12 @@
     <Compile Include="Filters Forms\ThresholdForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Filters Forms\PolarFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\PolarFilterForm.Designer.cs">
+      <DependentUpon>PolarFilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filters Forms\WaterWaveForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -454,6 +460,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\ThresholdForm.resx">
       <DependentUpon>ThresholdForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\PolarFilterForm.resx">
+      <DependentUpon>PolarFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\WaterWaveForm.resx">
       <DependentUpon>WaterWaveForm.cs</DependentUpon>

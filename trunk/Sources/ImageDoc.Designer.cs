@@ -234,6 +234,7 @@ namespace IPLab
             this.contrastHslFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem1 = new System.Windows.Forms.MenuItem( );
             this.sepiaColorFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.bayerFiltersItem = new System.Windows.Forms.MenuItem( );
             this.menuItem2 = new System.Windows.Forms.MenuItem( );
             this.invertColorFiltersItem = new System.Windows.Forms.MenuItem( );
             this.rotateColorFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -380,7 +381,9 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.bayerFiltersItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem41 = new System.Windows.Forms.MenuItem( );
+            this.transformToPolarMenuItem = new System.Windows.Forms.MenuItem( );
+            this.transformFromPolarMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -686,6 +689,12 @@ namespace IPLab
             this.sepiaColorFiltersItem.Index = 6;
             this.sepiaColorFiltersItem.Text = "&Sepia";
             this.sepiaColorFiltersItem.Click += new System.EventHandler( this.sepiaColorFiltersItem_Click );
+            // 
+            // bayerFiltersItem
+            // 
+            this.bayerFiltersItem.Index = 7;
+            this.bayerFiltersItem.Text = "Bayer filter";
+            this.bayerFiltersItem.Click += new System.EventHandler( this.bayerFiltersItem_Click );
             // 
             // menuItem2
             // 
@@ -1531,7 +1540,10 @@ namespace IPLab
             this.simpleSkeletonizationFiltersItem,
             this.shrinkFiltersItem,
             this.simplePosterizatonMenuItem,
-            this.documentAligningMenuItem} );
+            this.documentAligningMenuItem,
+            this.menuItem41,
+            this.transformToPolarMenuItem,
+            this.transformFromPolarMenuItem} );
             this.menuItem24.Text = "Other";
             // 
             // adaptiveSmoothingFiltersItem
@@ -1639,11 +1651,22 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
-            // bayetFiltersItem
+            // menuItem41
             // 
-            this.bayerFiltersItem.Index = 7;
-            this.bayerFiltersItem.Text = "Bayer filter";
-            this.bayerFiltersItem.Click += new System.EventHandler( this.bayerFiltersItem_Click );
+            this.menuItem41.Index = 9;
+            this.menuItem41.Text = "-";
+            // 
+            // transformToPolarMenuItem
+            // 
+            this.transformToPolarMenuItem.Index = 10;
+            this.transformToPolarMenuItem.Text = "Transform to Polar";
+            this.transformToPolarMenuItem.Click += new System.EventHandler( this.transformToPolarMenuItem_Click );
+            // 
+            // transformFromPolarMenuItem
+            // 
+            this.transformFromPolarMenuItem.Index = 11;
+            this.transformFromPolarMenuItem.Text = "Transform from Polar";
+            this.transformFromPolarMenuItem.Click += new System.EventHandler( this.transformFromPolarMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -1680,5 +1703,8 @@ namespace IPLab
         private System.Windows.Forms.MenuItem fillHolesMenuItem;
         private System.Windows.Forms.MenuItem bilateralSmoothingFiltersItem;
         private System.Windows.Forms.MenuItem bayerFiltersItem;
+        private System.Windows.Forms.MenuItem menuItem41;
+        private System.Windows.Forms.MenuItem transformToPolarMenuItem;
+        private System.Windows.Forms.MenuItem transformFromPolarMenuItem;
     }
 }
