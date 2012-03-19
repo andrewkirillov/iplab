@@ -37,6 +37,7 @@
             this.typeCombo = new System.Windows.Forms.ComboBox( );
             this.label2 = new System.Windows.Forms.Label( );
             this.maxGapUpDown = new System.Windows.Forms.NumericUpDown( );
+            this.processBordersCheck = new System.Windows.Forms.CheckBox( );
             this.groupBox1.SuspendLayout( );
             this.groupBox2.SuspendLayout( );
             ( (System.ComponentModel.ISupportInitialize) ( this.maxGapUpDown ) ).BeginInit( );
@@ -46,7 +47,7 @@
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelButton.Location = new System.Drawing.Point( 99, 300 );
+            this.cancelButton.Location = new System.Drawing.Point( 113, 335 );
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size( 75, 23 );
             this.cancelButton.TabIndex = 3;
@@ -56,7 +57,7 @@
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.okButton.Location = new System.Drawing.Point( 14, 300 );
+            this.okButton.Location = new System.Drawing.Point( 28, 335 );
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size( 75, 23 );
             this.okButton.TabIndex = 2;
@@ -65,9 +66,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add( this.filterPreview );
-            this.groupBox1.Location = new System.Drawing.Point( 10, 111 );
+            this.groupBox1.Location = new System.Drawing.Point( 10, 125 );
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size( 170, 175 );
+            this.groupBox1.Size = new System.Drawing.Size( 195, 200 );
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Preview";
@@ -77,19 +78,20 @@
             this.filterPreview.Image = null;
             this.filterPreview.Location = new System.Drawing.Point( 10, 15 );
             this.filterPreview.Name = "filterPreview";
-            this.filterPreview.Size = new System.Drawing.Size( 150, 150 );
+            this.filterPreview.Size = new System.Drawing.Size( 175, 175 );
             this.filterPreview.TabIndex = 0;
             this.filterPreview.TabStop = false;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add( this.processBordersCheck );
             this.groupBox2.Controls.Add( this.maxGapUpDown );
             this.groupBox2.Controls.Add( this.label2 );
             this.groupBox2.Controls.Add( this.typeCombo );
             this.groupBox2.Controls.Add( this.label1 );
             this.groupBox2.Location = new System.Drawing.Point( 10, 10 );
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size( 170, 85 );
+            this.groupBox2.Size = new System.Drawing.Size( 195, 110 );
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filter settings";
@@ -148,13 +150,24 @@
             0} );
             this.maxGapUpDown.ValueChanged += new System.EventHandler( this.maxGapUpDown_ValueChanged );
             // 
+            // processBordersCheck
+            // 
+            this.processBordersCheck.AutoSize = true;
+            this.processBordersCheck.Location = new System.Drawing.Point( 10, 85 );
+            this.processBordersCheck.Name = "processBordersCheck";
+            this.processBordersCheck.Size = new System.Drawing.Size( 181, 17 );
+            this.processBordersCheck.TabIndex = 4;
+            this.processBordersCheck.Text = "Process gaps with image borders";
+            this.processBordersCheck.UseVisualStyleBackColor = true;
+            this.processBordersCheck.CheckedChanged += new System.EventHandler( this.processBordersCheck_CheckedChanged );
+            // 
             // RunLengthSmoothingForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size( 189, 336 );
+            this.ClientSize = new System.Drawing.Size( 216, 366 );
             this.Controls.Add( this.groupBox2 );
             this.Controls.Add( this.cancelButton );
             this.Controls.Add( this.okButton );
@@ -182,5 +195,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox typeCombo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox processBordersCheck;
     }
 }
