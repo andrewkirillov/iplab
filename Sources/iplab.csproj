@@ -258,6 +258,12 @@
     <Compile Include="Filters Forms\RotateForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Filters Forms\RunLengthSmoothingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\RunLengthSmoothingForm.Designer.cs">
+      <DependentUpon>RunLengthSmoothingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filters Forms\SaltNoiseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -438,6 +444,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\RotateForm.resx">
       <DependentUpon>RotateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\RunLengthSmoothingForm.resx">
+      <DependentUpon>RunLengthSmoothingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\SaltNoiseForm.resx">
       <SubType>Designer</SubType>
