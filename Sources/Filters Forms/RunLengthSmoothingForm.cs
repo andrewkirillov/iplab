@@ -72,7 +72,22 @@ namespace IPLab
                 ( (VerticalRunLengthSmoothing) filter ).MaxGapSize = maxGapSize;
             }
 
-            filterPreview.Filter = filter;
+            filterPreview.RefreshFilter( );
+        }
+
+        private void processBordersCheck_CheckedChanged( object sender, EventArgs e )
+        {
+            bool processBorders = processBordersCheck.Checked;
+
+            if ( typeCombo.SelectedIndex == 0 )
+            {
+                ( (HorizontalRunLengthSmoothing) filter ).ProcessGapsWithImageBorders = processBorders;
+            }
+            else
+            {
+                ( (VerticalRunLengthSmoothing) filter ).ProcessGapsWithImageBorders = processBorders;
+            }
+
             filterPreview.RefreshFilter( );
         }
     }
