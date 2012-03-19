@@ -372,6 +372,9 @@ namespace IPLab
             this.shrinkFiltersItem = new System.Windows.Forms.MenuItem( );
             this.simplePosterizatonMenuItem = new System.Windows.Forms.MenuItem( );
             this.documentAligningMenuItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem41 = new System.Windows.Forms.MenuItem( );
+            this.transformToPolarMenuItem = new System.Windows.Forms.MenuItem( );
+            this.transformFromPolarMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem23 = new System.Windows.Forms.MenuItem( );
             this.resizeFiltersItem = new System.Windows.Forms.MenuItem( );
             this.rotateFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -381,9 +384,8 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.menuItem41 = new System.Windows.Forms.MenuItem( );
-            this.transformToPolarMenuItem = new System.Windows.Forms.MenuItem( );
-            this.transformFromPolarMenuItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem42 = new System.Windows.Forms.MenuItem( );
+            this.runLengthSmoothingMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -1543,7 +1545,9 @@ namespace IPLab
             this.documentAligningMenuItem,
             this.menuItem41,
             this.transformToPolarMenuItem,
-            this.transformFromPolarMenuItem} );
+            this.transformFromPolarMenuItem,
+            this.menuItem42,
+            this.runLengthSmoothingMenuItem} );
             this.menuItem24.Text = "Other";
             // 
             // adaptiveSmoothingFiltersItem
@@ -1599,6 +1603,23 @@ namespace IPLab
             this.documentAligningMenuItem.Text = "Document Aligning";
             this.documentAligningMenuItem.Click += new System.EventHandler( this.documentAligningMenuItem_Click );
             // 
+            // menuItem41
+            // 
+            this.menuItem41.Index = 9;
+            this.menuItem41.Text = "-";
+            // 
+            // transformToPolarMenuItem
+            // 
+            this.transformToPolarMenuItem.Index = 10;
+            this.transformToPolarMenuItem.Text = "Transform to Polar";
+            this.transformToPolarMenuItem.Click += new System.EventHandler( this.transformToPolarMenuItem_Click );
+            // 
+            // transformFromPolarMenuItem
+            // 
+            this.transformFromPolarMenuItem.Index = 11;
+            this.transformFromPolarMenuItem.Text = "Transform from Polar";
+            this.transformFromPolarMenuItem.Click += new System.EventHandler( this.transformFromPolarMenuItem_Click );
+            // 
             // menuItem23
             // 
             this.menuItem23.Index = 14;
@@ -1651,22 +1672,16 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
-            // menuItem41
+            // menuItem42
             // 
-            this.menuItem41.Index = 9;
-            this.menuItem41.Text = "-";
+            this.menuItem42.Index = 12;
+            this.menuItem42.Text = "-";
             // 
-            // transformToPolarMenuItem
+            // runLengthSmoothingMenuItem
             // 
-            this.transformToPolarMenuItem.Index = 10;
-            this.transformToPolarMenuItem.Text = "Transform to Polar";
-            this.transformToPolarMenuItem.Click += new System.EventHandler( this.transformToPolarMenuItem_Click );
-            // 
-            // transformFromPolarMenuItem
-            // 
-            this.transformFromPolarMenuItem.Index = 11;
-            this.transformFromPolarMenuItem.Text = "Transform from Polar";
-            this.transformFromPolarMenuItem.Click += new System.EventHandler( this.transformFromPolarMenuItem_Click );
+            this.runLengthSmoothingMenuItem.Index = 13;
+            this.runLengthSmoothingMenuItem.Text = "Run Length Smoothing";
+            this.runLengthSmoothingMenuItem.Click += new System.EventHandler( this.runLengthSmoothingMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -1706,5 +1721,7 @@ namespace IPLab
         private System.Windows.Forms.MenuItem menuItem41;
         private System.Windows.Forms.MenuItem transformToPolarMenuItem;
         private System.Windows.Forms.MenuItem transformFromPolarMenuItem;
+        private System.Windows.Forms.MenuItem menuItem42;
+        private System.Windows.Forms.MenuItem runLengthSmoothingMenuItem;
     }
 }

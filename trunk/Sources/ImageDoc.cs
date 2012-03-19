@@ -1851,6 +1851,22 @@ namespace IPLab
             }
         }
 
+        // Horizontal/Vertical run length smoothing
+        private void runLengthSmoothingMenuItem_Click( object sender, EventArgs e )
+        {
+            if ( CheckIfBinary( "Run Length Smoothing" ) )
+            {
+                RunLengthSmoothingForm form = new RunLengthSmoothingForm( );
+
+                form.Image = image;
+
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
+            }
+        }
+
         // Fourier transformation
         private void ForwardFourierTransformation( )
         {
