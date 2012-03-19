@@ -1271,6 +1271,18 @@ namespace IPLab
             }
         }
 
+        // Apply mask to an image
+        private void maskFilterMenuItem_Click( object sender, EventArgs e )
+        {
+            // get overlay image
+            Bitmap maskImage = host.GetImage( this, "Select an image which will be used as a mask", new Size( width, height ), PixelFormat.Format8bppIndexed );
+
+            if ( maskImage != null )
+            {
+                ApplyFilter( new ApplyMask( maskImage ) );
+            }
+        }
+
         // Homogenity edge detector
         private void homogenityEdgeFiltersItem_Click( object sender, System.EventArgs e )
         {

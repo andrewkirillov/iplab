@@ -375,6 +375,8 @@ namespace IPLab
             this.menuItem41 = new System.Windows.Forms.MenuItem( );
             this.transformToPolarMenuItem = new System.Windows.Forms.MenuItem( );
             this.transformFromPolarMenuItem = new System.Windows.Forms.MenuItem( );
+            this.menuItem42 = new System.Windows.Forms.MenuItem( );
+            this.runLengthSmoothingMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem23 = new System.Windows.Forms.MenuItem( );
             this.resizeFiltersItem = new System.Windows.Forms.MenuItem( );
             this.rotateFiltersItem = new System.Windows.Forms.MenuItem( );
@@ -384,8 +386,7 @@ namespace IPLab
             this.histogramEqualizationMenuItem = new System.Windows.Forms.MenuItem( );
             this.menuItem25 = new System.Windows.Forms.MenuItem( );
             this.fourierFiltersItem = new System.Windows.Forms.MenuItem( );
-            this.menuItem42 = new System.Windows.Forms.MenuItem( );
-            this.runLengthSmoothingMenuItem = new System.Windows.Forms.MenuItem( );
+            this.maskFilterMenuItem = new System.Windows.Forms.MenuItem( );
             this.SuspendLayout( );
             // 
             // mainMenu
@@ -1239,6 +1240,7 @@ namespace IPLab
             this.differenceTwosrcFiltersItem,
             this.moveTowardsTwosrcFiltersItem,
             this.morphTwosrcFiltersItem,
+            this.maskFilterMenuItem,
             this.menuItem36,
             this.menuItem39} );
             this.twosrcFiltersItem.Text = "Two source filters";
@@ -1297,12 +1299,12 @@ namespace IPLab
             // 
             // menuItem36
             // 
-            this.menuItem36.Index = 9;
+            this.menuItem36.Index = 10;
             this.menuItem36.Text = "-";
             // 
             // menuItem39
             // 
-            this.menuItem39.Index = 10;
+            this.menuItem39.Index = 11;
             this.menuItem39.MenuItems.AddRange( new System.Windows.Forms.MenuItem[] {
             this.trueAnaglyphMenuItem,
             this.grayAnaglyphMenuItem,
@@ -1620,6 +1622,17 @@ namespace IPLab
             this.transformFromPolarMenuItem.Text = "Transform from Polar";
             this.transformFromPolarMenuItem.Click += new System.EventHandler( this.transformFromPolarMenuItem_Click );
             // 
+            // menuItem42
+            // 
+            this.menuItem42.Index = 12;
+            this.menuItem42.Text = "-";
+            // 
+            // runLengthSmoothingMenuItem
+            // 
+            this.runLengthSmoothingMenuItem.Index = 13;
+            this.runLengthSmoothingMenuItem.Text = "Run Length Smoothing";
+            this.runLengthSmoothingMenuItem.Click += new System.EventHandler( this.runLengthSmoothingMenuItem_Click );
+            // 
             // menuItem23
             // 
             this.menuItem23.Index = 14;
@@ -1672,16 +1685,11 @@ namespace IPLab
             this.fourierFiltersItem.Text = "&Fourier Transformation";
             this.fourierFiltersItem.Click += new System.EventHandler( this.fourierFiltersItem_Click );
             // 
-            // menuItem42
+            // maskFilterMenuItem
             // 
-            this.menuItem42.Index = 12;
-            this.menuItem42.Text = "-";
-            // 
-            // runLengthSmoothingMenuItem
-            // 
-            this.runLengthSmoothingMenuItem.Index = 13;
-            this.runLengthSmoothingMenuItem.Text = "Run Length Smoothing";
-            this.runLengthSmoothingMenuItem.Click += new System.EventHandler( this.runLengthSmoothingMenuItem_Click );
+            this.maskFilterMenuItem.Index = 9;
+            this.maskFilterMenuItem.Text = "Mask";
+            this.maskFilterMenuItem.Click += new System.EventHandler( this.maskFilterMenuItem_Click );
             // 
             // ImageDoc
             // 
@@ -1723,5 +1731,6 @@ namespace IPLab
         private System.Windows.Forms.MenuItem transformFromPolarMenuItem;
         private System.Windows.Forms.MenuItem menuItem42;
         private System.Windows.Forms.MenuItem runLengthSmoothingMenuItem;
+        private System.Windows.Forms.MenuItem maskFilterMenuItem;
     }
 }
