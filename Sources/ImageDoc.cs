@@ -137,6 +137,9 @@ namespace IPLab
             // init scroll bars
             this.AutoScroll = true;
 
+            // handle mouse wheel
+            this.MouseWheel += new MouseEventHandler( this.mouseWheelMoved );
+
             UpdateSize( );
         }
 
@@ -2099,6 +2102,31 @@ namespace IPLab
             if ( ( !dragging ) && ( MouseImagePosition != null ) )
             {
                 MouseImagePosition( this, new SelectionEventArgs( new Point( -1, -1 ) ) );
+            }
+        }
+
+        // Handle mouse wheel rotation
+        public void mouseWheelMoved( object sender, MouseEventArgs e )
+        {
+            if ( Control.ModifierKeys == Keys.Control )
+            {
+                if ( e.Delta > 0 )
+                {
+                    //if user scrolls upwards -> increase zoom by 10%
+                    zoom += 0.1f;
+                }
+                else if ( e.Delta < 0 )
+                {
+                    // if user scrolls downwards -> decrease zoom by 10%
+                    zoom -= 0.1F;
+                }
+
+                if ( zoom < 0 )
+                {
+                    zoom = 0;
+                }
+
+                UpdateZoom( );
             }
         }
     }
