@@ -82,6 +82,11 @@ namespace IPLab
 
 			histogramWin.VisibleChanged += new EventHandler( histogram_VisibleChanged );
 			statisticsWin.VisibleChanged += new EventHandler( statistics_VisibleChanged );
+
+            // set up drag-n-drop support
+            this.dockManager.DragDrop += new System.Windows.Forms.DragEventHandler( this.dockManager_DragDrop );
+            this.dockManager.DragEnter += new System.Windows.Forms.DragEventHandler( this.dockManager_DragEnter );
+            this.dockManager.AllowDrop = true;
 		}
 
 
@@ -960,5 +965,44 @@ namespace IPLab
 				e.Graphics.DrawImage(image, e.MarginBounds.Left, e.MarginBounds.Top, width, height);
 			}
 		}
+
+        // An item is dragged over the main window
+        private void dockManager_DragEnter( object sender, DragEventArgs e )
+        {
+            if ( e.Data.GetDataPresent( DataFormats.FileDrop ) )
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        // An item is dropped in the main window
+        private void dockManager_DragDrop( object sender, DragEventArgs e )
+        {
+            if ( e.Data.GetDataPresent( DataFormats.FileDrop ) )
+            {
+                // get selected files 
+                string[] fileName = (string[]) e.Data.GetData( DataFormats.FileDrop );
+
+                // in the case user has selected more than one file fileName contains more than one file
+                for ( int i = 0; i < fileName.Length; i++ )
+                {
+                    string extension = Path.GetExtension( fileName[i] ).ToLower( );
+
+                    // only get pictures 
+                    if ( ( extension == ".png" ) ||
+                            ( extension == ".jpg" ) ||
+                            ( extension == ".tif" ) ||
+                            ( extension == ".bmp" ) ||
+                            ( extension == ".gif" ) )
+                    {
+                        OpenFile( fileName[i] );
+                    }
+                }
+            }
+        }
 	}
 }
