@@ -243,6 +243,12 @@
     <Compile Include="Filters Forms\MorphForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Filters Forms\MoveTowardsFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filters Forms\MoveTowardsFilterForm.Designer.cs">
+      <DependentUpon>MoveTowardsFilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Filters Forms\OilPaintingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\MorphForm.resx">
       <DependentUpon>MorphForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\MoveTowardsFilterForm.resx">
+      <DependentUpon>MoveTowardsFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\OilPaintingForm.resx">
       <DependentUpon>OilPaintingForm.cs</DependentUpon>
