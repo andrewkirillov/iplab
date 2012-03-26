@@ -1,3 +1,56 @@
+IPLab 2.8.0 release notes
+------------------------------
+26.03.2012.
+
+Version updates and fixes:
+
+* Fixed registered issues/requests:
+  - Issue 1: Cropped images are saved at screen resolution instead of image resolution
+  - Issue 6: Preview Window does not work with parameterized two source filters
+  - Issue 9: Support Bradley Local Binarization in IPLab
+  - Issue 11: Patch - Drag and Drop and Zooming
+  - Issue 12: Bug in AdaptiveSmoothForm.cs
+
+
+- Updated solution files to VS.NET 2010.
+
+- Updated AForge.NET framework's binaries to version 2.2.4
+
+- Corrected Adaptive Smoothing form so it initializes track bar correctly.
+
+- Removed local version of HuePicker control and used the one from AForge.Controls.dll instead.
+
+- Added Bradley Local Binarazation filter into thresholding menu.
+
+- Added Holes Filling filter to the application.
+
+- Added Bilateral smoothing filter to the application.
+
+- Added Bayer filter to the application.
+
+- Added Transform To/From Polar coordinates image processing filter to the application.
+
+- Add Horizontal/Vertical run length smoothing algorithm to the application.
+
+- Added Apply Mask filter to the application.
+
+- Added drag-n-drop support of image files into the application. User can simply drag some item into application's window and drop them there to open.
+
+- Added support of mouse wheel. If user holds CTRL key and rotates mouse wheel, then image zoomed in/out.
+
+- When filter fails for some reasons, the error message will report message provided with exception.
+
+- Two source filters like Add, Subtract, Intersect and Merge now require same size overlay image.
+
+- Fixed preview control, so it provides correct preview for 2 source filter (those which require overlay image).
+
+- Added configuration/preview form for Move Towards filter.
+
+- Saving settings files into IPLab sub-folder of Local Application Data folder instead of writing right into it.
+
+
+
+
 IPLab 2.7.0 release notes
 ------------------------------
 06.10.2010.
