@@ -1250,7 +1250,17 @@ namespace IPLab
             Bitmap overlayImage = host.GetImage( this, "Select an image to which the current image will be moved", new Size( width, height ), image.PixelFormat );
 
             if ( overlayImage != null )
-                ApplyFilter( new MoveTowards( overlayImage, 10 ) );
+            {
+                MoveTowardsFilterForm form = new MoveTowardsFilterForm( overlayImage );
+
+                form.Image = image;
+
+                // get filter settings
+                if ( form.ShowDialog( ) == DialogResult.OK )
+                {
+                    ApplyFilter( form.Filter );
+                }
+            }
         }
 
         // Morph an image
