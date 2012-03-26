@@ -91,6 +91,8 @@ namespace IPLab
             this.groupBox1 = new System.Windows.Forms.GroupBox( );
             this.filterPreview = new IPLab.FilterPreview( );
             ( (System.ComponentModel.ISupportInitialize) ( this.percentageBar ) ).BeginInit( );
+            ( (System.ComponentModel.ISupportInitialize) ( this.pictureBox1 ) ).BeginInit( );
+            this.groupBox1.SuspendLayout( );
             this.SuspendLayout( );
             // 
             // label1
@@ -128,6 +130,7 @@ namespace IPLab
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Location = new System.Drawing.Point( 209, 195 );
             this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size( 75, 23 );
             this.cancelButton.TabIndex = 13;
             this.cancelButton.Text = "Cancel";
             // 
@@ -137,8 +140,9 @@ namespace IPLab
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.okButton.Location = new System.Drawing.Point( 124, 195 );
             this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size( 75, 23 );
             this.okButton.TabIndex = 12;
-            this.okButton.Text = "Ok";
+            this.okButton.Text = "S";
             // 
             // groupBox1
             // 
@@ -177,7 +181,10 @@ namespace IPLab
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Morphing";
             ( (System.ComponentModel.ISupportInitialize) ( this.percentageBar ) ).EndInit( );
+            ( (System.ComponentModel.ISupportInitialize) ( this.pictureBox1 ) ).EndInit( );
+            this.groupBox1.ResumeLayout( false );
             this.ResumeLayout( false );
+            this.PerformLayout( );
 
         }
         #endregion
