@@ -440,9 +440,9 @@ namespace IPLab
                     UpdateNewImage( );
                 }
             }
-            catch
+            catch ( Exception ex )
             {
-                MessageBox.Show( "Error occured applying selected filter to the image", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                MessageBox.Show( "Error occured applying selected filter to the image.\r\n\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
             finally
             {
@@ -1202,7 +1202,7 @@ namespace IPLab
         // Merge two images
         private void mergeTwosrcFiltersItem_Click( object sender, System.EventArgs e )
         {
-            Bitmap overlayImage = host.GetImage( this, "Select an image to merge with the current image", new Size( -1, -1 ), image.PixelFormat );
+            Bitmap overlayImage = host.GetImage( this, "Select an image to merge with the current image", new Size( width, height ), image.PixelFormat );
 
             if ( overlayImage != null )
                 ApplyFilter( new Merge( overlayImage ) );
@@ -1211,7 +1211,7 @@ namespace IPLab
         // Intersect
         private void intersectTwosrcFiltersItem_Click( object sender, System.EventArgs e )
         {
-            Bitmap overlayImage = host.GetImage( this, "Select an image to intersect with the current image", new Size( -1, -1 ), image.PixelFormat );
+            Bitmap overlayImage = host.GetImage( this, "Select an image to intersect with the current image", new Size( width, height ), image.PixelFormat );
 
             if ( overlayImage != null )
                 ApplyFilter( new Intersect( overlayImage ) );
@@ -1220,7 +1220,7 @@ namespace IPLab
         // Add
         private void addTwosrcFiltersItem_Click( object sender, System.EventArgs e )
         {
-            Bitmap overlayImage = host.GetImage( this, "Select an image to add to the current image", new Size( -1, -1 ), image.PixelFormat );
+            Bitmap overlayImage = host.GetImage( this, "Select an image to add to the current image", new Size( width, height ), image.PixelFormat );
 
             if ( overlayImage != null )
                 ApplyFilter( new Add( overlayImage ) );
@@ -1229,7 +1229,7 @@ namespace IPLab
         // Subtract
         private void subtractTwosrcFiltersItem_Click( object sender, System.EventArgs e )
         {
-            Bitmap overlayImage = host.GetImage( this, "Select an image to subtract from the current image", new Size( -1, -1 ), image.PixelFormat );
+            Bitmap overlayImage = host.GetImage( this, "Select an image to subtract from the current image", new Size( width, height ), image.PixelFormat );
 
             if ( overlayImage != null )
                 ApplyFilter( new Subtract( overlayImage ) );
