@@ -1,0 +1,12 @@
+Image Processing Lab
+http://www.aforgenet.com/projects/iplab
+=======================================
+
+Copyright © AForge.NET, 2006-2012
+contacts@aforgenet.com
+
+Open source image processing application written on C#, which includes
+different filters and tools to analyze images available in AForge.NET
+framework.
+
+Please, contact project owners for any offers, remarks, ideas, etc.

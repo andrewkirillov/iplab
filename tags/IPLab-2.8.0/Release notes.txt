@@ -1,0 +1,144 @@
+IPLab 2.8.0 release notes
+------------------------------
+26.03.2012.
+
+Version updates and fixes:
+
+* Fixed registered issues/requests:
+  - Issue 1: Cropped images are saved at screen resolution instead of image resolution
+  - Issue 6: Preview Window does not work with parameterized two source filters
+  - Issue 9: Support Bradley Local Binarization in IPLab
+  - Issue 11: Patch - Drag and Drop and Zooming
+  - Issue 12: Bug in AdaptiveSmoothForm.cs
+
+
+- Updated solution files to VS.NET 2010.
+
+- Updated AForge.NET framework's binaries to version 2.2.4
+
+- Corrected Adaptive Smoothing form so it initializes track bar correctly.
+
+- Removed local version of HuePicker control and used the one from AForge.Controls.dll instead.
+
+- Added Bradley Local Binarazation filter into thresholding menu.
+
+- Added Holes Filling filter to the application.
+
+- Added Bilateral smoothing filter to the application.
+
+- Added Bayer filter to the application.
+
+- Added Transform To/From Polar coordinates image processing filter to the application.
+
+- Add Horizontal/Vertical run length smoothing algorithm to the application.
+
+- Added Apply Mask filter to the application.
+
+- Added drag-n-drop support of image files into the application. User can simply drag some item into application's window and drop them there to open.
+
+- Added support of mouse wheel. If user holds CTRL key and rotates mouse wheel, then image zoomed in/out.
+
+- When filter fails for some reasons, the error message will report message provided with exception.
+
+- Two source filters like Add, Subtract, Intersect and Merge now require same size overlay image.
+
+- Fixed preview control, so it provides correct preview for 2 source filter (those which require overlay image).
+
+- Added configuration/preview form for Move Towards filter.
+
+- Saving settings files into IPLab sub-folder of Local Application Data folder instead of writing right into it.
+
+
+
+
+IPLab 2.7.0 release notes
+------------------------------
+06.10.2010.
+
+
+Version updates and fixes:
+
+- Updated AForge.NET framework's assemblies to the latest 2.1.4 version;
+
+- Added format check on image reloading (not only on initial loading);
+
+- Image reloading is now done without file locking similar to initial loading;
+
+- Added support for some command line arguments:
+  * iplab.exe /paste - starts application and opens image from clipboard;
+  * iplab.exe /open <file_name> (or just iplab.exe <file_name>) - starts application
+    and opens the specified file.
+
+- Added Stereo Anaglyph filter to collection of available filters, which accepts 2 images;
+
+- Allowing to apply blob extraction and filtering to color images as well, since the
+  AForge.NET framework allows this;
+  
+- Adding quadrilateral finder and quadrilateral transformation options (for now it
+  transforms only the automatically found quadrilateral);
+
+- Added PNG format to the list of formats in "Save As" dialog;
+
+- Added Document Skew Checker demonstration into the application;
+
+- Moving different effects like Perlin Noise, Oil Painting, etc. into separate menu item group;
+
+- Adding crazy "rombozoid" effect;
+
+- Added Water Wave effect.
+
+
+
+
+IPLab 2.6.1 release notes
+------------------------------
+01.10.2009.
+
+- Since most AForge.NET framework's image processing routines work with grayscale
+  images and 24 bpp color images (not all routines support 32 bpp images) the IPLab
+  converts image to 24 bpp color image on opening if it is not grayscale image.
+
+
+
+
+IPLab 2.6.0 release notes
+------------------------------
+16.08.2009.
+
+
+Version updates and fixes:
+
+* Fixed registered issues/requests:
+  - Issue 3: iplab won't build with provided dll reference file  
+  - Issue 4: Can not save to the just opened file  
+  
+
+- Application is update to use AForge.NET Framework version 2.0
+
+- Application configuration files are now stored in common local storage instead of
+  executable's folder to prevent security issues in case if installed to Program Files or
+  other protected folders.
+  
+- Added Contrast Stretch and Histogram Equalization routines.
+
+- Added Otsu thresholding.
+
+- Added threshold parameter to custom convolution filters, so filters like emboss could be
+  created.
+
+- Added Extract Biggest Blob routine.
+
+- Added blobs' filtering by size, so small unwanted objects could be removed.
+
+- Added SUSAN and Moravec corners' detectors.
+
+- Added simple posterizaton image processing routine.
+
+  
+
+
+IPLab 2.5.1 release notes
+------------------------------
+18.09.2007.
+
+First release of this application as Googles Code project.
