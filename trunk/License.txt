@@ -8,5 +8,5 @@ The application is provided under GPL v.3 license, which exact definition
 may be found in gpl-3.0.txt file provided with the application or on the
 next web page: http://www.gnu.org/copyleft/gpl.html
 
-Copyright © AForge.NET, 2006-2009
+Copyright © AForge.NET, 2006-2012
 contacts@aforgenet.com
