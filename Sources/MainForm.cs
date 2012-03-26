@@ -37,8 +37,8 @@ namespace IPLab
         }
 
         // configuration files
-        private static string configFile = Path.Combine( System.Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ), "app.config" );
-        private static string dockManagerConfigFile = Path.Combine( System.Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ), "DockManager.config" );
+        private static string configFile = Path.Combine( System.Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ), @"IPLab\settings.config" );
+        private static string dockManagerConfigFile = Path.Combine( System.Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ), @"IPLab\DockManager.config" );
 
 		private int unNamedNumber = 0;
 		private Configuration config = new Configuration();
@@ -59,6 +59,8 @@ namespace IPLab
 			//
 			InitializeComponent();
 
+
+            Directory.CreateDirectory( Path.GetDirectoryName( configFile ) );
 			//
 			// TODO: Add any constructor code after InitializeComponent call
 			//
