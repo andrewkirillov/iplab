@@ -99,7 +99,7 @@ namespace IPLab
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size( 168, 24 );
             this.label1.TabIndex = 12;
-            this.label1.Text = "Image Processing Lab v.2.7.0";
+            this.label1.Text = "Image Processing Lab v.2.8.0";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
@@ -108,7 +108,7 @@ namespace IPLab
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size( 212, 16 );
             this.label2.TabIndex = 13;
-            this.label2.Text = "Copyright © 2005-2010, Andrew Kirillov";
+            this.label2.Text = "Copyright © 2005-2012, Andrew Kirillov";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // mailLabel
