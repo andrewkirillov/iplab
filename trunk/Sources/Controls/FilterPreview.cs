@@ -163,6 +163,27 @@ namespace IPLab
 
             if ( ( image != null ) && ( filter != null ) )
             {
+                Bitmap originalOverlayImage = null;
+                Bitmap tempOverlayImage = null;
+
+                // if the filter uses overlay image, then crop it also
+                if ( filter is BaseInPlaceFilter2 )
+                {
+                    BaseInPlaceFilter2 filter2 = (BaseInPlaceFilter2) filter;
+
+                    originalOverlayImage = filter2.OverlayImage;
+                    tempOverlayImage = originalOverlayImage.Clone( new Rectangle( imageX, imageY, areaWidth, areaHeight ), originalOverlayImage.PixelFormat );
+                    filter2.OverlayImage = tempOverlayImage;
+                }
+                else if ( filter is BaseFilter2 )
+                {
+                    BaseFilter2 filter2 = (BaseFilter2) filter;
+
+                    originalOverlayImage = filter2.OverlayImage;
+                    tempOverlayImage = originalOverlayImage.Clone( new Rectangle( imageX, imageY, areaWidth, areaHeight ), originalOverlayImage.PixelFormat );
+                    filter2.OverlayImage = tempOverlayImage;
+                }
+
                 Bitmap tmp = image.Clone( new Rectangle( imageX, imageY, areaWidth, areaHeight ), image.PixelFormat );
 
                 try
@@ -171,6 +192,24 @@ namespace IPLab
                 }
                 catch ( Exception )
                 {
+                }
+
+                // restore overlay image
+                if ( originalOverlayImage != null )
+                {
+                    if ( filter is BaseInPlaceFilter2 )
+                    {
+                        ( (BaseInPlaceFilter2) filter ).OverlayImage = originalOverlayImage;
+                    }
+                    else if ( filter is BaseFilter2 )
+                    {
+                        ( (BaseFilter2) filter ).OverlayImage = originalOverlayImage;
+                    }
+                }
+
+                if ( tempOverlayImage != null )
+                {
+                    tempOverlayImage.Dispose( );
                 }
 
                 // release temp image
