@@ -1059,7 +1059,6 @@ namespace IPLab
         private void bradleyLocalThresholdingMenuItem_Click( object sender, EventArgs e )
         {
             BradleyLocalThresholding();
-            //ApplyFilter( new BradleyLocalThresholding( ) );
         }
 
         private void BradleyLocalThresholding()
