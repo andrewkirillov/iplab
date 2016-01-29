@@ -153,9 +153,7 @@
     <Compile Include="Controls\GridArray.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\GridArrayInt.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\GridArrayInt.cs" />
     <Compile Include="Filters Forms\AdaptiveSmoothForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +294,9 @@
     </Compile>
     <Compile Include="Filters Forms\SusanCornersDetectorForm.Designer.cs">
       <DependentUpon>SusanCornersDetectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Filters Forms\BradleyLocalThresholdForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Filters Forms\ThresholdForm.cs">
       <SubType>Form</SubType>
@@ -475,6 +476,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\SusanCornersDetectorForm.resx">
       <DependentUpon>SusanCornersDetectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filters Forms\BradleyLocalThresholdForm.resx">
+      <DependentUpon>BradleyLocalThresholdForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters Forms\ThresholdForm.resx">
       <DependentUpon>ThresholdForm.cs</DependentUpon>

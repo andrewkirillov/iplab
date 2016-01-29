@@ -1058,7 +1058,24 @@ namespace IPLab
         // Bradley local thresholdingb
         private void bradleyLocalThresholdingMenuItem_Click( object sender, EventArgs e )
         {
-            ApplyFilter( new BradleyLocalThresholding( ) );
+            BradleyLocalThresholding();
+            //ApplyFilter( new BradleyLocalThresholding( ) );
+        }
+
+        private void BradleyLocalThresholding()
+        {
+            if (CheckIfGrayscale("BradleyLocalThresholding filter"))
+            {
+                BradleyLocalThresholdForm form = new BradleyLocalThresholdForm();
+
+                // set image to preview
+                form.Image = image;
+
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    ApplyFilter(form.Filter);
+                }
+            }
         }
 
         // Errosion (Mathematical Morphology)
